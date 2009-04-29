@@ -1,0 +1,11 @@
+.DS_Store
+log/*.log
+log/*.pid
+tmp/**/*
+doc/api
+doc/app
+config/database.yml
+config/settings.yml
+.project
+nbproject
+coverage
