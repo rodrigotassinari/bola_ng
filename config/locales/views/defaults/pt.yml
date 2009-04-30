@@ -1,2 +1,4 @@
 pt:
   hello: "Olá mundo"
+  service_actions:
+    tweeted: gorjeei
