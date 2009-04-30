@@ -1,7 +1,7 @@
 class TwitterService < Service
 
   SERVICE_NAME = 'Twitter'
-  SERVICE_ACTIONS = %w( post )
+  SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :twitter_login, :icon_url, :profile_image_url
 
@@ -15,7 +15,7 @@ class TwitterService < Service
       fetch.
       results
   rescue => e
-    logger.warn "Error fetching posts from Twitter: #{e}"
+    logger.warn "Error fetching posts from #{SERVICE_NAME}: #{e}"
     []
   end
 
@@ -29,7 +29,7 @@ class TwitterService < Service
       fetch.
       results
   rescue => e
-    logger.warn "Error fetching posts from Twitter: #{e}"
+    logger.warn "Error fetching posts from #{SERVICE_NAME}: #{e}"
     []
   end
 
@@ -61,8 +61,7 @@ class TwitterService < Service
   # representing the failed ones.
   def create_posts
     entries = if self.last_post_identifier
-      #self.fetch_entries_since(last_post_identifier)
-      self.fetch_entries
+      self.fetch_entries_since(last_post_identifier)
     else
       self.fetch_entries
     end
