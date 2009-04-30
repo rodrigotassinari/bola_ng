@@ -1,0 +1,13 @@
+# http://settingslogic.rubyforge.org/
+defaults: &defaults
+  locale: :pt
+  time_zone: Brasilia
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
