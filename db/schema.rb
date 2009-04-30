@@ -9,7 +9,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090430030146) do
+ActiveRecord::Schema.define(:version => 20090430031735) do
+
+  create_table "posts", :force => true do |t|
+    t.integer  "service_id"
+    t.string   "service_action"
+    t.string   "identifier"
+    t.string   "title"
+    t.string   "slug"
+    t.string   "markup"
+    t.text     "body"
+    t.text     "summary"
+    t.text     "extra_content"
+    t.string   "url"
+    t.string   "cached_tag_list"
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", :force => true do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "icon_url"
+    t.string   "profile_url"
+    t.string   "profile_image_url"
+    t.text     "settings"
+    t.boolean  "active",            :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
