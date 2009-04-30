@@ -1,2 +1,15 @@
 pt:
-  hello: "Olá mundo"
+  activerecord:
+    models:
+      service: Serviço
+    attributes:
+      service:
+        type: "Tipo"
+        name: "Nome"
+        icon_url: "URL do Ícone"
+        profile_url: "URL do Perfil"
+        profile_image_url: "URL da Imagem do Perfil"
+        settings: "Configurações"
+        active: "Ativo"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"

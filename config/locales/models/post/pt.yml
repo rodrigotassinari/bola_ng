@@ -1,2 +1,18 @@
 pt:
-  hello: "Olá mundo"
+  activerecord:
+    models:
+      post: Post
+    attributes:
+      post:
+        service_action: "Ação"
+        identifier: "Identificador"
+        title: "Título"
+        slug: "Slug"
+        markup: "Formato"
+        body: "Corpo"
+        summary: "Resumo"
+        extra_content: "Conteúdo Extra"
+        url: "URL"
+        published_at: "Publicado em"
+        created_at: "Criado em"
+        updated_at: "Atualizado em"

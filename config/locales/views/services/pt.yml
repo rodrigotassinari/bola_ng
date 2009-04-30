@@ -1,2 +1,4 @@
 pt:
-  hello: "Olá mundo"
+  services:
+    index:
+      hello: "Olá mundo"
