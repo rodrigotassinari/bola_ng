@@ -9,27 +9,35 @@ class TwitterService < Service
 
   # returns an array of twitter posts, newer posts first
   def fetch_entries(quantity=15)
+    logger.info "#{SERVICE_NAME}: Fetching #{quantity} most recent tweets by #{self.twitter_login}"
     Twitter::Search.new.
       from(self.twitter_login).
       per_page(quantity).
       fetch.
       results
+  rescue Timeout::Error => tme
+    logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
+    []
   rescue => e
-    logger.warn "Error fetching posts from #{SERVICE_NAME}: #{e}"
+    logger.warn "#{SERVICE_NAME}: Error fetching posts: #{e}"
     []
   end
 
   # returns an array of twitter posts, posted after the last_entry_id, newer
   # posts first
   def fetch_entries_since(last_entry_id, quantity=100)
+    logger.info "#{SERVICE_NAME}: Fetching #{quantity} most recent tweets by #{self.twitter_login} since post id #{last_entry_id}"
     Twitter::Search.new.
       from(self.twitter_login).
       since(last_entry_id).
       per_page(quantity).
       fetch.
       results
+  rescue Timeout::Error => tme
+    logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
+    []
   rescue => e
-    logger.warn "Error fetching posts from #{SERVICE_NAME}: #{e}"
+    logger.warn "#{SERVICE_NAME}: Error fetching posts: #{e}"
     []
   end
 
@@ -58,18 +66,18 @@ class TwitterService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts
+  def create_posts(quantity=15)
     entries = if self.last_post_identifier
-      self.fetch_entries_since(last_post_identifier)
+      self.fetch_entries_since(last_post_identifier, quantity)
     else
-      self.fetch_entries
+      self.fetch_entries(quantity)
     end
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|
       if post.save
         post.id
       else
-        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages}"
+        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
         nil
       end
     end

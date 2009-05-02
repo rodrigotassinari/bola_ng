@@ -11,25 +11,32 @@ class FlickrService < Service
   def fetch_entries(quantity=15)
     user = self.flickr_user!
 
+    logger.info "#{SERVICE_NAME}: Fetching the #{quantity} most recent photos by #{user.id}"
     user_photos = user.photos(:per_page => quantity)
 
+    logger.info "#{SERVICE_NAME}: Fetching the #{quantity} most recent favorite photos of #{user.id}"
     user_favorites = user.favorites[0..(quantity-1)] # temporário
-    #user_favorites = user.favorites(:per_page => quantity) # TODO esperar atualização da gem que permitirá isso
+    #user_favorites = user.favorites(:per_page => quantity) # FIXME esperar atualização da gem que permitirá isso
 
     (user_photos + user_favorites)
+  rescue Timeout::Error => tme
+    logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
+    []
   rescue => e
-    logger.warn "Error fetching posts from #{SERVICE_NAME}: #{e}"
+    logger.warn "#{SERVICE_NAME}: Error fetching posts: #{e}"
     []
   end
 
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
+  # TODO tentar novamente x vezes em caso de erro, com y segundos de intervalo entre as tentativas
   def build_post_from_entry(entry)
+    logger.info "#{SERVICE_NAME}: Loading extra info about photo #{entry.id}"
     self.posts.build(
       :body => entry.description, # primeiro pra forçar o getInfo logo
       :service_action => (entry.owner.id == self.flickr_user_id ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
       :identifier => entry.id.to_s,
-      :title => entry.title,
+      :title => (entry.title || '-'),
       :markup => Post::PLAIN_MARKUP,
       :url => entry.pretty_url,
       :published_at => Time.at(entry['dates']['posted'].to_i),
@@ -42,20 +49,23 @@ class FlickrService < Service
         :image_url_original => entry.source(:original)
       }
     )
+  rescue Timeout::Error => tme
+    logger.warn "#{SERVICE_NAME}: Error fetching extra info about photo #{entry.id} (timeout error): #{tme}"
+    self.posts.build
   end
 
   # fetches recent entries since the last one (or the more recent ones if never
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts
-    entries = self.fetch_entries
+  def create_posts(quantity=15)
+    entries = self.fetch_entries(quantity)
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|
       if post.save
         post.id
       else
-        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages}"
+        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
         nil
       end
     end
@@ -73,6 +83,7 @@ class FlickrService < Service
     #
     # raiser exception in case of error.
     def flickr_user!
+      logger.info "#{SERVICE_NAME}: Loading the flickr user for #{self.flickr_email}"
       client = self.flickr_client
       client.users(self.flickr_email)
     end
@@ -82,18 +93,18 @@ class FlickrService < Service
     #
     # returns +nil+ in case of failure.
     def flickr_user
-      self.flick_user!
+      self.flickr_user!
     rescue
       nil
     end
 
     # before_validation_on_create
     def set_url_attributes
-      unless flickr_api_key.blank? && flickr_email.blank?
+      unless self.flickr_api_key.blank? && self.flickr_email.blank?
         if self.flickr_user
           self.icon_url = "http://www.flickr.com/favicon.ico"
-          self.profile_url = flickr_user.pretty_url
-          self.flickr_user_id = flickr_user.id
+          self.profile_url = self.flickr_user.pretty_url
+          self.flickr_user_id = self.flickr_user.id
         end
       end
     end
