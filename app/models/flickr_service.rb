@@ -46,7 +46,8 @@ class FlickrService < Service
         :image_url_small => entry.source(:small),
         :image_url_medium => entry.source(:medium),
         :image_url_large => entry.source(:large),
-        :image_url_original => entry.source(:original)
+        :image_url_original => entry.source(:original),
+        :original_tags => entry.tags['tag'].map { |t| t['raw'] } # array de tags
       }
     )
   rescue Timeout::Error => tme
