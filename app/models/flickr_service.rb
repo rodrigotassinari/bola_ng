@@ -31,9 +31,12 @@ class FlickrService < Service
   # attributes filled with the entry's content
   # TODO tentar novamente x vezes em caso de erro, com y segundos de intervalo entre as tentativas
   def build_post_from_entry(entry)
-    logger.info "#{SERVICE_NAME}: Loading extra info about photo #{entry.id}"
+    Timeout.timeout 5 do
+      logger.info "#{SERVICE_NAME}: Loading extra info about photo #{entry.id}"
+      entry.description # pra forçar o getInfo logo
+    end
     self.posts.build(
-      :body => entry.description, # primeiro pra forçar o getInfo logo
+      :body => entry.description,
       :service_action => (entry.owner.id == self.flickr_user_id ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
       :identifier => entry.id.to_s,
       :title => (entry.title || '-'),
