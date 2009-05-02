@@ -39,7 +39,7 @@ class FlickrService < Service
       :title => (entry.title || '-'),
       :markup => Post::PLAIN_MARKUP,
       :url => entry.pretty_url,
-      :published_at => Time.at(entry['dates']['posted'].to_i),
+      :published_at => (entry.owner.id == self.flickr_user_id ? Time.at(entry['dates']['posted'].to_i) : Time.at(entry['date_faved'].to_i)),
       :extra_content => {
         :image_url_square => entry.source(:square),
         :image_url_thumbnail => entry.source(:thumbnail),
@@ -47,7 +47,7 @@ class FlickrService < Service
         :image_url_medium => entry.source(:medium),
         :image_url_large => entry.source(:large),
         :image_url_original => entry.source(:original),
-        :original_tags => entry.tags['tag'].map { |t| t['raw'] } # array de tags
+        :original_tags => entry.tags.blank? ? [] : entry.tags['tag'].map { |t| t['raw'] } # array de tags
       }
     )
   rescue Timeout::Error => tme

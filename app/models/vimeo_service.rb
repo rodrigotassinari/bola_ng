@@ -34,12 +34,12 @@ class VimeoService < Service
       :title => entry['title'],
       :markup => Post::PLAIN_MARKUP,
       :url => entry['url'],
-      :published_at => entry['upload_date'],
+      :published_at => entry['upload_date'].to_time, # FIXME como pegar a data da favoritação?
       :extra_content => {
         :thumbnail_small => entry['thumbnail_small'],
         :thumbnail_medium => entry['thumbnail_medium'],
         :thumbnail_large => entry['thumbnail_large'],
-        :original_tags => entry['tags'], # TODO é array?
+        :original_tags => entry['tags'].split(',').map {|t| t.strip }, # array de tags
         :user_name => entry['user_name'],
         :user_thumbnail => entry['user_thumbnail_small']
       }
