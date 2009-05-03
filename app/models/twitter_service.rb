@@ -1,5 +1,7 @@
 class TwitterService < Service
 
+  # OK
+
   SERVICE_NAME = 'Twitter'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 

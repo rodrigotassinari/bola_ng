@@ -1,5 +1,7 @@
 class VimeoService < Service
 
+  # TODO não consegue data de favoritação, talvez tenha que passar pra rss
+
   SERVICE_NAME = 'Vimeo'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 

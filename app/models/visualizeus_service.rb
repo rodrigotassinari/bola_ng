@@ -1,19 +1,18 @@
-require 'digest/sha1'
-class ScuttleService < Service
+class VisualizeusService < Service
 
   # OK
 
-  SERVICE_NAME = 'Scuttle'
+  SERVICE_NAME = 'Vi.sualize.us'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
-  validates_presence_of :scuttle_login, :icon_url
+  validates_presence_of :visualizeus_login, :icon_url
 
-  settings_accessors([:scuttle_login])
+  settings_accessors([:visualizeus_login])
 
-  # returns an array of scuttle posts, newer posts first
+  # returns an array of last.fm posts (faved tracks), newer posts first
   def fetch_entries(quantity=15)
     entries = []
-    doc = Hpricot.XML(open("http://links.pittlandia.net/rss/#{self.scuttle_login}"))
+    doc = Hpricot.XML(open("http://vi.sualize.us/rss/#{self.visualizeus_login}/"))
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
@@ -32,13 +31,15 @@ class ScuttleService < Service
     self.posts.build(
       :body => entry[:description],
       :service_action => Service::SERVICE_ACTION_BOOKMARK,
-      :identifier => Digest::SHA1.hexdigest(entry[:link]),
+      :identifier => entry[:guid].to_s,
       :title => entry[:title],
       :markup => Post::PLAIN_MARKUP,
       :url => entry[:link],
       :published_at => entry[:pubDate],
       :extra_content => {
-        :original_tags => entry[:categories] # array de tags
+        :original_tags => entry[:tags],
+        :image_url => entry[:image_url],
+        :thumbnail_url => entry[:thumbnail_url]
       }
     )
   end
@@ -64,9 +65,9 @@ class ScuttleService < Service
 
     # before_validation_on_create
     def set_url_attributes
-      unless self.scuttle_login.blank?
-        self.icon_url = "http://links.pittlandia.net/icon.png"
-        self.profile_url = "http://links.pittlandia.net/bookmarks/#{self.scuttle_login}"
+      unless self.visualizeus_login.blank?
+        self.icon_url = "http://vi.sualize.us/css/images/favicon.gif"
+        self.profile_url = "http://vi.sualize.us/#{self.visualizeus_login}/"
       end
     end
 
@@ -76,7 +77,10 @@ class ScuttleService < Service
         :link => (entry/'link').inner_html,
         :pubDate => (entry/'pubDate').inner_html.to_time,
         :description => (entry/'description').inner_html,
-        :categories => (entry/'category').map(&:inner_html)
+        :guid => (entry/'guid').inner_html.split(':').first,
+        :tags => (entry/'guid').inner_html.split(':').last.split(',').map {|t| t.strip }, # array de tags
+        :image_url => (entry/'media:content').first[:url],
+        :thumbnail_url => (entry/'media:thumbnail').first[:url]
       }
     end
 

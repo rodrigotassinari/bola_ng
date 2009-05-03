@@ -1,5 +1,7 @@
 class LastfmService < Service
 
+  # OK
+
   SERVICE_NAME = 'Last.fm'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_FAVE]
 

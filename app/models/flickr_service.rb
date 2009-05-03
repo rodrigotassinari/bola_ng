@@ -1,5 +1,7 @@
 class FlickrService < Service
 
+  # TODO muito lento, transformar pra buscar via rss se conseguir as tags
+
   SERVICE_NAME = 'Flickr'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
