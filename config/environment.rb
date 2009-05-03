@@ -30,6 +30,8 @@ Rails::Initializer.run do |config|
   config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
   config.gem 'www-delicious', :lib => 'www/delicious', :version => '>= 0.3.0'
 
+  config.gem 'hpricot', :version => '>= 0.8.1'
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
