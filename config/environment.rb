@@ -25,7 +25,6 @@ Rails::Initializer.run do |config|
   # api's, installed
   config.gem 'twitter', :version => '>= 0.6.8'
   config.gem 'ctagg-flickr', :lib => 'flickr', :version => '>= 1.0.8', :source => 'http://gems.github.com'
-  config.gem 'xhochy-scrobbler', :lib => 'scrobbler', :version => '>= 0.2.14', :source => 'http://gems.github.com' # aguardar passar pra 2.0
   config.gem 'youtube-g', :lib => 'youtube_g', :version => '>= 0.5.0'
   config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
   config.gem 'mirrored', :version => '>= 0.1.5'
