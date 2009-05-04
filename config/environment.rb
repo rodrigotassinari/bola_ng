@@ -22,12 +22,15 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>= 2.3.8', :source => 'http://gems.github.com'
   config.gem 'settingslogic', :version => '>= 1.0.3'
 
+  # app, installed
+  config.gem 'RedCloth', :version => '>= 4.1.9'
+  config.gem 'hpricot', :version => '>= 0.8.1'
+
   # api's, installed
   config.gem 'twitter', :version => '>= 0.6.8'
   config.gem 'ctagg-flickr', :lib => 'flickr', :version => '>= 1.0.8', :source => 'http://gems.github.com'
   config.gem 'youtube-g', :lib => 'youtube_g', :version => '>= 0.5.0'
   config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
-  config.gem 'hpricot', :version => '>= 0.8.1'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
