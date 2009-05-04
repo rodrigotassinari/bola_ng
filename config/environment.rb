@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'xhochy-scrobbler', :lib => 'scrobbler', :version => '>= 0.2.14', :source => 'http://gems.github.com' # aguardar passar pra 2.0
   config.gem 'youtube-g', :lib => 'youtube_g', :version => '>= 0.5.0'
   config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
-  config.gem 'www-delicious', :lib => 'www/delicious', :version => '>= 0.3.0'
+  config.gem 'mirrored', :version => '>= 0.1.5'
 
   config.gem 'hpricot', :version => '>= 0.8.1'
 
