@@ -38,7 +38,7 @@ class FlickrService < Service
       entry.description # pra forçar o getInfo logo
     end
     self.posts.build(
-      :body => entry.description,
+      :summary => entry.description,
       :service_action => (entry.owner.id == self.flickr_user_id ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
       :identifier => entry.id.to_s,
       :title => (entry.title || '-'),

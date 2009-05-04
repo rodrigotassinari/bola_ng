@@ -51,7 +51,7 @@ class TwitterService < Service
       :identifier => entry.id.to_s,
       :title => entry.text,
       :markup => Post::HTML_MARKUP,
-      :body => entry.text,
+      :summary => entry.text,
       :url => "#{self.profile_url}/status/#{entry.id}",
       :published_at => entry.created_at.to_time
     )

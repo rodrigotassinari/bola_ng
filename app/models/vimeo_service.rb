@@ -30,7 +30,7 @@ class VimeoService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
     self.posts.build(
-      :body => entry['caption'],
+      :summary => entry['caption'],
       :service_action => (entry['user_name'] == self.vimeo_login ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
       :identifier => entry['clip_id'].to_s,
       :title => entry['title'],

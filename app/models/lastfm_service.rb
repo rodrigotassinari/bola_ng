@@ -29,7 +29,7 @@ class LastfmService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
     self.posts.build(
-      :body => entry[:description],
+      :summary => entry[:description],
       :service_action => Service::SERVICE_ACTION_FAVE,
       :identifier => entry[:guid].split('#').last.to_s,
       :title => entry[:title],

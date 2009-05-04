@@ -33,7 +33,7 @@ class YoutubeService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
     self.posts.build(
-      :body => entry.description,
+      :summary => entry.description,
       :service_action => (entry.author.name == self.youtube_login ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
       :identifier => entry.unique_id.to_s,
       :title => entry.title,

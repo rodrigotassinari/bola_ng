@@ -29,7 +29,7 @@ class GoogleReaderService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
     self.posts.build(
-      :body => entry[:summary],
+      :summary => entry[:summary],
       :service_action => Service::SERVICE_ACTION_SHARE,
       :identifier => entry[:guid].to_s,
       :title => entry[:title],
