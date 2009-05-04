@@ -27,8 +27,6 @@ Rails::Initializer.run do |config|
   config.gem 'ctagg-flickr', :lib => 'flickr', :version => '>= 1.0.8', :source => 'http://gems.github.com'
   config.gem 'youtube-g', :lib => 'youtube_g', :version => '>= 0.5.0'
   config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
-  config.gem 'mirrored', :version => '>= 0.1.5'
-
   config.gem 'hpricot', :version => '>= 0.8.1'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
