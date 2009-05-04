@@ -1,6 +1,8 @@
 require 'digest/sha1'
 class WordpressService < Service
 
+  # OK
+
   SERVICE_NAME = 'Wordpress Blog' # changed by the user
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
