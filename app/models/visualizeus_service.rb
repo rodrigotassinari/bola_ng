@@ -16,7 +16,7 @@ class VisualizeusService < Service
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries[0..quantity]
+    entries[0..quantity-1]
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
