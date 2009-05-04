@@ -12,6 +12,7 @@ class Service < ActiveRecord::Base
 
   named_scope :active, :conditions => {:active => true}
   named_scope :inactive, :conditions => {:active => false}
+  named_scope :fetchable, :conditions => ["`services`.`type` <> ?", 'BlogService']
 
   validates_presence_of :type, :name, :profile_url
   validates_uniqueness_of :name, :profile_url
@@ -69,6 +70,15 @@ class Service < ActiveRecord::Base
     #     nil
     #   end
     # end
+  end
+
+  # fetches entries and creates posts for all active services (except
+  # BlogService's)
+  def self.create_posts
+    services = self.active.fetchable.all
+    services.each do |service|
+      service.create_posts # TODO rodar assíncronamente e atômicamente
+    end
   end
 
   protected
