@@ -1,5 +1,7 @@
 class DeliciousService < Service
 
+  # OK
+
   SERVICE_NAME = 'Delicious'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
