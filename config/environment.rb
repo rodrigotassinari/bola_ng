@@ -28,7 +28,6 @@ Rails::Initializer.run do |config|
 
   # api's, installed
   config.gem 'twitter', :version => '>= 0.6.8'
-  config.gem 'matthooks-vimeo', :lib => 'vimeo', :version => '>= 0.2.2', :source => 'http://gems.github.com'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
