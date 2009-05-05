@@ -1,8 +1,10 @@
 TODO
 
-- taggear posts (baseado nas tags originais, convertidas se necessário)
-- formatar posts do blog com algum markup simples (textile)
+- remover limite de quantidade dos fetchs
+- não logar como warn quando post já existe
+- passar youtube e vimeo para rss, se possível (tags)
 - criar usuário, login
 - criar interface web
 - criar interface web administrativa
 - buscar novos itens dos serviços assincronamente e atomicamente
+- cachear tags sem dar pau no tag_list

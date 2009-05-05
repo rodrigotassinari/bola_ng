@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
 
   before_create :slugify_if_article
   #before_create :summarize_if_article # TODO
+  before_create :taggify
 
   # returns true if this post is associated with a BlogService
   def is_article?
@@ -36,6 +37,16 @@ class Post < ActiveRecord::Base
     def slugify_if_article
       if is_article?
         self.slug = PermalinkFu.escape(self.title)[0..60]
+      end
+    end
+
+    def taggify
+      if self.extra_content && 
+          self.extra_content['original_tags'] &&
+          self.tag_list.empty?
+        self.tag_list = self.extra_content['original_tags'].
+          map { |t| t.downcase }.
+          join(', ')
       end
     end
 

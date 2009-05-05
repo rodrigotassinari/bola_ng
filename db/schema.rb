@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090430031735) do
+ActiveRecord::Schema.define(:version => 20090505135527) do
 
   create_table "posts", :force => true do |t|
     t.integer  "service_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20090430031735) do
     t.text     "summary"
     t.text     "extra_content"
     t.string   "url"
-    t.string   "cached_tag_list"
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
