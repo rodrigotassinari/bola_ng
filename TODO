@@ -1,9 +1,8 @@
 TODO
 
-- buscar novos itens dos serviços assincronamente e atomicamente
-- criar slugs para posts do blog
 - taggear posts (baseado nas tags originais, convertidas se necessário)
 - formatar posts do blog com algum markup simples (textile)
 - criar usuário, login
 - criar interface web
 - criar interface web administrativa
+- buscar novos itens dos serviços assincronamente e atomicamente
