@@ -60,8 +60,9 @@ class Post < ActiveRecord::Base
           self.extra_content['original_tags'] &&
           self.tag_list.empty?
         self.tag_list = self.extra_content['original_tags'].
-          map { |t| t.downcase }.
-          join(', ')
+          map(&:downcase).
+          join(', ').
+          downcase
       end
     end
 
