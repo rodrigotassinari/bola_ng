@@ -39,28 +39,6 @@ class LastfmService < Service
     )
   end
 
-  # fetches recent entries since the last one (or the more recent ones if never
-  # fetched), parses all of them into Post objects and saves all of them.
-  # returns an array with the id's of the successfully saved posts and +nil+'s
-  # representing the failed ones.
-  def create_posts
-    entries = self.fetch_entries
-    posts = self.build_posts_from_entries(entries)
-    posts.map do |post|
-      unless post.exists?
-        if post.save
-          post.id
-        else
-          logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
-          nil
-        end
-      else
-        logger.info "Post: #{post.service.try(:name)} - #{post.identifier} -- already exists."
-        nil
-      end
-    end
-  end
-
   protected
 
     # before_validation_on_create

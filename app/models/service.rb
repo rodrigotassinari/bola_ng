@@ -57,19 +57,21 @@ class Service < ActiveRecord::Base
   end
 
   def create_posts
-    # overwrite in the child services
-    # basic usage:
-    # 
-    # entries = self.fetch_entries
-    # posts = self.build_posts_from_entries(entries)
-    # posts.map do |post|
-    #   if post.save
-    #     post.id
-    #   else
-    #     logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages}"
-    #     nil
-    #   end
-    # end
+    entries = self.fetch_entries
+    posts = self.build_posts_from_entries(entries)
+    posts.map do |post|
+      unless post.exists?
+        if post.save
+          post.id
+        else
+          logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
+          nil
+        end
+      else
+        logger.info "Post: #{post.service.try(:name)} - #{post.identifier} -- already exists."
+        nil
+      end
+    end
   end
 
   # fetches entries and creates posts for all active services (except
