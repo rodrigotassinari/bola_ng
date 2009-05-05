@@ -10,7 +10,7 @@ class YoutubeService < Service
   settings_accessors([:youtube_login])
 
   # returns an array of youtube posts, newer posts first
-  def fetch_entries(quantity=15)
+  def fetch_entries(quantity=20)
     youtube = YouTubeG::Client.new
     youtube.logger = Rails.logger
 
@@ -51,7 +51,7 @@ class YoutubeService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
+  def create_posts(quantity=20)
     entries = self.fetch_entries(quantity)
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|

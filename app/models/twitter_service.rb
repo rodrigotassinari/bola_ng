@@ -10,7 +10,7 @@ class TwitterService < Service
   settings_accessors(:twitter_login)
 
   # returns an array of twitter posts, newer posts first
-  def fetch_entries(quantity=15)
+  def fetch_entries(quantity=30)
     logger.info "#{SERVICE_NAME}: Fetching #{quantity} most recent tweets by #{self.twitter_login}"
     Twitter::Search.new.
       from(self.twitter_login).
@@ -57,10 +57,11 @@ class TwitterService < Service
     )
   end
 
-  # returns the unique identifier of the last post associated with this service
+  # returns the unique identifier of the (pseudo) last post associated with this service
   def last_post_identifier
     self.posts.
-      find(:first, :order => 'published_at DESC, id DESC').
+      find(:all, :order => 'published_at DESC, id DESC', :limit => 2).
+      last.
       try(:identifier)
   end
 
@@ -68,9 +69,9 @@ class TwitterService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
+  def create_posts(quantity=30)
     entries = if self.last_post_identifier
-      self.fetch_entries_since(last_post_identifier, quantity)
+      self.fetch_entries_since(last_post_identifier)
     else
       self.fetch_entries(quantity)
     end

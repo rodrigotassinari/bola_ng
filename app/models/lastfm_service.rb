@@ -10,13 +10,13 @@ class LastfmService < Service
   settings_accessors([:lastfm_login])
 
   # returns an array of last.fm posts (faved tracks), newer posts first
-  def fetch_entries(quantity=15)
+  def fetch_entries
     entries = []
     doc = Hpricot.XML(open("http://ws.audioscrobbler.com/2.0/user/#{self.lastfm_login}/lovedtracks.rss"))
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries[0..quantity-1]
+    entries
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -43,8 +43,8 @@ class LastfmService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
-    entries = self.fetch_entries(quantity)
+  def create_posts
+    entries = self.fetch_entries
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|
       if post.save

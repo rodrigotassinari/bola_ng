@@ -10,13 +10,13 @@ class VisualizeusService < Service
   settings_accessors([:visualizeus_login])
 
   # returns an array of last.fm posts (faved tracks), newer posts first
-  def fetch_entries(quantity=15)
+  def fetch_entries
     entries = []
     doc = Hpricot.XML(open("http://vi.sualize.us/rss/#{self.visualizeus_login}/"))
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries[0..quantity-1]
+    entries
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -48,8 +48,8 @@ class VisualizeusService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
-    entries = self.fetch_entries(quantity)
+  def create_posts
+    entries = self.fetch_entries
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|
       if post.save

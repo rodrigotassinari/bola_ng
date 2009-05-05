@@ -10,7 +10,7 @@ class VimeoService < Service
   settings_accessors([:vimeo_login, :vimeo_user_id])
 
   # returns an array of vimeo posts, newer posts first
-  def fetch_entries(quantity=15)
+  def fetch_entries(quantity=20)
     logger.info "#{SERVICE_NAME}: Fetching the #{quantity} most recent videos by #{self.vimeo_login}"
     videos = Vimeo::Simple::User.clips(self.vimeo_login)
 
@@ -52,7 +52,7 @@ class VimeoService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
+  def create_posts(quantity=20)
     entries = self.fetch_entries(quantity)
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|

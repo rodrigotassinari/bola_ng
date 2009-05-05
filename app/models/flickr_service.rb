@@ -67,7 +67,7 @@ class FlickrService < Service
   # fetched), parses all of them into Post objects and saves all of them.
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
-  def create_posts(quantity=15)
+  def create_posts
     photos, faved = self.fetch_entries
     photo_posts = self.build_posts_from_entries(photos, Service::SERVICE_ACTION_POST)
     faved_posts = self.build_posts_from_entries(faved, Service::SERVICE_ACTION_FAVE)
