@@ -1,5 +1,7 @@
 class BlipfmService < Service
 
+  # OK
+
   SERVICE_NAME = 'Blip.fm'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
