@@ -23,6 +23,15 @@ class Post < ActiveRecord::Base
   #before_create :summarize_if_article # TODO
   before_create :taggify
 
+  named_scope :published, 
+    :conditions => '`posts`.`published_at` IS NOT NULL'
+  named_scope :unpublished, 
+    :conditions => '`posts`.`published_at` IS NULL'
+  named_scope :ordered,
+    :order => '`posts`.`published_at` DESC, `posts`.`updated_at` DESC, `posts`.`id` DESC'
+  named_scope :latest,
+    :limit => 5
+
   # returns true if this post is associated with a BlogService
   def is_article?
     self.service.class == BlogService

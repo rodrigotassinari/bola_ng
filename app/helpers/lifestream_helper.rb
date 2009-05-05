@@ -1,0 +1,2 @@
+module LifestreamHelper
+end

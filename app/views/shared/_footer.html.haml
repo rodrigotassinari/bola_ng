@@ -1,0 +1,11 @@
+#footer
+  = link_to image_tag("credits.gif", :alt => "bola"), "http://github.com/rtopitt/bola_ng/tree/master", :title => "PiTTlândia is powered by BOLA NG", :id => "credits"
+  %span#copyright
+    Copyright 2000 - 2009 © PiTTlândia
+    |
+    == Running on #{link_to 'bola_ng', 'http://github.com/rtopitt/bola_ng/tree/master'} v0.1
+    |
+    = link_to 'admin', '#'
+    - if true # current_user
+      |
+      = link_to 'logout', '#'
