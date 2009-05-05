@@ -1,63 +1,66 @@
 class FlickrService < Service
 
-  # DOING! BROKEN!
-  # como saber se é post ou faved ao criar post?
-  # pedir nome e buscar id via webapp?
-  # buscar por "var photostream_owner_nsid = "51201321@N00";" em http://www.flickr.com/photos/userid/ ?
+  # OK
 
   SERVICE_NAME = 'Flickr'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
-  validates_presence_of :flickr_user_name, :flickr_user_id, :icon_url
+  validates_presence_of :flickr_user_name, :flickr_user_id, :flickr_author_profile_url, :icon_url
 
-  settings_accessors([:flickr_user_name, :flickr_user_id])
+  settings_accessors([:flickr_user_name, :flickr_user_id, :flickr_author_profile_url])
 
   # returns an array of delicious posts, newer posts first
-  def fetch_entries(quantity=15)
-    logger.info "#{SERVICE_NAME}: Fetching the #{quantity} most recent photos by #{self.flickr_user_id}"
+  def fetch_entries
+    logger.info "#{SERVICE_NAME}: Fetching the most recent photos by #{self.flickr_user_name}"
     photo_entries = []
     doc = Hpricot.XML(open("http://api.flickr.com/services/feeds/photos_public.gne?id=#{self.flickr_user_id}&lang=en-us&format=rss_200"))
     (doc/'item').each do |item|
       photo_entries << parse_entry(item)
     end
     
-    logger.info "#{SERVICE_NAME}: Fetching the #{quantity} most recent favorite photos of #{self.flickr_user_id}"
+    logger.info "#{SERVICE_NAME}: Fetching the most recent favorite photos of #{self.flickr_user_name}"
     faved_entries = []
     doc = Hpricot.XML(open("http://api.flickr.com/services/feeds/photos_faves.gne?nsid=#{self.flickr_user_id}&lang=en-us&format=rss_200"))
     (doc/'item').each do |item|
       faved_entries << parse_entry(item)
     end
 
-    (photo_entries[0..quantity-1] + faved_entries[0..quantity-1])
+    return photo_entries, faved_entries
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
-    []
+    return [], []
   rescue => e
     logger.warn "#{SERVICE_NAME}: Error fetching posts: #{e.backtrace}"
-    []
+    return [], []
   end
 
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
-  def build_post_from_entry(entry)
+  def build_post_from_entry(entry, action)
     self.posts.build(
-      :summary => entry.description,
-      :service_action => (entry.owner.id == self.flickr_user_id ? Service::SERVICE_ACTION_POST : Service::SERVICE_ACTION_FAVE),
-      :identifier => entry.id.to_s,
-      :title => (entry.title || '-'),
+      :summary => entry[:description],
+      :service_action => action,
+      :identifier => entry[:guid].to_s,
+      :title => (entry[:title].blank? ? '-' : entry[:title]),
       :markup => Post::PLAIN_MARKUP,
-      :url => entry.pretty_url,
-      :published_at => (entry.owner.id == self.flickr_user_id ? Time.at(entry['dates']['posted'].to_i) : Time.at(entry['date_faved'].to_i)),
+      :url => entry[:link],
+      :published_at => (action == Service::SERVICE_ACTION_POST ? entry[:pubDate] : Time.current),
       :extra_content => {
-        :image_url_square => entry.source(:square),
-        :image_url_thumbnail => entry.source(:thumbnail),
-        :image_url_small => entry.source(:small),
-        :image_url_medium => entry.source(:medium),
-        :image_url_large => entry.source(:large),
-        :image_url_original => entry.source(:original),
-        :original_tags => entry.tags.blank? ? [] : entry.tags['tag'].map { |t| t['raw'] } # array de tags
+        :image_url_square => entry[:image_url_square],
+        :image_url_thumbnail => entry[:image_url_thumbnail],
+        :image_url_small => entry[:image_url_small],
+        :image_url_medium => entry[:image_url_medium],
+        :image_url_large => entry[:image_url_large],
+        :image_url_original => entry[:image_url_original],
+        :author_name => entry[:author_name],
+        :author_profile_url => entry[:author_profile_url],
+        :original_tags => entry[:categories] # array de tags
       }
     )
+  end
+
+  def build_posts_from_entries(entries, action)
+    entries.map { |entry| self.build_post_from_entry(entry, action) }
   end
 
   # fetches recent entries since the last one (or the more recent ones if never
@@ -65,9 +68,10 @@ class FlickrService < Service
   # returns an array with the id's of the successfully saved posts and +nil+'s
   # representing the failed ones.
   def create_posts(quantity=15)
-    entries = self.fetch_entries(quantity)
-    posts = self.build_posts_from_entries(entries)
-    posts.map do |post|
+    photos, faved = self.fetch_entries
+    photo_posts = self.build_posts_from_entries(photos, Service::SERVICE_ACTION_POST)
+    faved_posts = self.build_posts_from_entries(faved, Service::SERVICE_ACTION_FAVE)
+    (photo_posts + faved_posts).map do |post|
       if post.save
         post.id
       else
@@ -84,6 +88,7 @@ class FlickrService < Service
       unless self.flickr_user_id.blank? && self.flickr_user_name.blank?
         self.icon_url = "http://www.flickr.com/favicon.ico"
         self.profile_url = "http://www.flickr.com/photos/#{self.flickr_user_name}/"
+        self.flickr_author_profile_url = "http://www.flickr.com/people/#{self.flickr_user_name}/"
       end
     end
 
@@ -93,7 +98,7 @@ class FlickrService < Service
         :link => (entry/'link').inner_html,
         :description => (entry/'description').inner_html,
         :pubDate => (entry/'pubDate').inner_html.to_time,
-        #:date_taken => ( (entry/'dc:date.Taken').inner_html.nil? ? nil : (entry/'dc:date.Taken').inner_html.to_time ),
+        #:date_taken => ( (entry/'dc:date.Taken').inner_html.nil? ? nil : (entry/'dc:date.Taken').inner_html.to_time ), # FIXME
         :author_name => (entry/'author').first.inner_html.gsub(/\Anobody\@flickr\.com \(/, '').gsub(/\)\Z/, ''),
         :author_profile_url => (entry/'author').first['flickr:profile'],
         :guid => (entry/'guid').inner_html.split(':').last.split('/').last,
