@@ -32,6 +32,21 @@ class Post < ActiveRecord::Base
     is_article? ? "#{self.id}-#{self.slug}" : "#{self.id}"
   end
 
+  # returns true if there's already a post with the same service_id and
+  # identifier, false otherwise.
+  def exists?
+    return true unless self.new_record?
+    unless self.valid?
+      if self.errors.on(:identifier) == I18n.t('activerecord.errors.messages.exclusion')
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
   protected
 
     def slugify_if_article

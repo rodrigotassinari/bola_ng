@@ -72,10 +72,15 @@ class FlickrService < Service
     photo_posts = self.build_posts_from_entries(photos, Service::SERVICE_ACTION_POST)
     faved_posts = self.build_posts_from_entries(faved, Service::SERVICE_ACTION_FAVE)
     (photo_posts + faved_posts).map do |post|
-      if post.save
-        post.id
+      unless post.exists?
+        if post.save
+          post.id
+        else
+          logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
+          nil
+        end
       else
-        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
+        logger.info "Post: #{post.service.try(:name)} - #{post.identifier} -- already exists."
         nil
       end
     end

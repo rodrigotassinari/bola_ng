@@ -56,10 +56,15 @@ class VimeoService < Service
     entries = self.fetch_entries(quantity)
     posts = self.build_posts_from_entries(entries)
     posts.map do |post|
-      if post.save
-        post.id
+      unless post.exists?
+        if post.save
+          post.id
+        else
+          logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
+          nil
+        end
       else
-        logger.warn "Error saving Post: #{post.service.try(:name)} - #{post.identifier} - #{post.errors.full_messages.to_sentence}"
+        logger.info "Post: #{post.service.try(:name)} - #{post.identifier} -- already exists."
         nil
       end
     end
