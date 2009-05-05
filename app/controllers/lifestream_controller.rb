@@ -1,11 +1,34 @@
 class LifestreamController < ApplicationController
 
+  # GET /
+  # GET /lifestream
+  # Via: root_path
+  # Via: lifestream_index_path
+  # Avaiable: all
+  #
+  # Shows the combined lifestream.
   def index
-    # TODO
+    @current_tab = 'lifestream'
+    @page_title = "Lifestream"
+    @posts = Post.published.ordered.paginate(
+      :page => params[:page]
+    )
   end
 
+  # GET /lifestream/:id
+  # Via: lifestream_path(:id)
+  # Avaiable: all
+  #
+  # Shows the lifestream of the supplied feed only.
+  # TODO: redirecionar para /blog caso service seja o blog_service
+  # TODO: usar slug (a ser criado) do service como param (mudar no modelo)
   def show
-    # TODO
+    @current_tab = 'lifestream'
+    @service = Service.find(params[:id])
+    @posts = @service.posts.published.ordered.paginate(
+      :page => params[:page]
+    )
+    @page_title = "Lifestream :: #{@service.name}"
   end
   
 end

@@ -1,0 +1,9 @@
+%ul#activity_list
+  - @posts.each_with_index do |post, index|
+    = render :partial => post.service.class.to_s.underscore, :locals => {:post => post, :last => is_last_in_row?(index)}
+
+.clear
+
+%p#pagination
+  Página:
+  = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
