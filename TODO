@@ -1,7 +1,7 @@
 TODO
 
-- criar usuário, login
 - criar interface web
+- criar usuário, login
 - criar interface web administrativa
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list
