@@ -21,7 +21,6 @@ class LifestreamController < ApplicationController
   #
   # Shows the lifestream of the supplied feed only.
   # TODO: redirecionar para /blog caso service seja o blog_service
-  # TODO: usar slug (a ser criado) do service como param (mudar no modelo)
   def show
     @current_tab = 'lifestream'
     @service = Service.find_by_slug(params[:id])
