@@ -7,8 +7,8 @@
     / domain-specific boxes
     %p.activity_image_text
       = link_to post.title, post.url
-      - unless post.summary.blank?
-        %span.activity_image_content= post.summary
+      - unless post.summary == '-'
+        %span.activity_image_content= truncate(post.summary, :length => 300)
     = link_to '', post.url, :class => 'activity_image', :style => "background: transparent url(#{post.extra_content['image_url_medium']}) no-repeat scroll center center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"
   %p.date
     = relative_published_date(post.published_at)

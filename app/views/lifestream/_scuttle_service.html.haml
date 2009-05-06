@@ -7,7 +7,7 @@
     / domain-specific boxes
     .inner_container
       %p.scuttle_title= link_to post.title, post.url
-      %p.scuttle_description= truncate(post.summary, 140)
+      %p.scuttle_description= truncate(post.summary, :length => 140)
       %p.scuttle_tags
         Tags:
         - post.tags.each do |tag|

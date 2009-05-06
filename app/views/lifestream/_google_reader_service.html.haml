@@ -8,7 +8,7 @@
     .inner_container
       %p.google_reader_title= link_to post.title, post.url
       %p.google_reader_description
-        = truncate(post.summary, 140)
+        = truncate(post.summary, :length => 140)
   %p.date
     = relative_published_date(post.published_at)
     |

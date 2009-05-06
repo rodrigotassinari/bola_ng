@@ -8,7 +8,7 @@
     .inner_container
       %p.blog_title= link_to post.title, post.url
       %p= image_tag('fancy_divider.gif', :alt => 'divider')
-      %p.blog_cite= truncate(post.summary, 140)
+      %p.blog_cite= truncate(post.summary, :length => 140)
       %p.blog_continue= link_to 'Continue lendo &raquo;', post.url
   %p.date
     = relative_published_date(post.published_at)
