@@ -1,6 +1,6 @@
 %ul#activity_list
   - @posts.each_with_index do |post, index|
-    = render :partial => 'post', :locals => {:post => post, :service => @service, :last => is_last_in_row?(index)}
+    = render :partial => 'lifestream/blog_service', :locals => {:post => post, :last => is_last_in_row?(index)}
 
 .clear
 
