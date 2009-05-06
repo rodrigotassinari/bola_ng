@@ -1,0 +1,19 @@
+/ begin conditional content
+%li.item.youtube{:class => "#{last ? 'last' : nil}"}
+  %p.site_info{:style => "background: white url(../images/youtube_favicon.ico) 3px center no-repeat"}
+    == Eu #{post.service_action} no
+    = link_to post.service.name, lifestream_path(post.service)
+  .item_inner
+    / domain-specific boxes
+    %object{:width => "212", :height => "178"}
+      %param{:name => "movie", :value => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1"}
+      %param{:name => "allowFullScreen", :value => "true"}
+      %embed{:src => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true", :allowscriptaccess => "always", :width => "212", :height => "178"}
+    %p.youtube_title= link_to post.title, post.url
+    - unless post.summary.blank?
+      %p= post.summary
+  %p.date
+    = relative_published_date(post.published_at)
+    |
+    = link_to 'Permalink', post.url
+    = link_to('Admin', '#', :class => 'admin') if true

@@ -1,0 +1,21 @@
+/ begin conditional content
+%li.item.delicious{:class => "#{last ? 'last' : nil}"}
+  %p.site_info{:style => "background: white url(../images/delicious_favicon.ico) no-repeat scroll 3px center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"}
+    == Eu #{post.service_action} no
+    = link_to post.service.name, lifestream_path(post.service)
+  .item_inner
+    / domain-specific boxes
+    .inner_container
+      %p.delicious_title= link_to post.title, post.url
+      %p.delicious_description
+        = truncate(post.summary, 140)
+        / = image_tag "http://capture.heartrails.com/small?#{post.url}", :alt => "thumbnail"
+      %p.delicious_tags
+        Tags:
+        - post.tags.each do |tag|
+          %span.delicious_tag= link_to tag.name, tag_path(tag)
+  %p.date
+    = relative_published_date(post.published_at)
+    |
+    = link_to 'Permalink', post.url
+    = link_to('Admin', '#', :class => 'admin') if true

@@ -548,3 +548,25 @@ form#mailing_list {
   border: 1px solid #CCC; }
   form#mailing_list p {
     padding: 70px 10px 10px 10px; }
+
+
+ul#activity_list li.item.delicious div.item_inner {
+	background: #3274d0 url(../images/deliciousback.png) no-repeat;
+	padding-left: 40px;
+}
+li.item.delicious div.item_inner {
+	color: #bccfeb;
+}
+li.item.delicious div.item_inner a {
+	color: white;
+	font-weight: bold;
+  text-decoration: none;
+	border: 1px solid #bccfeb;
+	border-style: none none dotted none;
+	display: block;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+li.item.delicious div.item_inner a:hover {
+	text-decoration: underline;
+}
