@@ -1,0 +1,23 @@
+/ begin conditional content
+%li.item.blipfm{:class => "#{last ? 'last' : nil}"}
+  %p.site_info{:style => "background: white url(../images/blipfm_favicon.ico) 3px center no-repeat"}
+    == Eu #{post.service_action} no
+    = link_to post.service.name, blog_index_path
+  .item_inner
+    / domain-specific boxes
+    .inner_container
+      .blip_player
+        %object{:type => "application/x-shockwave-flash", :allowScriptAccess => "never", :allowNetworking => "internal", :height => "240", :width => "221", :align => "middle", :data => "http://blip.fm/_/swf/BlipEmbedPlayer.swf"}
+          %param{:name => "allowScriptAccess", :value => "never"}
+          %param{:name => "allowNetworking", :value => "internal"}
+          %param{:name => "movie", :value => "http://blip.fm/_/swf/BlipEmbedPlayer.swf"}
+          %param{:name => "quality", :value => "high"}
+          %param{:name => "play", :value => "true"}
+          %param{:name => "loop", :value => "false"}
+          %param{:name => "wmode", :value => "transparent"}
+          %param{:name => "flashvars", :value => "blipId=#{post.identifier}"}
+  %p.date
+    = relative_published_date(post.published_at)
+    |
+    = link_to 'Permalink', post.url
+    = link_to('Admin', '#', :class => 'admin') if true
