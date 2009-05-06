@@ -5,6 +5,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :blog, :controller => 'blog'
 
+  map.tag_name 'tag/:name',
+    :controller => 'tags',
+    :action => 'show',
+    :conditions => {:method => :get},
+    :name => /.*/
+
   map.resources :tags
 
   map.with_options(:controller => 'pages', :conditions => {:method => :get}) do |pages|

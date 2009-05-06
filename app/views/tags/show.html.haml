@@ -1,0 +1,14 @@
+%p#breadcrumb
+  = link_to 'Lifestream', root_path
+  == &rsaquo; #{link_to 'Tags', tags_path}
+  == &rsaquo; Itens marcados com <b>#{@tag.name}</b>
+
+%ul#activity_list
+  - @posts.each_with_index do |post, index|
+    = render :partial => "lifestream/#{post.service.class.to_s.underscore}", :locals => {:post => post, :last => is_last_in_row?(index)}
+
+.clear
+
+%p#pagination
+  Página:
+  = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false

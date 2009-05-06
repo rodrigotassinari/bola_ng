@@ -36,8 +36,8 @@
   = link_to 'Ver Todas »', tags_path
 %ul.tag_list
   / %li <a href="/items/tag/onsite">onsite</a>
-  - Tag.all(:limit => 25).each do |tag|
-    %li= link_to tag.name, tag_path(tag.name)
+  - Post.published.tag_counts(:limit => 30, :order => 'count DESC').each do |tag|
+    %li= link_to tag.name, tag_name_path(tag.name)
 
 %h3 Sobre a PiTTlândia
 #aboutme

@@ -1,0 +1,7 @@
+#single_container
+  #single_header
+    %h2 Tags
+
+  #single_content
+    - tag_cloud @tags, %w(cloud1 cloud2 cloud3 cloud4 cloud5) do |tag, css_class|
+      = link_to tag.name, tag_name_path(tag.name), :class => css_class, :title => "#{tag.count} itens"

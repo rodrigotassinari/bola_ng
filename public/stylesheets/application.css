@@ -590,3 +590,9 @@ li.item.google_reader div.item_inner a {
 li.item.google_reader div.item_inner a:hover {
   text-decoration: underline; color: #236B8E; font-size: 16px;
 }
+
+.cloud1 { font-size: 0.8em; }
+.cloud2 { font-size: 1.3em; }
+.cloud3 { font-size: 1.6em; }
+.cloud4 { font-size: 1.9em; }
+.cloud5 { font-size: 2.2em; }
