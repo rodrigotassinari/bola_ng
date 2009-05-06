@@ -63,7 +63,7 @@ class GoogleReaderService < Service
         :link => (entry/'link').first['href'],
         :published => (entry/'published').inner_html.to_time,
         :updated => (entry/'updated').inner_html.to_time,
-        :summary => (entry/'summary').inner_html
+        :summary => Hpricot.parse((entry/'summary').inner_text).inner_text.gsub("\n", ' ').strip.gsub(/\s{2,}/, ' ')
       }
     end
 

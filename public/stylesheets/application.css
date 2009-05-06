@@ -575,3 +575,18 @@ li.item.delicious div.item_inner a:hover {
 li.item.blipfm div.item_inner {background: #DDEBFF;}
 li.item.blipfm div.inner_container {padding: 0; overflow: hidden;}
 li.item.blipfm object {margin-top: -5px; margin-left: -5px;}
+
+ul#activity_list li.item.google_reader div.item_inner {
+  /* background: url(../images/googback.jpg) bottom center no-repeat; */
+}
+li.item.google_reader div.item_inner a {
+  text-decoration: none; color: #236B8E; font-size: 16px;
+  border: 1px solid #7698b7;
+  border-style: none none dotted none;
+  display: block;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+li.item.google_reader div.item_inner a:hover {
+  text-decoration: underline; color: #236B8E; font-size: 16px;
+}
