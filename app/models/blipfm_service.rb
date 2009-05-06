@@ -4,6 +4,8 @@ class BlipfmService < Service
 
   SERVICE_NAME = 'Blip.fm'
   SERVICE_SLUG = 'blipfm'
+  SERVICE_ICON = '/images/blipfm_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :blipfm_login, :icon_url
@@ -45,7 +47,6 @@ class BlipfmService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.blipfm_login.blank?
-        self.icon_url = "http://blip.fm/favicon.ico"
         self.profile_url = "http://blip.fm/#{self.blipfm_login}"
       end
     end

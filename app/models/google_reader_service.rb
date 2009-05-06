@@ -4,6 +4,8 @@ class GoogleReaderService < Service
 
   SERVICE_NAME = 'Google Reader'
   SERVICE_SLUG = 'google_reader'
+  SERVICE_ICON = '/images/google_reader_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_SHARE]
 
   validates_presence_of :google_reader_url, :google_reader_feed_url
@@ -50,7 +52,6 @@ class GoogleReaderService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.google_reader_url.blank?
-        self.icon_url = 'http://www.google.com/reader/ui/favicon.ico'
         self.profile_url = self.google_reader_url
       end
     end

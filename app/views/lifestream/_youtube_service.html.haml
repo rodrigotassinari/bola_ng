@@ -1,6 +1,6 @@
 / begin conditional content
 %li.item.youtube{:class => "#{last ? 'last' : nil}"}
-  %p.site_info{:style => "background: white url(../images/youtube_favicon.ico) 3px center no-repeat"}
+  %p.site_info{:style => "background: white url(#{post.service.icon_url}) 3px center no-repeat"}
     == Eu #{post.service_action} no
     = link_to post.service.name, lifestream_path(post.service)
   .item_inner

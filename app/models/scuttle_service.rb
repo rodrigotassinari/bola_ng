@@ -5,6 +5,8 @@ class ScuttleService < Service
 
   SERVICE_NAME = 'Scuttle'
   SERVICE_SLUG = 'scuttle'
+  SERVICE_ICON = '/images/scuttle_favicon.png'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :scuttle_login, :icon_url
@@ -49,7 +51,6 @@ class ScuttleService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.scuttle_login.blank?
-        self.icon_url = "http://links.pittlandia.net/icon.png"
         self.profile_url = "http://links.pittlandia.net/bookmarks/#{self.scuttle_login}"
       end
     end

@@ -4,6 +4,8 @@ class VimeoService < Service
 
   SERVICE_NAME = 'Vimeo'
   SERVICE_SLUG = 'vimeo'
+  SERVICE_ICON = '/images/vimeo_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :vimeo_login, :icon_url
@@ -81,7 +83,6 @@ class VimeoService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.vimeo_login.blank?
-        self.icon_url = "http://vimeo.com/favicon.ico"
         self.profile_url = "http://vimeo.com/#{self.vimeo_login}"
       end
     end

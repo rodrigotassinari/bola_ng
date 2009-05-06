@@ -4,6 +4,8 @@ class DeliciousService < Service
 
   SERVICE_NAME = 'Delicious'
   SERVICE_SLUG = 'delicious'
+  SERVICE_ICON = '/images/delicious_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :delicious_login, :icon_url
@@ -48,7 +50,6 @@ class DeliciousService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.delicious_login.blank?
-        self.icon_url = "http://delicious.com/favicon.ico"
         self.profile_url = "http://delicious.com/#{self.delicious_login}"
       end
     end

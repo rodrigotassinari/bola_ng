@@ -4,6 +4,8 @@ class YoutubeService < Service
 
   SERVICE_NAME = 'YouTube'
   SERVICE_SLUG = 'youtube'
+  SERVICE_ICON = '/images/youtube_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :youtube_login, :icon_url
@@ -80,7 +82,6 @@ class YoutubeService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.youtube_login.blank?
-        self.icon_url = "http://www.youtube.com/favicon.ico"
         self.profile_url = "http://www.youtube.com/user/#{self.youtube_login}"
       end
     end

@@ -4,6 +4,8 @@ class LastfmService < Service
 
   SERVICE_NAME = 'Last.fm'
   SERVICE_SLUG = 'lastfm'
+  SERVICE_ICON = '/images/lastfm_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :lastfm_login, :icon_url
@@ -45,7 +47,6 @@ class LastfmService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.lastfm_login.blank?
-        self.icon_url = "http://cdn.last.fm/flatness/favicon.2.ico"
         #self.profile_url = "http://www.lastfm.com.br/user/#{self.lastfm_login}"
         self.profile_url = "http://last.fm/user/#{self.lastfm_login}"
       end

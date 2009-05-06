@@ -1,6 +1,6 @@
 / begin conditional content
 %li.item.delicious{:class => "#{last ? 'last' : nil}"}
-  %p.site_info{:style => "background: white url(../images/delicious_favicon.ico) no-repeat scroll 3px center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"}
+  %p.site_info{:style => "background: white url(#{post.service.icon_url}) no-repeat scroll 3px center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"}
     == Eu #{post.service_action} no
     = link_to post.service.name, lifestream_path(post.service)
   .item_inner

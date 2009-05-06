@@ -4,6 +4,8 @@ class VisualizeusService < Service
 
   SERVICE_NAME = 'Vi.sualize.us'
   SERVICE_SLUG = 'visualizeus'
+  SERVICE_ICON = '/images/visualizeus_favicon.gif'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :visualizeus_login, :icon_url
@@ -50,7 +52,6 @@ class VisualizeusService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.visualizeus_login.blank?
-        self.icon_url = "http://vi.sualize.us/css/images/favicon.gif"
         self.profile_url = "http://vi.sualize.us/#{self.visualizeus_login}/"
       end
     end

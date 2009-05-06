@@ -4,6 +4,8 @@ class FlickrService < Service
 
   SERVICE_NAME = 'Flickr'
   SERVICE_SLUG = 'flickr'
+  SERVICE_ICON = '/images/flickr_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :flickr_user_name, :flickr_user_id, :flickr_author_profile_url, :icon_url
@@ -92,7 +94,6 @@ class FlickrService < Service
     # before_validation_on_create
     def set_url_attributes
       unless self.flickr_user_id.blank? && self.flickr_user_name.blank?
-        self.icon_url = "http://www.flickr.com/favicon.ico"
         self.profile_url = "http://www.flickr.com/photos/#{self.flickr_user_name}/"
         self.flickr_author_profile_url = "http://www.flickr.com/people/#{self.flickr_user_name}/"
       end

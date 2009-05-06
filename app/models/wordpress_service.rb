@@ -5,6 +5,8 @@ class WordpressService < Service
 
   SERVICE_NAME = 'Wordpress Blog' # changed by the user
   SERVICE_SLUG = 'wordpress_blog'
+  SERVICE_ICON = '/images/wordpress_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :wordpress_url, :wordpress_name, :wordpress_slug, :wordpress_feed_url
@@ -53,7 +55,7 @@ class WordpressService < Service
       unless self.wordpress_url.blank? && self.wordpress_name.blank?
         self.name = self.wordpress_name
         self.slug = self.wordpress_slug
-        self.icon_url = self.wordpress_favicon_url
+        self.icon_url = self.wordpress_favicon_url unless self.wordpress_favicon_url.blank?
         self.profile_url = self.wordpress_url
       end
     end

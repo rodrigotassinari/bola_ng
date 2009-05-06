@@ -2,6 +2,8 @@ class Service < ActiveRecord::Base
 
   SERVICE_NAME = nil
   SERVICE_SLUG = nil
+  SERVICE_ICON = nil
+
   SERVICE_ACTION_POST = 'posted'
   SERVICE_ACTION_FAVE = 'faved'
   SERVICE_ACTION_SHARE = 'shared'
@@ -22,6 +24,7 @@ class Service < ActiveRecord::Base
     if self.new_record?
       self.name = self.class::SERVICE_NAME
       self.slug = self.class::SERVICE_SLUG
+      self.icon_url = self.class::SERVICE_ICON
     end
   end
 

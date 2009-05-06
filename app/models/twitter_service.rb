@@ -4,6 +4,8 @@ class TwitterService < Service
 
   SERVICE_NAME = 'Twitter'
   SERVICE_SLUG = 'twitter'
+  SERVICE_ICON = '/images/twitter_favicon.ico'
+
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :twitter_login, :icon_url, :profile_image_url
@@ -98,7 +100,6 @@ class TwitterService < Service
     def set_url_attributes
       unless twitter_login.blank?
         tweet = Twitter::Search.new.from(twitter_login).per_page(1).fetch.results.first
-        self.icon_url = "http://assets1.twitter.com/images/favicon.ico"
         self.profile_url = "http://twitter.com/#{twitter_login}"
         self.profile_image_url = tweet.profile_image_url unless tweet.nil?
       end
