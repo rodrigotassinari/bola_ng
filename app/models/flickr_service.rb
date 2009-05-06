@@ -38,7 +38,7 @@ class FlickrService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry, action)
     self.posts.build(
-      :summary => entry[:description],
+      :summary => (entry[:description].blank? ? '-' : entry[:description]),
       :service_action => action,
       :identifier => entry[:guid].to_s,
       :title => (entry[:title].blank? ? '-' : entry[:title]),
@@ -101,7 +101,7 @@ class FlickrService < Service
       {
         :title => (entry/'title').inner_html,
         :link => (entry/'link').inner_html,
-        :description => (entry/'description').inner_html,
+        :description => (Hpricot.parse((entry/'description').inner_text)/"p")[1..-1].inner_text,
         :pubDate => (entry/'pubDate').inner_html.to_time,
         #:date_taken => ( (entry/'dc:date.Taken').inner_html.nil? ? nil : (entry/'dc:date.Taken').inner_html.to_time ), # FIXME
         :author_name => (entry/'author').first.inner_html.gsub(/\Anobody\@flickr\.com \(/, '').gsub(/\)\Z/, ''),
