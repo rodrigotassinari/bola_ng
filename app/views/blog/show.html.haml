@@ -1,0 +1,23 @@
+#single_container
+  #single_header
+    %h2= @post.title
+    %p= relative_published_date(@post.published_at)
+
+  #single_content
+    = @post.body
+
+  - unless @post.tags.empty?
+    %ul.item_tag_list
+      %li Tags:
+      - @post.tags.each do |tag|
+        %li= link_to tag.name, tag_path(tag.name)
+
+%p#breadcrumb
+  - if @post_context.first
+    = link_to '« Post anterior', blog_path(@post_context.first)
+  - if @post_context.last
+    = link_to 'Próximo post »', blog_path(@post_context.last)
+
+#comments_container
+  #disqus_thread
+  / <script type="text/javascript" src="http://disqus.com/forums/yongfook/embed.js"></script><noscript><a href="http://yongfook.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

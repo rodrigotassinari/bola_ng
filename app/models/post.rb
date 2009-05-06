@@ -66,6 +66,22 @@ class Post < ActiveRecord::Base
     text == '-' ? nil : text
   end
 
+  def context
+    previous_post = Post.published.ordered.
+      find_by_service_id(
+        self.service_id,
+        :conditions => ['`posts`.`published_at` >= ? AND `posts`.`id` <> ?', self.published_at, self.id]
+      )
+
+    next_post = Post.published.ordered..
+      find_by_service_id(
+        self.service_id,
+        :conditions => ['`posts`.`published_at` <= ? AND `posts`.`id` <> ?', self.published_at, self.id]
+      )
+
+    return previous_post, next_post
+  end
+
   protected
 
     def slugify_if_article
