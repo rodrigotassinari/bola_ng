@@ -56,6 +56,16 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def summary
+    text = read_attribute(:summary)
+    text == '-' ? nil : text
+  end
+
+  def title
+    text = read_attribute(:title)
+    text == '-' ? nil : text
+  end
+
   protected
 
     def slugify_if_article

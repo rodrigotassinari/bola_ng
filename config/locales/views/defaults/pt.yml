@@ -1,4 +1,7 @@
 pt:
   hello: "Olá mundo"
-  service_actions:
-    tweeted: gorjeei
+  posted: postei
+  faved: favoritei
+  shared: compartilhei
+  bookmarked: salvei
+
