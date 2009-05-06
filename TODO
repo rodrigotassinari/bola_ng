@@ -1,6 +1,7 @@
 TODO
 
-- criar serviço de wordpress multi-usuário
+- criar slug dos serviços
+- mudar icone dos serviços para usar imagem local fixa por tipo (sobrecarregável)
 - criar interface web
 - criar usuário, login
 - criar interface web administrativa

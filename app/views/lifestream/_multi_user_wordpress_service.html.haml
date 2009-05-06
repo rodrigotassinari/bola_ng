@@ -1,0 +1,17 @@
+/ begin conditional content
+%li.item.blog{:class => "#{last ? 'last' : nil}"}
+  %p.site_info{:style => "background: white url(../images/blog_favicon.ico) 3px center no-repeat"}
+    == Eu #{post.service_action} no
+    = link_to post.service.name, lifestream_path(post.service)
+  .item_inner
+    / domain-specific boxes
+    .inner_container
+      %p.blog_title= link_to post.title, post.url
+      %p= image_tag('fancy_divider.gif', :alt => 'divider')
+      %p.blog_cite= truncate(post.summary, 140)
+      %p.blog_continue= link_to 'Continue lendo &raquo;', post.url
+  %p.date
+    = relative_published_date(post.published_at)
+    |
+    = link_to 'Permalink', post.url
+    = link_to('Admin', '#', :class => 'admin') if true
