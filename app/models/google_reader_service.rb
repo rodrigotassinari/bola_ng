@@ -3,6 +3,7 @@ class GoogleReaderService < Service
   # OK
 
   SERVICE_NAME = 'Google Reader'
+  SERVICE_SLUG = 'google_reader'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_SHARE]
 
   validates_presence_of :google_reader_url, :google_reader_feed_url

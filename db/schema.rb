@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505135527) do
+ActiveRecord::Schema.define(:version => 20090506185011) do
 
   create_table "posts", :force => true do |t|
     t.integer  "service_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20090505135527) do
     t.boolean  "active",            :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "taggings", :force => true do |t|

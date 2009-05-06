@@ -3,6 +3,7 @@ class DeliciousService < Service
   # OK
 
   SERVICE_NAME = 'Delicious'
+  SERVICE_SLUG = 'delicious'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :delicious_login, :icon_url

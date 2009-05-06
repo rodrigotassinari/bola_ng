@@ -3,6 +3,7 @@ class BlipfmService < Service
   # OK
 
   SERVICE_NAME = 'Blip.fm'
+  SERVICE_SLUG = 'blipfm'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :blipfm_login, :icon_url

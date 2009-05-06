@@ -24,7 +24,7 @@ class LifestreamController < ApplicationController
   # TODO: usar slug (a ser criado) do service como param (mudar no modelo)
   def show
     @current_tab = 'lifestream'
-    @service = Service.find(params[:id])
+    @service = Service.find_by_slug(params[:id])
     @posts = @service.posts.published.ordered.paginate(
       :page => params[:page]
     )

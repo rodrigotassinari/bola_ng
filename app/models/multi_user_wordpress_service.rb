@@ -4,11 +4,12 @@ class MultiUserWordpressService < Service
   # OK
 
   SERVICE_NAME = 'Multi User Wordpress Blog' # changed by the user
+  SERVICE_SLUG = 'multi_user_wordpress_blog'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
-  validates_presence_of :wordpress_url, :wordpress_name, :wordpress_feed_url, :wordpress_author
+  validates_presence_of :wordpress_url, :wordpress_name, :wordpress_slug, :wordpress_feed_url, :wordpress_author
 
-  settings_accessors([:wordpress_url, :wordpress_name, :wordpress_favicon_url, :wordpress_feed_url, :wordpress_author])
+  settings_accessors([:wordpress_url, :wordpress_name, :wordpress_slug, :wordpress_favicon_url, :wordpress_feed_url, :wordpress_author])
 
   # returns an array of wordpress posts, newer posts first
   def fetch_entries
@@ -51,6 +52,7 @@ class MultiUserWordpressService < Service
     def set_url_attributes
       unless self.wordpress_url.blank? && self.wordpress_name.blank?
         self.name = self.wordpress_name
+        self.slug = self.wordpress_slug
         self.icon_url = self.wordpress_favicon_url
         self.profile_url = self.wordpress_url
       end

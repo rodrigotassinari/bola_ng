@@ -3,6 +3,7 @@ class FlickrService < Service
   # OK
 
   SERVICE_NAME = 'Flickr'
+  SERVICE_SLUG = 'flickr'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :flickr_user_name, :flickr_user_id, :flickr_author_profile_url, :icon_url

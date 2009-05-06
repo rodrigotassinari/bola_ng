@@ -3,6 +3,7 @@ class VisualizeusService < Service
   # OK
 
   SERVICE_NAME = 'Vi.sualize.us'
+  SERVICE_SLUG = 'visualizeus'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :visualizeus_login, :icon_url

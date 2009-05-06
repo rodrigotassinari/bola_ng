@@ -1,6 +1,7 @@
 class BlogService < Service
 
   SERVICE_NAME = 'Blog'
+  SERVICE_SLUG = 'blog'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :blog_url # http://server/blog

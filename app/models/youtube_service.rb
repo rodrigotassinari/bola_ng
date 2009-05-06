@@ -3,6 +3,7 @@ class YoutubeService < Service
   # OK
 
   SERVICE_NAME = 'YouTube'
+  SERVICE_SLUG = 'youtube'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :youtube_login, :icon_url

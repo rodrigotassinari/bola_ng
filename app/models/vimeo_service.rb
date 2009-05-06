@@ -3,6 +3,7 @@ class VimeoService < Service
   # OK
 
   SERVICE_NAME = 'Vimeo'
+  SERVICE_SLUG = 'vimeo'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST, Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :vimeo_login, :icon_url

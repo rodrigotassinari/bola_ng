@@ -4,6 +4,7 @@ class ScuttleService < Service
   # OK
 
   SERVICE_NAME = 'Scuttle'
+  SERVICE_SLUG = 'scuttle'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_BOOKMARK]
 
   validates_presence_of :scuttle_login, :icon_url

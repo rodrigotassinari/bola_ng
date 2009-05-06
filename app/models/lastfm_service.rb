@@ -3,6 +3,7 @@ class LastfmService < Service
   # OK
 
   SERVICE_NAME = 'Last.fm'
+  SERVICE_SLUG = 'lastfm'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_FAVE]
 
   validates_presence_of :lastfm_login, :icon_url

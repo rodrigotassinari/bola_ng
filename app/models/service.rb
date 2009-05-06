@@ -1,6 +1,7 @@
 class Service < ActiveRecord::Base
 
   SERVICE_NAME = nil
+  SERVICE_SLUG = nil
   SERVICE_ACTION_POST = 'posted'
   SERVICE_ACTION_FAVE = 'faved'
   SERVICE_ACTION_SHARE = 'shared'
@@ -14,14 +15,21 @@ class Service < ActiveRecord::Base
   named_scope :inactive, :conditions => {:active => false}
   named_scope :fetchable, :conditions => ["`services`.`type` <> ?", 'BlogService']
 
-  validates_presence_of :type, :name, :profile_url
-  validates_uniqueness_of :name, :profile_url
+  validates_presence_of :type, :name, :slug, :profile_url
+  validates_uniqueness_of :name, :slug, :profile_url
 
   def after_initialize
-    self.name = self.class::SERVICE_NAME if self.new_record?
+    if self.new_record?
+      self.name = self.class::SERVICE_NAME
+      self.slug = self.class::SERVICE_SLUG
+    end
   end
 
   before_validation_on_create :set_url_attributes
+
+  def to_param
+    self.slug
+  end
 
   # Creates virtual attributes that are accessors (getters and setters) to the
   # keys in the settings hash.

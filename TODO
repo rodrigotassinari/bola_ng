@@ -1,10 +1,10 @@
 TODO
 
-- criar slug dos serviços
 - mudar icone dos serviços para usar imagem local fixa por tipo (sobrecarregável)
 - criar interface web
 - criar usuário, login
 - criar interface web administrativa
 - criar redirecionador de urls do site antigo para o novo site antigo
+- criar índices relevantes no banco
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list

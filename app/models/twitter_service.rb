@@ -3,6 +3,7 @@ class TwitterService < Service
   # OK
 
   SERVICE_NAME = 'Twitter'
+  SERVICE_SLUG = 'twitter'
   SERVICE_ACTIONS = [Service::SERVICE_ACTION_POST]
 
   validates_presence_of :twitter_login, :icon_url, :profile_image_url
