@@ -10,14 +10,14 @@
     %ul.item_tag_list
       %li Tags:
       - @post.tags.each do |tag|
-        %li= link_to tag.name, tag_path(tag.name)
+        %li= link_to tag.name, tag_name_path(tag.name)
 
-%p#breadcrumb
-  - if @post_context.first
-    = link_to '« Post anterior', blog_path(@post_context.first)
-  - if @post_context.last
-    = link_to 'Próximo post »', blog_path(@post_context.last)
+- unless @post_context.empty?
+  %p#breadcrumb
+    - if @post_context.first
+      = link_to '« Post anterior', blog_path(@post_context.first)
+    - if @post_context.last
+      = link_to 'Próximo post »', blog_path(@post_context.last)
 
 #comments_container
-  #disqus_thread
-  / <script type="text/javascript" src="http://disqus.com/forums/yongfook/embed.js"></script><noscript><a href="http://yongfook.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  <div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/pittlandia-beta/embed.js"></script><noscript><a href="http://pittlandia-beta.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

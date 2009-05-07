@@ -27,7 +27,7 @@
     %li
       %p.title= link_to post.title, blog_path(post)
       %p.date
-        = time_ago_in_words(post.published_at)
+        == #{time_ago_in_words(post.published_at)} atrás
         |
         = link_to 'Comentários &raquo;', blog_path(post, :anchor => 'disqus_thread')
 

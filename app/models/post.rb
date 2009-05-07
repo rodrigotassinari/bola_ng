@@ -15,12 +15,19 @@ class Post < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 12
 
-  validates_presence_of :service_id, :service_action, :identifier, :title, :summary, :url, :published_at
+  validates_presence_of :service_id, :service_action, :title, :summary, :published_at
   validates_presence_of :body, :if => :is_article?
-  validates_uniqueness_of :identifier, :scope => :service_id
+  validates_presence_of :identifier, :url, :unless => :is_article?
+  
+  validates_uniqueness_of :identifier, :scope => :service_id, :unless => :is_article?
+
+  before_validation_on_create :set_published_at_if_article
+  before_validation_on_create :set_service_action_if_article
+
+  before_validation :summarize_if_article
 
   before_create :slugify_if_article
-  #before_create :summarize_if_article # TODO
+  before_create :add_default_tags_if_article
   before_create :taggify
 
   named_scope :published, 
@@ -77,7 +84,7 @@ class Post < ActiveRecord::Base
         :conditions => ['`posts`.`published_at` >= ? AND `posts`.`id` <> ?', self.published_at, self.id]
       )
 
-    next_post = Post.published.ordered..
+    next_post = Post.published.ordered.
       find_by_service_id(
         self.service_id,
         :conditions => ['`posts`.`published_at` <= ? AND `posts`.`id` <> ?', self.published_at, self.id]
@@ -101,12 +108,42 @@ class Post < ActiveRecord::Base
 
   protected
 
+    # before_create
     def slugify_if_article
       if is_article?
         self.slug = PermalinkFu.escape(self.title)[0..60]
       end
     end
 
+    # before_create
+    def add_default_tags_if_article
+      if is_article?
+        p.tag_list.add('posts')
+      end
+    end
+
+    # before_validation_on_create
+    def set_published_at_if_article
+      if is_article? && self.published_at.blank?
+        self.published_at = Time.current
+      end
+    end
+
+    # before_validation_on_create
+    def set_service_action_if_article
+      if is_article?
+        self.service_action = Service::SERVICE_ACTION_POST
+      end
+    end
+
+    # before_validation
+    def summarize_if_article
+      if is_article?
+        self.summary = self.body_plain
+      end
+    end
+
+    # before_create
     def taggify
       if self.extra_content && 
           self.extra_content['original_tags'] &&
