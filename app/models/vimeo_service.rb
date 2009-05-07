@@ -40,6 +40,12 @@ class VimeoService < Service
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
   def build_post_from_entry(entry, action)
+    date = if (action == Service::SERVICE_ACTION_POST) || (self.posts.count == 0)
+      entry[:pubDate]
+    else
+      Time.current
+    end
+
     self.posts.build(
       :summary => (entry[:description].blank? ? '-' : entry[:description]),
       :service_action => action,
@@ -47,7 +53,7 @@ class VimeoService < Service
       :title => entry[:title],
       :markup => Post::PLAIN_MARKUP,
       :url => entry[:link],
-      :published_at => (action == Service::SERVICE_ACTION_POST ? entry[:pubDate] : Time.current),
+      :published_at => date,
       :extra_content => {
         :author_name => entry[:author_name],
         :original_tags => entry[:categories] # array de tags

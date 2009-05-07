@@ -1,6 +1,6 @@
 %p#breadcrumb
   = link_to 'Lifestream', root_path
-  == &rsaquo; Itens de #{@service.name}
+  == &rsaquo; Itens de <b>#{@service.name}</b>
 
 %ul#activity_list
   - @posts.each_with_index do |post, index|

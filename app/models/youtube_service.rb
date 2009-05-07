@@ -40,6 +40,12 @@ class YoutubeService < Service
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
   def build_post_from_entry(entry, action)
+    date = if (action == Service::SERVICE_ACTION_POST) || (self.posts.count == 0)
+      entry[:published]
+    else
+      Time.current
+    end
+    
     self.posts.build(
       :summary => (entry[:content].blank? ? '-' : entry[:content]),
       :service_action => action,
@@ -47,7 +53,7 @@ class YoutubeService < Service
       :title => entry[:title],
       :markup => Post::PLAIN_MARKUP,
       :url => entry[:link],
-      :published_at => (action == Service::SERVICE_ACTION_POST ? entry[:published] : Time.current),
+      :published_at => date,
       :extra_content => {
         :original_tags => entry[:keywords] # array de tags
       }
