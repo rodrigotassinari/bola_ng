@@ -10,7 +10,7 @@ class LifestreamController < ApplicationController
   def index
     @current_tab = 'lifestream'
     @page_title = "Lifestream"
-    @posts = Post.published.ordered.paginate(
+    @posts = Post.published.ordered.with_service.paginate(
       :page => params[:page]
     )
   end
@@ -24,7 +24,7 @@ class LifestreamController < ApplicationController
   def show
     @current_tab = 'lifestream'
     @service = Service.find_by_slug(params[:id])
-    @posts = @service.posts.published.ordered.paginate(
+    @posts = @service.posts.published.ordered.with_service.paginate(
       :page => params[:page]
     )
     @page_title = "Lifestream :: #{@service.name}"

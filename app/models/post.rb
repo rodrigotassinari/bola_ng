@@ -31,6 +31,8 @@ class Post < ActiveRecord::Base
     :order => '`posts`.`published_at` DESC, `posts`.`updated_at` DESC, `posts`.`id` DESC'
   named_scope :latest,
     :limit => 5
+  named_scope :with_service,
+    :include => :service
 
   # returns true if this post is associated with a BlogService
   def is_article?

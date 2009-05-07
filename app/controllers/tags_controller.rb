@@ -23,7 +23,7 @@ class TagsController < ApplicationController
     raise ActiveRecord::RecordNotFound,
       "Couldn't find Tag with name = #{params[:name] || params[:id]}" if @tag.nil?
 
-    @posts = Post.published.ordered.paged_find_tagged_with(
+    @posts = Post.published.ordered.with_service.paged_find_tagged_with(
       @tag.name,
       :page => params[:page]
     )

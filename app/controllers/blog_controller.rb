@@ -9,7 +9,7 @@ class BlogController < ApplicationController
     @current_tab = 'blog'
     @page_title = "Blog"
     @service = BlogService.active.first
-    @posts = @service.posts.published.ordered.paginate(
+    @posts = @service.posts.published.ordered.with_service.paginate(
       :page => params[:page]
     )
   end
@@ -22,7 +22,7 @@ class BlogController < ApplicationController
   def show
     @current_tab = 'blog'
     @service = BlogService.active.first
-    @post = @service.posts.published.ordered.find(params[:id])
+    @post = @service.posts.published.ordered.with_service.find(params[:id])
     @post_context = @post.context
     @page_title = "Blog :: #{@post.title}"
   end
