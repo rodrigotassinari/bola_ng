@@ -8,4 +8,8 @@ module LifestreamHelper
     ((index + 1) % per_row) == 0
   end
 
+  def title_if_needed(text, size)
+    text.to_s.length > size ? text : nil
+  end
+
 end
