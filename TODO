@@ -9,6 +9,7 @@ TODO
 - página de contato
 - imagem para pittlandia velha
 - escrever primeiro post
+- integração com google analytics
 - busca
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list
