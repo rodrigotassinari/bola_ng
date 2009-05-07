@@ -10,6 +10,9 @@ TODO
 - imagem para pittlandia velha
 - escrever primeiro post
 - integração com google analytics
+- RSS geral
+- RSS por service
+- RSS por tag
 - busca
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list
