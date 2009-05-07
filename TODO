@@ -5,5 +5,10 @@ TODO
 - criar interface web administrativa
 - criar redirecionador de urls do site antigo para o novo site antigo
 - criar índices relevantes no banco
+- página de sobre
+- página de contato
+- imagem para pittlandia velha
+- escrever primeiro post
+- busca
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list

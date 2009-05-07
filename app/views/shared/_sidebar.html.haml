@@ -36,19 +36,23 @@
   = link_to 'Ver Todas »', tags_path
 %ul.tag_list
   / %li <a href="/items/tag/onsite">onsite</a>
-  - Post.published.tag_counts(:limit => 30, :order => 'count DESC').each do |tag|
-    %li= link_to tag.name, tag_name_path(tag.name)
+  - Post.published.tag_counts(:limit => 30, :order => 'count DESC').sort_by(&:name).each do |tag|
+    %li= link_to tag.name, tag_name_path(tag.name), :title => "#{tag.count} itens"
 
 %h3 Sobre a PiTTlândia
 #aboutme
   #aboutme_blurb
     %ul
-      %li I built <a href="http://www.opensourcefood.com/" title="Open Source Food - Recipes by people like you and me">opensourcefood</a> and run it as a personal project.
-      %li I'm the project leader and lead developer of <a href="http://www.sweetcron.com/" title="Sweetcron - Open Source Lifestreaming Software">Sweetcron</a>, an open source platform to create your own lifestream website (like this one).
-      %li I love <a href="http://www.opensourcefood.com/people/yongfook/" title="My recipes on OSF">cooking</a>, <a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC</a>, <a href="http://www.php.net/">PHP</a> and clear, intuitive design.
-      %li I'm half Singaporean Chinese, half British.
-      %li Lolcats make me lol and I'm quite cumfurtabubble speekin in teh lol.
-    %p <a href="about.html">Mais »</a>
-  %p.sidebar_small_banner <a href="http://www.orkut.com.br/Main#Profile.aspx?uid=5765880671845393652" title="Eu no Orkut"><img src="/images/orkut.jpg" alt="orkut"></a>
-  %p.sidebar_small_banner <a href="http://pt-br.facebook.com/people/Rodrigo-Tassinari/601755734" title="Eu no FaceBook"><img src="/images/facebook.jpg" alt="facebook"></a>
-  %p.sidebar_small_banner <a href="http://old.pittlandia.net/" title="link para o site antigo"><img src="/images/oldsite.gif" alt="site antigo"></a>
+      %li Site pessoal de Rodrigo Tassinari de Oliveira, vulgo PiTT (não pergunte por quê).
+      %li== Powered by #{link_to 'bola_ng', 'http://github.com/rtopitt/bola_ng/tree/master'}, sistema desenvolvido por mim, inspirado no #{link_to 'Sweetcron', 'http://www.sweetcron.com/'}. Software livre, feito com #{link_to 'Ruby', 'http://www.ruby-lang.org/', :title => 'Ruby Language'}, #{link_to 'Rails', 'http://rubyonrails.org/', :title => 'Ruby on Rails'} e um pouquinho de mágica.
+      %li== Todo conteúdo gerado por mim é disponibilizado sob uma #{link_to 'licença Creative Commons', 'http://creativecommons.org/licenses/by-sa/2.5/br/deed.pt', :title => 'Atribuição-Compartilhamento pela mesma Licença 2.5'}.
+      %li= random_phrase
+      
+    %p= link_to 'Mais »', about_path
+    
+  %p.sidebar_small_banner
+    = link_to image_tag("orkut.jpg", :alt => "orkut"), "http://www.orkut.com.br/Main#Profile.aspx?uid=5765880671845393652", :title => "Eu no Orkut"
+  %p.sidebar_small_banner
+    = link_to image_tag("facebook.jpg", :alt => "facebook"), "http://pt-br.facebook.com/people/Rodrigo-Tassinari/601755734", :title => "Eu no FaceBook"
+  %p.sidebar_small_banner
+    = link_to image_tag("oldsite.gif", :alt => "site antigo"), "http://old.pittlandia.net/", :title => "link para o site antigo"

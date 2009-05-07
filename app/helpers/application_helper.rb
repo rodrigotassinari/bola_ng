@@ -10,4 +10,43 @@ module ApplicationHelper
     end
   end
 
+  def random_phrase
+    [
+      "Each place has its own advantages - heaven for the climate, and hell for the society. <i>(Mark Twain)</i>",
+      "Love is a snowmobile racing across the tundra and then suddenly it flips over, pinning you underneath. At night, the ice weasels come. <i>(Matt Groening)</i>",
+      "$ who | grep -i blonde | talk; date; cd ~; wine; talk; touch; unzip; touch; strip; finger; mount; fsck; more; yes; umount; make clean; sleep",
+      "Não sabendo que era impossível, foi lá e fez.",
+      "Laptoptospirose é a doença transmitida pela urina do mouse.",
+      "Given the choice between dancing pigs and security, people will choose dancing pigs every time. <i>(Ed Felton)</i>",
+      "O pior não é morrer, é não poder espantar as moscas.",
+      "Gatos radioativos têm 14 meias-vidas.",
+      "E se não existissem situações hipotéticas?",
+      "O bom de usar dentadura é poder escovar os dentes e cantar ao mesmo tempo.",
+      "Nunca diga 'Eu não posso'; diga 'Nós não podemos'.",
+      "Viva a vida perigosamente: Faça pipoca com a panela aberta!",
+      "It's so simple to be wise. Just think of something stupid to say and then don't say it. <i>(Sam Levenson)</i>",
+      "Management is doing things right; leadership is doing the right things. <i>(Peter Drucker)</i>",
+      "Progress isn't made by early risers. It's made by lazy men trying to find easier ways to do something. <i>(Robert Heinlein)</i>",
+      "I learned long ago never to wrestle with a pig. You get dirty, and besides, the pig likes it. <i>(Cyrus Ching)</i>",
+      "Se só o que você tem é um martelo, trate tudo como um prego.",
+      "Coma merda. Um trilhão de moscas não podem estar erradas.",
+      "Hmmmmmm.. Que cheiro de bicho morto! AAAAAAAAAAAAHHHHHHHHH!!! Meu mouse morreu!! Snif, snif! :(",
+      "Minhoca: Um absurdo sem pé nem cabeça.",
+      "Um programa sem bugs é um conceito teórico abstrato.",
+      "Basically my wife was immature. I'd be at home in the bath and she'd come in and sink my boats. <i>(Woody Allen)</i>",
+      "Cloquet hated reality but realized it was still the only place to get a good steak. <i>(Woody Allen)</i>",
+      "I don't want to achieve immortality through my work. I want to achieve it through not dying. <i>(Woody Allen)</i>",
+      "Love is the answer, but while you're waiting for the answer, sex raises some pretty interesting questions. <i>(Woody Allen)</i>",
+      "Not only is there no God, but try finding a plumber on Sunday. <i>(Woody Allen)</i>",
+      "What if everything is an illusion and nothing exists? In that case, I definitely overpaid for my carpet. <i>(Woody Allen)</i>",
+      "A man who carries a cat by the tail learns something he can learn in no other way. <i>(Mark Twain)</i>",
+      "'Classic.' A book which people praise and don't read. <i>(Mark Twain)</i>",
+      "Os últimos poderão até ser os primeiros, porém os do meio sempre serão os do meio. <i>(PiTT)</i>",
+      "It's practically impossible to look at a penguin and feel angry. <i>(Joe Moore)</i>",
+      "There are two major products that came out of Berkeley: LSD and UNIX. We don't believe this to be a coincidence. <i>(Jeremy S. Anderson)</i>",
+      "O maior inimigo da verdade, não é a mentira e sim, a convicção. <i>(Friedrich Nietzsche)</i>",
+      "Você pode viver até os cem anos se abandonar todas as coisas que fazem com que você queira viver até os cem anos. <i>(Woody Allen)</i>"
+    ].sort_by { rand }.first
+  end
+
 end
