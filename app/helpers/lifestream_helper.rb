@@ -12,4 +12,26 @@ module LifestreamHelper
     text.to_s.length > size ? text : nil
   end
 
+  def twitter_auto_link(text)
+    text = auto_twitter_profiles(text)
+    text = auto_twitter_keywords(text)
+    auto_link(text)
+  end
+
+  private
+
+    def auto_twitter_profiles(text)
+      return '' if text.blank?
+      text.gsub(/\@([\w_\-\.]+)/) do
+        link_to("@#{$1}", "http://twitter.com/#{$1}")
+      end
+    end
+
+    def auto_twitter_keywords(text)
+      return '' if text.blank?
+      text.gsub(/\#([\w_\-\.]+)/) do
+        link_to("##{$1}", "http://search.twitter.com/search?tag=#{$1}")
+      end
+    end
+
 end
