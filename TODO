@@ -3,12 +3,11 @@ TODO
 - criar interface web blog (show)
 - criar usuário, login
 - criar interface web administrativa
-- criar índices relevantes no banco
+- criar índices relevantes no banco (post.slug, post.identifier com service_id...)
 - página de sobre
 - página de contato
 - imagem para pittlandia velha
 - escrever primeiro post
-- integração com disqus
 - integração com google analytics
 - RSS geral
 - RSS por service
