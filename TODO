@@ -1,6 +1,5 @@
 TODO
 
-- criar interface web blog (show)
 - criar usuário, login
 - criar interface web administrativa
 - criar índices relevantes no banco (post.slug, post.identifier com service_id...)

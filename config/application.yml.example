@@ -1,9 +1,5 @@
 # http://settingslogic.rubyforge.org/
 defaults: &defaults
-#  cool:
-#    saweet: nested settings
-#  neat_setting: 24
-#  awesome_setting: <%= "Did you know 5 + 5 = #{(5 + 5)}?" %>
   site:
     name: "PiTTlândia"
     tagline: "$ tail -f /dev/mind >> lifestream"
