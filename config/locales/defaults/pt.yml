@@ -127,3 +127,26 @@ pt:
         less_than_or_equal_to: "precisa ser menor ou igual a {{count}}"
         odd: "precisa ser ímpar"
         even: "precisa ser par"
+  # frases pra gem authlogic
+  authlogic:
+    error_messages:
+      login_blank: "não pode ser vazio"
+      login_not_found: "não existe"
+      login_invalid: "deve usar apenas letras, números, espaços e .-_@, por favor."
+      consecutive_failed_logins_limit_exceeded: "Limite de logins incorretos em sequência excedido, a conta está desabilitada."
+      email_invalid: "deve ser um endereço de email válido."
+      password_blank: "não pode ser vazia"
+      password_invalid: "não é válida"
+      not_active: "Sua conta não está ativa"
+      not_confirmed: "Sua conta não foi confirmada"
+      not_approved: "Sua conta não foi aprovada"
+      no_authentication_details: "Você não forneceu nenhum dado para autenticação."
+    models:
+      user_session: "Sessão do Usuário"
+    attributes:
+      user_session:
+        login: "login"
+        email: "email"
+        password: "senha"
+        password_confirmation: "senha (confirmação)"
+        remember_me: "lembrar de mim"

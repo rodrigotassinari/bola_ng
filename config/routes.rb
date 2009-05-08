@@ -18,6 +18,12 @@ ActionController::Routing::Routes.draw do |map|
     pages.contact 'contact', :action => 'contact'
   end
 
+  map.resource :user_session
+  map.with_options(:controller => 'user_sessions') do |us|
+    us.login 'login', :action => 'new'
+    us.logout 'logout', :action => 'destroy'
+  end
+
   ## admin
 
   # TODO

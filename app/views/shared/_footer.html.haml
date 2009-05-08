@@ -5,7 +5,9 @@
     |
     == Running on #{link_to 'bola_ng', 'http://github.com/rtopitt/bola_ng/tree/master'} v0.1
     |
-    = link_to 'admin', '#'
-    - if true # current_user
+    - if current_user
+      = link_to 'admin', '#TODO'
       |
-      = link_to 'logout', '#'
+      = link_to 'logout', logout_path
+    - else
+      = link_to 'login', login_path
