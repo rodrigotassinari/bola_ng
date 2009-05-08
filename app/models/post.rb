@@ -120,7 +120,7 @@ class Post < ActiveRecord::Base
     # before_create
     def add_default_tags_if_article
       if is_article?
-        p.tag_list.add('posts')
+        self.tag_list.add('posts')
       end
     end
 
