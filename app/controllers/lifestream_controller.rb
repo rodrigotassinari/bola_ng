@@ -22,16 +22,19 @@ class LifestreamController < ApplicationController
   # Avaiable: all
   #
   # Shows the lifestream of the supplied feed only.
-  # TODO: redirecionar para /blog caso service seja o blog_service
   def show
     @current_tab = 'lifestream'
     @service = Service.find_by_slug(params[:id])
-    @posts = if current_user
-      @service.posts.ordered.with_service.paginate(:page => params[:page])
+    unless @service.class == BlogService
+      @posts = if current_user
+        @service.posts.ordered.with_service.paginate(:page => params[:page])
+      else
+        @service.posts.published.ordered.with_service.paginate(:page => params[:page])
+      end
+      @page_title = "Lifestream :: #{@service.name}"
     else
-      @service.posts.published.ordered.with_service.paginate(:page => params[:page])
+      redirect_to blog_index_path
     end
-    @page_title = "Lifestream :: #{@service.name}"
   end
 
 end
