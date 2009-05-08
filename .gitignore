@@ -5,7 +5,7 @@ tmp/**/*
 doc/api
 doc/app
 config/database.yml
-config/settings.yml
+config/application.yml
 .project
 nbproject
 coverage
