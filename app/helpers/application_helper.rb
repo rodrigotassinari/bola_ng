@@ -10,6 +10,32 @@ module ApplicationHelper
     end
   end
 
+  def disqus_comments_tag(disqus_site_id)
+    html = ""
+    html << javascript_tag("var disqus_developer = 1;") if Rails.env.development? && Settings.disqus_in_development
+    html << %{<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/#{disqus_site_id}/embed.js"></script><noscript><a href="http://#{disqus_site_id}.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>}
+    html
+  end
+
+  def disqus_comment_counter_tag(disqus_site_id)
+    return if Rails.env.development? && !Settings.disqus_in_development
+    html = javascript_tag do
+      <<-eos
+        (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for(var i = 0; i < links.length; i++) {
+            if(links[i].href.indexOf('#disqus_thread') >= 0) {
+              query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+            }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/#{disqus_site_id}/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+      eos
+    end
+    html
+  end
+
   def random_phrase
     [
       "Each place has its own advantages - heaven for the climate, and hell for the society. <i>(Mark Twain)</i>",

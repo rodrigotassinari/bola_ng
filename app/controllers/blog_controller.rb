@@ -15,14 +15,14 @@ class BlogController < ApplicationController
   end
 
   # GET /blog/:id
-  # Via: blog_path(:id)
+  # Via: blog_path(:slug) ou blog_path(:id)
   # Avaiable: all
   #
   # Shows one blog post.
   def show
     @current_tab = 'blog'
     @service = BlogService.active.first
-    @post = @service.posts.published.ordered.with_service.find(params[:id])
+    @post = @service.posts.published.ordered.with_service.find_by_slug(params[:id]) || @service.posts.published.ordered.with_service.find(params[:id])
     @post_context = @post.context
     @page_title = "Blog :: #{@post.title}"
   end

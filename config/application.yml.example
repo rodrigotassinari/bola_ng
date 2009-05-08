@@ -1,16 +1,19 @@
 # http://settingslogic.rubyforge.org/
 defaults: &defaults
-  cool:
-    saweet: nested settings
-  neat_setting: 24
-  awesome_setting: <%= "Did you know 5 + 5 = #{(5 + 5)}?" %>
+#  cool:
+#    saweet: nested settings
+#  neat_setting: 24
+#  awesome_setting: <%= "Did you know 5 + 5 = #{(5 + 5)}?" %>
+  disqus_in_development: false
 
 development:
   <<: *defaults
-  neat_setting: 800
+  disqus_site_id: some-site-id-devel
 
 test:
   <<: *defaults
+  disqus_site_id: some-site-id-devel
 
 production:
   <<: *defaults
+  disqus_site_id: some-site-id

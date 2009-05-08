@@ -25,11 +25,11 @@
 %ul#blog_list
   - BlogService.first.posts.published.ordered.latest.all.each do |post|
     %li
-      %p.title= link_to post.title, blog_path(post)
+      %p.title= link_to post.title, blog_path(post.slug)
       %p.date
         == #{time_ago_in_words(post.published_at)} atrás
         |
-        = link_to 'Comentários &raquo;', blog_path(post, :anchor => 'disqus_thread')
+        = link_to 'Comentários &raquo;', blog_path(post.slug, :anchor => 'disqus_thread')
 
 %h3
   Tags Populares

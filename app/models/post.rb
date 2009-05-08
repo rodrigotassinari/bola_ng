@@ -46,10 +46,6 @@ class Post < ActiveRecord::Base
     self.service.class == BlogService
   end
 
-  def to_param
-    is_article? ? "#{self.id}-#{self.slug}" : "#{self.id}"
-  end
-
   # returns true if there's already a post with the same service_id and
   # identifier, false otherwise.
   def exists?
@@ -111,7 +107,13 @@ class Post < ActiveRecord::Base
     # before_create
     def slugify_if_article
       if is_article?
-        self.slug = PermalinkFu.escape(self.title)[0..60]
+        temp_slug = PermalinkFu.escape(self.title)[0..60]
+        i = 1
+        while Post.find_by_slug_and_service_id(temp_slug, self.service_id) do
+          temp_slug << "-#{i}"
+          i += 1
+        end
+        self.slug = temp_slug
       end
     end
 

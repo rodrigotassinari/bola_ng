@@ -6,12 +6,12 @@
   .item_inner
     / domain-specific boxes
     .inner_container
-      %p.blog_title= link_to post.title, blog_path(post)
+      %p.blog_title= link_to post.title, blog_path(post.slug)
       %p= image_tag('fancy_divider.gif', :alt => 'divider')
       %p.blog_cite= truncate(post.summary, :length => 140)
-      %p.blog_continue= link_to 'Continue lendo &raquo;', blog_path(post)
+      %p.blog_continue= link_to 'Continue lendo &raquo;', blog_path(post.slug)
   %p.date
     = relative_published_date(post.published_at)
     |
-    = link_to 'Comentários &raquo;', blog_path(post, :anchor => 'disqus_thread')
+    = link_to 'Comentários &raquo;', blog_path(post.slug, :anchor => 'disqus_thread')
     = link_to('Admin', '#', :class => 'admin') if true

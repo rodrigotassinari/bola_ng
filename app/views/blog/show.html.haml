@@ -15,9 +15,9 @@
 - unless @post_context.empty?
   %p#breadcrumb
     - if @post_context.first
-      = link_to '« Post anterior', blog_path(@post_context.first)
+      = link_to '« Post anterior', blog_path(@post_context.first.slug)
     - if @post_context.last
-      = link_to 'Próximo post »', blog_path(@post_context.last)
+      = link_to 'Próximo post »', blog_path(@post_context.last.slug)
 
 #comments_container
-  <div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/pittlandia-beta/embed.js"></script><noscript><a href="http://pittlandia-beta.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  = disqus_comments_tag(Settings.disqus_site_id)
