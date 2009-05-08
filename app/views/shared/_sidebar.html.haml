@@ -4,7 +4,8 @@
     %input{:name => "query", :class => "text_input", :value => "", :type => "text"}
     %input{:type => "submit"}
 
-#explanation= Settings.site.explanation
+#explanation
+  == Bem vindo à #{Settings.site.name}. Você está vendo o meu <strong>lifestream</strong>, um fluxo em tempo real da minha atividade online espalhada por diversos websites, juntamente com posts ocasionais no meu <strong>blog</strong> para seu deleite.
 
 %h3#feeds_title Fontes do Lifestream
 %ul#feeds_list.tag_list
