@@ -26,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
 
   ## admin
 
+  map.resources :posts
+
   # TODO
 
   ## defaults
