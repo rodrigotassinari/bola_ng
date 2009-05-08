@@ -4,8 +4,7 @@
     %input{:name => "query", :class => "text_input", :value => "", :type => "text"}
     %input{:type => "submit"}
 
-#explanation
-  Bem vindo à PiTTlândia. Você está vendo o meu <strong>lifestream</strong>, um fluxo em tempo real da minha atividade online espalhada por diversos websites, juntamente com posts ocasionais no meu <strong>blog</strong> para seu deleite.
+#explanation= Settings.site.explanation
 
 %h3#feeds_title Fontes do Lifestream
 %ul#feeds_list.tag_list
@@ -39,7 +38,7 @@
   - Post.published.tag_counts(:limit => 30, :order => 'count DESC').sort_by(&:name).each do |tag|
     %li= link_to tag.name, tag_name_path(tag.name), :title => "#{tag.count} itens"
 
-%h3 Sobre a PiTTlândia
+%h3== Sobre #{Settings.site.name}
 #aboutme
   #aboutme_blurb
     %ul

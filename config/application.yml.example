@@ -4,6 +4,10 @@ defaults: &defaults
 #    saweet: nested settings
 #  neat_setting: 24
 #  awesome_setting: <%= "Did you know 5 + 5 = #{(5 + 5)}?" %>
+  site:
+    name: "PiTTlândia"
+    tagline: "$ tail -f /dev/mind >> lifestream"
+    explanation: "Bem vindo à PiTTlândia. Você está vendo o meu <strong>lifestream</strong>, um fluxo em tempo real da minha atividade online espalhada por diversos websites, juntamente com posts ocasionais no meu <strong>blog</strong> para seu deleite."
   disqus_in_development: false
 
 development:

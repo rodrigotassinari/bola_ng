@@ -9,7 +9,7 @@
 
     = javascript_include_tag :defaults
 
-    %title== PiTTlândia :: #{@page_title}
+    %title== #{Settings.site.name} :: #{@page_title}
 
   %body
 
@@ -25,8 +25,8 @@
           %li{:class => "#{'current' if @current_tab == 'contact'}"}
             = link_to 'Contato', contact_path, :title => "Contato"
         %h1
-          = link_to 'PiTTlândia', root_path
-          %span $ tail -f /dev/mind >> lifestream
+          = link_to Settings.site.name, root_path
+          %span= Settings.site.tagline
 
     .center_box
       #main_container
@@ -35,5 +35,3 @@
         = render :partial => 'shared/sidebar'
 
     = render :partial => 'shared/footer'
-
-    = disqus_comment_counter_tag(Settings.disqus_site_id)
