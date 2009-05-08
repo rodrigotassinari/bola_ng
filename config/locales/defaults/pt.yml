@@ -96,6 +96,9 @@ pt:
     array:
       sentence_connector: "e"
       skip_last_comma: true
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
   # Active Record
   activerecord:
     errors:
