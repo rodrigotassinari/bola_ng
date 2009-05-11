@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090508210227) do
+ActiveRecord::Schema.define(:version => 20090511153657) do
 
   create_table "posts", :force => true do |t|
     t.integer  "service_id"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(:version => 20090508210227) do
     t.datetime "updated_at"
   end
 
+  add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
+  add_index "posts", ["service_id", "identifier"], :name => "index_posts_on_service_id_and_identifier"
+  add_index "posts", ["slug"], :name => "index_posts_on_slug"
+
   create_table "services", :force => true do |t|
     t.string   "type"
     t.string   "name"
@@ -39,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20090508210227) do
     t.datetime "updated_at"
     t.string   "slug"
   end
+
+  add_index "services", ["slug"], :name => "index_services_on_slug"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
