@@ -1,6 +1,6 @@
 #single_container.admin
   #single_header
-    %h2 Escrever novo post no blog
+    %h2== Editando post no blog ##{@post.id}
 
   #single_content
     - form_for @post, :url => blog_path(@post.id), :method => :put do |f|
@@ -27,5 +27,5 @@
         = f.datetime_select :published_at
 
       %p
-        = f.submit "Enviar"
+        = f.submit "Salvar"
         == ou #{link_to 'cancelar', blog_path(@post.slug)}

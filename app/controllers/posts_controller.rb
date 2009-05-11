@@ -31,7 +31,12 @@ class PostsController < ApplicationController
   #
   # Updates the post.
   def update
-    # TODO
+    if @post.update_attributes(params[:post])
+      flash[:success] = 'Post atualizado com sucesso'
+      redirect_to lifestream_path(@post.service) # ???
+    else
+      render :action => :edit
+    end
   end
 
   # DELETE /posts/:id
@@ -40,7 +45,9 @@ class PostsController < ApplicationController
   #
   # Destroys the post.
   def destroy
-    # TODO
+    @post.destroy
+    flash[:success] = 'Post apagado'
+    redirect_to lifestream_index_path
   end
 
   protected
