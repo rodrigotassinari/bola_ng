@@ -14,4 +14,4 @@
     = relative_published_date(post.published_at)
     |
     = link_to 'Comentários &raquo;', blog_path(post.slug, :anchor => 'disqus_thread')
-    = link_to('Admin', '#TODO', :class => 'admin') if current_user
+    = link_to('Admin', edit_blog_path(post), :class => 'admin') if current_user
