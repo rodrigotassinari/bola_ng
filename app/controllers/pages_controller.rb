@@ -18,7 +18,6 @@ class PagesController < ApplicationController
   def contact
     @current_tab = 'contact'
     @page_title = "Contato"
-    # TODO
   end
   
 end

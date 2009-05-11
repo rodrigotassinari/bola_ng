@@ -1,0 +1,17 @@
+#single_container
+  #single_header
+    %h2 Contato
+
+  #single_content
+    %p
+      Para falar diretamente comigo, use um dos e-mails abaixo (substitua os
+      AT por @ e os DOT por . e remova os espaços):
+      %ul
+        %li <tt>rodrigo AT pittlandia DOT net</tt>
+        %li <tt>roliveira AT riopro DOT com DOT br</tt> (trabalho)
+
+    %p
+      Para comunicações seguras, você pode baixar minha
+      = link_to 'chave pública', 'http://pt.wikipedia.org/wiki/Chave_p%C3%BAblica'
+      = link_to 'GnuPG', 'http://pt.wikipedia.org/wiki/Gnupg'
+      == #{link_to 'aqui', 'http://dl.pittlandia.net/pubkey.asc'}.
