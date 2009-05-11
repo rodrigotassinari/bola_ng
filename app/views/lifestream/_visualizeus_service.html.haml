@@ -11,4 +11,4 @@
     = relative_published_date(post.published_at)
     |
     = link_to 'Permalink', post.url
-    = link_to('Admin', edit_post_path(post)', :class => 'admin') if current_user
+    = link_to('Admin', edit_post_path(post), :class => 'admin') if current_user
