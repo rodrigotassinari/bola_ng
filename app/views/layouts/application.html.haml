@@ -11,6 +11,8 @@
 
     %title== #{Settings.site.name} :: #{@page_title}
 
+    = auto_discovery_link_tag(:rss, @feed_url) if @feed_url
+
   %body
 
     #header

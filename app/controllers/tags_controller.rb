@@ -17,17 +17,31 @@ class TagsController < ApplicationController
   #
   # Shows all feed_items related to the supplied tag (by name).
   def show
-    @current_tab = 'lifestream'
-
     @tag = Tag.find_by_name(params[:name]) || Tag.find_by_name(params[:id])
     raise ActiveRecord::RecordNotFound,
       "Couldn't find Tag with name = #{params[:name] || params[:id]}" if @tag.nil?
 
-    @posts = Post.published.ordered.with_service.paged_find_tagged_with(
-      @tag.name,
-      :page => params[:page]
-    )
-    @page_title = "Lifestream :: Tags :: #{@tag.name}"
+    respond_to do |format|
+      
+      format.html do
+        @posts = Post.published.ordered.with_service.paged_find_tagged_with(
+          @tag.name,
+          :page => params[:page]
+        )
+        @current_tab = 'lifestream'
+        @page_title = "Lifestream :: Tags :: #{@tag.name}"
+        @feed_url = tag_name_url(@tag.name, :format => :rss)
+      end
+      
+      format.rss do
+        @posts = Post.published.ordered.with_service.paged_find_tagged_with(
+          @tag.name,
+          :page => params[:page],
+          :per_page => 25
+        )
+      end
+      
+    end
   end
 
 end

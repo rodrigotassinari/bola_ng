@@ -8,13 +8,24 @@ class BlogController < ApplicationController
   #
   # Shows all blog posts.
   def index
-    @current_tab = 'blog'
-    @page_title = "Blog"
-    
-    @posts = if current_user
-      @service.posts.ordered.with_service.paginate(:page => params[:page])
-    else
-      @service.posts.published.ordered.with_service.paginate(:page => params[:page])
+    respond_to do |format|
+
+      format.html do
+        @current_tab = 'blog'
+        @page_title = "Blog"
+        @feed_url = blog_index_url(:format => :rss)
+
+        @posts = if current_user
+          @service.posts.ordered.with_service.paginate(:page => params[:page])
+        else
+          @service.posts.published.ordered.with_service.paginate(:page => params[:page])
+        end
+      end
+
+      format.rss do
+        @posts = @service.posts.published.ordered.with_service.paginate(:page => params[:page], :per_page => 25)
+      end
+
     end
   end
 
