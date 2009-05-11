@@ -6,7 +6,7 @@
   .item_inner
     / domain-specific boxes
     %p.activity_image_text= link_to post.title, post.url
-    = link_to '', post.url, :class => 'activity_image', :style => "background: url(#{post.extra_content['image_url']}) center center no-repeat;"
+    = link_to '', post.url, :class => 'activity_image', :style => "background: url(#{post.extra_content['medium_image_url']}) center center no-repeat;"
   %p.date
     = relative_published_date(post.published_at)
     |

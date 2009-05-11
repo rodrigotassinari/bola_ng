@@ -42,7 +42,8 @@ class VisualizeusService < Service
       :extra_content => {
         :original_tags => entry[:tags],
         :image_url => entry[:image_url],
-        :thumbnail_url => entry[:thumbnail_url]
+        :thumbnail_url => entry[:thumbnail_url],
+        :medium_image_url => entry[:medium_image_url]
       }
     )
   end
@@ -65,7 +66,8 @@ class VisualizeusService < Service
         :guid => (entry/'guid').inner_html.split(':').first,
         :tags => (entry/'guid').inner_html.split(':').last.split(',').map {|t| t.strip }, # array de tags
         :image_url => (entry/'media:content').first[:url],
-        :thumbnail_url => (entry/'media:thumbnail').first[:url]
+        :thumbnail_url => (entry/'media:thumbnail').first[:url],
+        :medium_image_url => (entry/'media:thumbnail').first[:url].gsub('_m.jpg', '_h.jpg')
       }
     end
 
