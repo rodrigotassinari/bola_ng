@@ -1,3 +1,6 @@
+- if current_user
+  %p.action= link_to 'Novo Post', new_blog_path
+
 %ul#activity_list
   - @posts.each_with_index do |post, index|
     = render :partial => 'lifestream/blog_service', :locals => {:post => post, :last => is_last_in_row?(index)}

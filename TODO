@@ -1,9 +1,9 @@
 TODO
 
 - mostrar flashs
-- criar interface web administrativa
+- criar edição de posts (não-blog)
+- criar apagamento de posts (não-blog)
 - escrever primeiro post
-- integração com google analytics
 - criar redirecionador de urls do site antigo para o novo site antigo
 - busca
 - buscar novos itens dos serviços assincronamente e atomicamente

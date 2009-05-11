@@ -50,7 +50,7 @@ class BlogController < ApplicationController
   def new
     @current_tab = 'blog'
     @page_title = "Blog :: Novo"
-    @post = @service.build
+    @post = @service.posts.build
   end
 
   # POST /blog
@@ -59,7 +59,13 @@ class BlogController < ApplicationController
   #
   # Creates a new blog post.
   def create
-    # TODO
+    @post = @service.posts.build(params[:post])
+    if @post.save
+      flash[:success] = 'Post criado com sucesso'
+      redirect_to blog_path(@post.slug)
+    else
+      render :action => :new
+    end
   end
 
   # GET /blog/:id/edit
@@ -79,7 +85,13 @@ class BlogController < ApplicationController
   #
   # Updates the blog post.
   def update
-    # TODO
+    @post = @service.posts.find(params[:id])
+    if @post.update_attributes(params[:post])
+      flash[:success] = 'Post atualizado com sucesso'
+      redirect_to blog_path(@post.slug)
+    else
+      render :action => :edit
+    end
   end
 
   # DELETE /blog/:id
@@ -88,7 +100,10 @@ class BlogController < ApplicationController
   #
   # Destroys the blog post.
   def destroy
-    # TODO
+    @post = @service.posts.find(params[:id])
+    @post.destroy
+    flash[:success] = 'Post apagado'
+    redirect_to blog_index_path
   end
 
   protected
