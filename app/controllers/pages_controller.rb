@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   def about
     @current_tab = 'about'
     @page_title = "Sobre"
-    # TODO
   end
 
   # GET /contact
