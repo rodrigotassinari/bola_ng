@@ -4,15 +4,16 @@ defaults: &defaults
     name: "PiTTlândia"
     tagline: "$ tail -f /dev/mind >> lifestream"
   disqus_in_development: false
+  google_analytics_id: "ua-something"
 
 development:
   <<: *defaults
-  disqus_site_id: some-site-id-devel
+  disqus_site_id: "some-site-id-devel"
 
 test:
   <<: *defaults
-  disqus_site_id: some-site-id-devel
+  disqus_site_id: "some-site-id-devel"
 
 production:
   <<: *defaults
-  disqus_site_id: some-site-id
+  disqus_site_id: "some-site-id"
