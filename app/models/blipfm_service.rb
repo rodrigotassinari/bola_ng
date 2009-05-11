@@ -55,7 +55,7 @@ class BlipfmService < Service
       {
         :title => (entry/'title').inner_html.gsub(/\A\<\!\[CDATA\[/, '').gsub(/\]\]\>\Z/, '').chomp,
         :link => (entry/'link').inner_html.chomp,
-        :pubDate => (entry/'pubDate').inner_html.to_time,
+        :pubDate => Time.parse((entry/'pubDate').inner_html),
         :description => (entry/'description').inner_html.gsub(/\A\<\!\[CDATA\[/, '').gsub(/\]\]\>\Z/, '').chomp,
         :guid => (entry/'guid').inner_html.split('/').last.chomp
       }

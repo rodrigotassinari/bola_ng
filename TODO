@@ -1,6 +1,5 @@
 TODO
 
-- consertar hora do blipfm, tá pegando em fuso errado
 - mostrar flashs
 - criar interface web administrativa
 - criar índices relevantes no banco (post.slug, post.identifier com service_id...)
