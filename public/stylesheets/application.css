@@ -601,3 +601,12 @@ li.item.google_reader div.item_inner a:hover {
 a.profile_url {
   font-size: 0.8em;
 }
+
+li.item.unpublished div.item_inner {
+  border: 1px solid #f00;
+  color: gray;
+}
+li.item.unpublished strong {
+  color: red;
+  font-weight: bold;
+}

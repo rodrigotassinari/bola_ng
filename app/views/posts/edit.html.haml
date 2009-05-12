@@ -22,6 +22,10 @@
         = f.text_field :tag_list, :size => 70
 
       %p
+        = f.check_box :published
+        = f.label :published, 'Publicado?'
+
+      %p
         = f.label :published_at, 'Publicado em'
         %br
         = f.datetime_select :published_at
@@ -45,5 +49,4 @@
       %p
         = f.submit "Salvar"
         == , #{link_to 'cancelar', lifestream_path(@post.service)}
-        == , #{link_to 'apagar', post_path(@post.id), :method => :delete, :confirm => 'Tem certeza disso, senhor zero-cinco?'}
-        == ou #{link_to 'despublicar', '#TODO'}
+        == ou #{link_to 'apagar', post_path(@post.id), :method => :delete, :confirm => 'Tem certeza disso, senhor zero-cinco?'}

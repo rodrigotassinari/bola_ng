@@ -1,5 +1,5 @@
 / begin conditional content
-%li.item.twitter{:class => "#{last ? 'last' : nil}"}
+%li.item.twitter{:class => "#{last ? 'last' : nil} #{post.published? ? nil : 'unpublished'}"}
   %p.site_info{:style => "background: white url(#{post.service.icon_url}) no-repeat scroll 3px center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"}
     == Eu #{t post.service_action} no
     = link_to post.service.name, lifestream_path(post.service)
@@ -8,7 +8,10 @@
     %p.twitter_user= link_to image_tag(post.service.profile_image_url), post.url
     %p.twitter_tweet= twitter_auto_link(post.summary)
   %p.date
-    = relative_published_date(post.published_at)
+    - if post.published?
+      = relative_published_date(post.published_at)
+    - else
+      %strong NÃO PUBLICADO
     |
     = link_to 'Permalink', post.url
     = link_to('Admin', edit_post_path(post), :class => 'admin') if current_user

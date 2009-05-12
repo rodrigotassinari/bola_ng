@@ -31,11 +31,11 @@ class Post < ActiveRecord::Base
   before_create :taggify
 
   named_scope :published, 
-    :conditions => '`posts`.`published_at` IS NOT NULL'
+    :conditions => ['`posts`.`published` = ?', true]
   named_scope :unpublished, 
-    :conditions => '`posts`.`published_at` IS NULL'
+    :conditions => ['`posts`.`published` = ?', false]
   named_scope :ordered,
-    :order => '`posts`.`published_at` DESC, `posts`.`updated_at` DESC, `posts`.`id` DESC'
+    :order => '`posts`.`published_at` DESC, `posts`.`created_at` DESC'
   named_scope :latest,
     :limit => 5
   named_scope :with_service,

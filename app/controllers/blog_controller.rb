@@ -37,7 +37,12 @@ class BlogController < ApplicationController
   def show
     @current_tab = 'blog'
 
-    @post = @service.posts.published.ordered.with_service.find_by_slug(params[:id]) || @service.posts.published.ordered.with_service.find(params[:id])
+    @post = if current_user
+      @service.posts.ordered.with_service.find_by_slug(params[:id]) || @service.posts.ordered.with_service.find(params[:id])
+    else
+      @service.posts.published.ordered.with_service.find_by_slug(params[:id]) || @service.posts.published.ordered.with_service.find(params[:id])
+    end
+
     @post_context = @post.context
     @page_title = "Blog :: #{@post.title}"
   end

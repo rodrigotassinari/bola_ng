@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090511153657) do
+ActiveRecord::Schema.define(:version => 20090512131501) do
 
   create_table "posts", :force => true do |t|
     t.integer  "service_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20090511153657) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",      :default => true, :null => false
   end
 
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
