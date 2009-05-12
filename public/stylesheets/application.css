@@ -604,7 +604,6 @@ a.profile_url {
 
 li.item.unpublished div.item_inner {
   border: 1px solid #f00;
-  color: gray;
 }
 li.item.unpublished strong {
   color: red;
