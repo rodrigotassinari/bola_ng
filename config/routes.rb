@@ -28,11 +28,20 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :posts
 
-  # TODO
-
   ## defaults
 
   map.root :controller => 'lifestream', :action => 'index'
+
+  # old redirects
+  map.with_options(:controller => 'pages', :conditions => {:method => :get}) do |old|
+    old.connect 'sobre', :action => 'about'
+    old.connect 'contato', :action => 'contact'
+    old.connect ':year/:month/:day/:slug', :action => 'old_redirect',
+      :year => /\d{4}/,
+      :month => /\d{1,2}/,
+      :day => /\d{1,2}/,
+      :slug => /[a-zA-Z0-9_-]+/
+  end
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

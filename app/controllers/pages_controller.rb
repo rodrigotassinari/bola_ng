@@ -19,5 +19,13 @@ class PagesController < ApplicationController
     @current_tab = 'contact'
     @page_title = "Contato"
   end
+
+  # GET /:year/:month/:day/:slug
+  # Avaiable: all
+  #
+  # Redirect to the old site.
+  def old_redirect
+    redirect_to "http://old.pittlandia.net/#{params[:year]}/#{params[:month]}/#{params[:day]}/#{params[:slug]}/"
+  end
   
 end

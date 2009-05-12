@@ -3,7 +3,6 @@ TODO
 - mostrar flashs
 - criar despublicamento de posts (blog e não-blog)
 - escrever primeiro post
-- criar redirecionador de urls do site antigo para o novo site antigo
 - busca
 - buscar novos itens dos serviços assincronamente e atomicamente
 - cachear tags sem dar pau no tag_list
