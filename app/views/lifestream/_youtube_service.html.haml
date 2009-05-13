@@ -9,9 +9,9 @@
       %param{:name => "movie", :value => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1"}
       %param{:name => "allowFullScreen", :value => "true"}
       %embed{:src => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true", :allowscriptaccess => "always", :width => "212", :height => "178"}
-    %p.youtube_title= link_to post.title, post.url
-    - unless post.summary.blank?
-      %p= post.summary
+    %p.youtube_title= link_to post.title_or_nil, post.url
+    - unless post.summary_or_nil.blank?
+      %p= post.summary_or_nil
   %p.date
     - if post.published?
       = relative_published_date(post.published_at)

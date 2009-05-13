@@ -61,13 +61,13 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def summary
+  def summary_or_nil
     text = read_attribute(:summary)
     return text if self.new_record?
     text == '-' ? nil : text
   end
 
-  def title
+  def title_or_nil
     text = read_attribute(:title)
     return text if self.new_record?
     text == '-' ? nil : text

@@ -6,9 +6,9 @@
   .item_inner
     / domain-specific boxes
     .inner_container
-      %p.delicious_title= link_to truncate(post.title, :length => 70), post.url, :title => title_if_needed(post.title, 70)
+      %p.delicious_title= link_to truncate(post.title, :length => 70), post.url, :title => title_if_needed(post.title_or_nil, 70)
       %p.delicious_description
-        %span{:title => title_if_needed(post.summary, 70)}= truncate(post.summary, :length => 70)
+        %span{:title => title_if_needed(post.summary_or_nil, 70)}= truncate(post.summary_or_nil, :length => 70)
         = link_to image_tag("http://capture.heartrails.com/small?#{post.url}", :alt => "thumbnail"), post.url
   %p.date
     - if post.published?

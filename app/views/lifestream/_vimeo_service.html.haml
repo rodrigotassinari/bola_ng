@@ -10,7 +10,7 @@
       %param{:name => "allowscriptaccess", :value => "always"}
       %param{:name => "movie", :value => "http://www.vimeo.com/moogaloop.swf?clip_id=#{post.identifier}&amp;server=www.vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"}
       %embed{:src => "http://www.vimeo.com/moogaloop.swf?clip_id=#{post.identifier}&amp;server=www.vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true", :allowscriptaccess => "always", :width => "212", :height => "159"}
-    %p.vimeo_title= link_to post.title, post.url
+    %p.vimeo_title= link_to post.title_or_nil, post.url
   %p.date
     - if post.published?
       = relative_published_date(post.published_at)

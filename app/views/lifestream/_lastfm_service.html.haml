@@ -6,7 +6,7 @@
   .item_inner
     / domain-specific boxes
     .inner_container
-      %p.lastfm_track= link_to post.title, post.url
+      %p.lastfm_track= link_to post.title_or_nil, post.url
   %p.date
     - if post.published?
       = relative_published_date(post.published_at)

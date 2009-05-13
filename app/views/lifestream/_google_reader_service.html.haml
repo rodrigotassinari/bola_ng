@@ -6,9 +6,9 @@
   .item_inner
     / domain-specific boxes
     .inner_container
-      %p.google_reader_title= link_to post.title, post.url
+      %p.google_reader_title= link_to post.title_or_nil, post.url
       %p.google_reader_description
-        = truncate(post.summary, :length => 140)
+        = truncate(post.summary_or_nil, :length => 140)
   %p.date
     - if post.published?
       = relative_published_date(post.published_at)

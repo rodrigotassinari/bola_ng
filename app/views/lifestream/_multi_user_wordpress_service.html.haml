@@ -6,9 +6,9 @@
   .item_inner
     / domain-specific boxes
     .inner_container
-      %p.blog_title= link_to post.title, post.url
+      %p.blog_title= link_to post.title_or_nil, post.url
       %p= image_tag('fancy_divider.gif', :alt => 'divider')
-      %p.blog_cite= truncate(post.summary, :length => 140)
+      %p.blog_cite= truncate(post.summary_or_nil, :length => 140)
       %p.blog_continue= link_to 'Continue lendo &raquo;', post.url
   %p.date
     - if post.published?

@@ -5,7 +5,7 @@
     = link_to post.service.name, lifestream_path(post.service)
   .item_inner
     / domain-specific boxes
-    %p.activity_image_text= link_to post.title, post.url
+    %p.activity_image_text= link_to post.title_or_nil, post.url
     = link_to '', post.url, :class => 'activity_image', :style => "background: url(#{post.extra_content['medium_image_url']}) center center no-repeat;"
   %p.date
     - if post.published?
