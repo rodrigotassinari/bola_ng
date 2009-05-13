@@ -31,6 +31,12 @@ class GoogleReaderService < Service
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
+    date = if self.posts.count == 0
+      entry[:published]
+    else
+      Time.current
+    end
+
     self.posts.build(
       :summary => (entry[:summary].blank? ? '-' : entry[:summary]),
       :service_action => Service::SERVICE_ACTION_SHARE,
@@ -38,10 +44,11 @@ class GoogleReaderService < Service
       :title => entry[:title],
       :markup => Post::PLAIN_MARKUP,
       :url => entry[:link],
-      :published_at => entry[:published],
+      :published_at => date,
       :extra_content => {
         :original_guid => entry[:original_guid],
         :updated => entry[:updated],
+        :original_published_at => entry[:published],
         :original_tags => entry[:categories] # array de tags
       }
     )
