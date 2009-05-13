@@ -1,9 +1,9 @@
 TODO
 
+- dar mais destaque aos feeds na sidebar
+- criar espaço para links recomendados fixos na sidebar
 - mostrar flashs
-- escrever primeiro post
 - busca
-- permitir usar imagens nos posts via link
 - permitir upload de arquivos associados aos posts no blog (dowloadeáveis -- S3?)
 - permitir usar imagens nos posts via upload
 - buscar novos itens dos serviços assincronamente e atomicamente
