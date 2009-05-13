@@ -9,7 +9,7 @@
 
 %h3#feeds_title Fontes do Lifestream
 %ul#feeds_list.tag_list
-  - Service.active.all.sort_by(&:name).each do |service|
+  - Service.all.sort_by(&:name).each do |service|
     %li
       - if service.icon_url
         = image_tag service.icon_url, :width => 16, :height => 16
