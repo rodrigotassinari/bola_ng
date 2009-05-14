@@ -47,12 +47,28 @@
       %li== Powered by #{link_to 'bola_ng', 'http://github.com/rtopitt/bola_ng/tree/master'}, sistema desenvolvido por mim, inspirado no #{link_to 'Sweetcron', 'http://www.sweetcron.com/'}. Software livre, feito com #{link_to 'Ruby', 'http://www.ruby-lang.org/', :title => 'Ruby Language'}, #{link_to 'Rails', 'http://rubyonrails.org/', :title => 'Ruby on Rails'} e um pouquinho de mágica.
       %li== Todo conteúdo gerado por mim é disponibilizado sob uma #{link_to 'licença Creative Commons', 'http://creativecommons.org/licenses/by-sa/2.5/br/deed.pt', :title => 'Atribuição-Compartilhamento pela mesma Licença 2.5'}.
       %li= random_phrase
-      
     %p= link_to 'Mais »', about_path
-    
   %p.sidebar_small_banner
     = link_to image_tag("orkut.jpg", :alt => "orkut"), "http://www.orkut.com.br/Main#Profile.aspx?uid=5765880671845393652", :title => "Eu no Orkut"
   %p.sidebar_small_banner
     = link_to image_tag("facebook.jpg", :alt => "facebook"), "http://pt-br.facebook.com/people/Rodrigo-Tassinari/601755734", :title => "Eu no FaceBook"
   %p.sidebar_small_banner
     = link_to image_tag("oldsite.gif", :alt => "site antigo"), "http://old.pittlandia.net/", :title => "link para o site antigo"
+
+%h3 Feeds RSS
+%ul#feeds_list
+  %li
+    = link_to image_tag('rss.jpg', :alt => 'RSS'), lifestream_index_url(:format => :rss)
+    = link_to 'Feed do Lifestream', lifestream_index_url(:format => :rss)
+  %li
+    = link_to image_tag('rss.jpg', :alt => 'RSS'), blog_index_url(:format => :rss)
+    = link_to 'Feed do Blog', blog_index_url(:format => :rss)
+
+%h3 Sites Vizinhos
+%ul#feeds_list.tag_list
+  %li= link_to 'Riopro Informática', 'http://www.riopro.com.br/'
+  %li= link_to 'Blog da Riopro', 'http://blog.riopro.com.br/'
+  %li= link_to 'VoteBolsa', 'http://votebolsa.com.br/'
+  %li= link_to 'Zest', 'http://zest.com.br/'
+  %li= link_to 'Peneirando', 'http://peneirando.com/'
+  %li= link_to 'OverThere', 'http://overthere.com.br'
