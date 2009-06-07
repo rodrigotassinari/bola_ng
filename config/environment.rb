@@ -19,9 +19,9 @@ Rails::Initializer.run do |config|
   # frozen
   config.gem 'haml', :version => '>= 2.0.9'
   config.gem 'authlogic', :version => '>= 2.0.11'
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>= 2.3.8', :source => 'http://gems.github.com'
+  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>= 2.3.11', :source => 'http://gems.github.com'
   config.gem 'settingslogic', :version => '>= 1.0.3'
-  config.gem 'twitter', :version => '>= 0.6.8'
+  config.gem 'twitter', :version => '>= 0.6.11'
 
   # installed
   config.gem 'RedCloth', :version => '>= 4.1.9'
