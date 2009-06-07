@@ -9,7 +9,7 @@
     %p= relative_published_date(@post.published_at)
 
   #single_content
-    = @post.body
+    = auto_link(@post.body)
 
   - unless @post.tags.empty?
     %ul.item_tag_list
@@ -20,9 +20,10 @@
 - unless @post_context.empty?
   %p#breadcrumb
     - if @post_context.first
-      = link_to '« Post anterior', blog_path(@post_context.first.slug)
+      = link_to "« #{h @post_context.first.title}", blog_path(@post_context.first.slug)
+    &nbsp;
     - if @post_context.last
-      = link_to 'Próximo post »', blog_path(@post_context.last.slug)
+      = link_to "#{h @post_context.last.title} »", blog_path(@post_context.last.slug)
 
 #comments_container
   = disqus_comments_tag(Settings.disqus_site_id)
