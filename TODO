@@ -2,6 +2,7 @@ TODO
 
 - mostrar flashs
 - busca
+- preview de blog post
 - permitir upload de arquivos associados aos posts no blog (dowloadeáveis -- S3?)
 - permitir usar imagens nos posts via upload
 - buscar novos itens dos serviços assincronamente e atomicamente
