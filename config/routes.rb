@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
     :name => /.*/
 
   map.resources :tags
+  
+  map.resource :search
 
   map.with_options(:controller => 'pages', :conditions => {:method => :get}) do |pages|
     pages.about 'about', :action => 'about'

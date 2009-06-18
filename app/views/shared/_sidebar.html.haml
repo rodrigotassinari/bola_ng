@@ -1,8 +1,8 @@
 %h3#search_title Busca
-%form#search_form{:method => "post", :action => "http://www.yongfook.com/items/do_search"}
+- form_tag search_path, :method => :get, :id => 'search_form' do
   %p
-    %input{:name => "query", :class => "text_input", :value => "", :type => "text"}
-    %input{:type => "submit"}
+    = text_field_tag :q, @query, :class => "text_input"
+    = submit_tag 'Buscar', :name => nil
 
 #explanation
   == Bem vindo à #{Settings.site.name}. Você está vendo o meu <strong>lifestream</strong>, um fluxo em tempo real da minha atividade online espalhada por diversos websites, juntamente com posts ocasionais no meu <strong>blog</strong> para seu deleite.

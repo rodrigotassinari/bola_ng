@@ -40,6 +40,8 @@ class Post < ActiveRecord::Base
     :limit => 5
   named_scope :with_service,
     :include => :service
+    
+  named_scope :search_for, lambda { |q| { :conditions => ['(posts.title LIKE ?) OR (posts.summary LIKE ?) OR (posts.body LIKE ?)', "%#{q}%", "%#{q}%", "%#{q}%"] } }
 
   # returns true if this post is associated with a BlogService
   def is_article?
