@@ -28,6 +28,7 @@ config.action_mailer.delivery_method = :test
 # config.active_record.schema_format = :sql
 
 # RSpec - http://wiki.github.com/dchelimsky/rspec/configgem-for-rails
-config.gem "rspec", :lib => false, :version => ">= 1.2.4"
-config.gem "rspec-rails", :lib => false, :version => ">= 1.2.4"
+config.gem 'rspec', :lib => false, :version => '>= 1.2.6'
+config.gem 'rspec-rails', :lib => false, :version => '>= 1.2.6'
+config.gem 'remarkable_rails', :lib => false, :version => '>= 3.1.6'
 
