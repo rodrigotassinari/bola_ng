@@ -1,0 +1,828 @@
+*
+  :margin 0
+  :padding 0
+
+
+body
+  :font-family "Lucida Grande", Arial, Helvetica, sans serif
+  :font-size 12px
+  :color #000
+  :line-height 1.7em
+  :background white
+  :word-wrap break-word
+
+
+a
+  :color #3399ff
+
+  &.admin
+    :color #900
+
+    &:hover
+      :color #f00
+
+  &:hover
+    :color #003399
+
+  &.activity_image
+    :display block
+    :height 250px
+
+  &#credits
+    :position absolute
+    :right 10px
+    :top 6px
+
+  &.profile_url
+    :font-size 0.8em
+
+
+ul
+  &#blog_list
+    p
+      &.title
+        :font-family Georgia, 'Times New Roman', Times, serif
+        :font-size 13px
+        :line-height 1.5em
+
+      &.date
+        :color #999
+        :font-size 9px
+
+    li
+      :border 1px solid #EEE
+      :border-style none solid solid solid
+      :padding 5px 8px
+      :background white url(../images/blogback.jpg) bottom -80px no-repeat
+
+  &#activity_list
+    :float left
+
+    li.item
+      :width 211px
+      :margin 0 15px 15px 0
+      :float left
+      :overflow hidden
+
+      &.blog div.item_inner
+        :font-family Georgia, 'Times New Roman', Times, serif
+        :font-size 20px
+        :font-weight bold
+        :text-align center
+        :background white url(../images/blogback.jpg) bottom left no-repeat
+
+        p.blog_cite
+          :font-weight normal
+
+        img
+          :display inline
+
+      &.scuttle div
+        &.item_inner
+          :background black url(../images/scuttleback.gif) bottom left repeat-x
+
+        &.inner_container p
+          &.scuttle_title a
+            :font-weight bold
+            :text-decoration none
+            :border 1px solid #7698b7
+            :border-style none none dotted none
+            :display block
+            :padding-bottom 5px
+            :margin-bottom 5px
+
+            &:hover
+              :text-decoration underline
+
+          &.scuttle_description
+            :color #333
+            :font-weight none
+
+          &.scuttle_tags
+            :font-size 11px
+            :margin-top 5px
+            :color #999
+
+            span.scuttle_tag
+              :color #999
+              :border 1px solid #999
+              :border-style none none dotted none
+              :margin-left 2px
+              :margin-right 2px
+
+              &:hover
+                :border-style none none solid none
+
+      &.slideshare
+        div
+          &.inner_container
+            :font-family Georgia, 'Times New Roman', Times, serif
+            :font-size 15px
+            :font-weight bold
+            :text-align center
+
+            a
+              :color white
+              :text-decoration none
+              :border 1px solid #333
+              :border-style none none solid none
+
+              &:hover
+                :border 1px solid white
+                :border-style none none solid none
+
+          &.item_inner
+            :background black url(../images/slideshareback.gif) bottom left repeat-x
+
+        img
+          :margin 20px auto 20px auto
+
+      p.date
+        :color #999
+        :font-size 9px
+
+      &.youtube div.item_inner
+        :color #fd8585
+        :font-size 10px
+        :text-align center
+        :line-height 1.6em
+        :background #FE3333 url(../images/youtubeback.gif) bottom left repeat-x
+
+        a
+          :color white
+          :font-weight bold
+          :text-decoration none
+          :border 1px solid #f07777
+          :border-style none none solid none
+
+          &:hover
+            :border 1px solid white
+            :border-style none none solid none
+
+        object
+          :border 1px solid white
+          :border-style none none solid none
+          :margin-bottom 7px
+
+        p
+          :padding 0 10px
+
+      &.last
+        :margin-right 0
+
+      &.twitter div.item_inner
+        :background url(../images/twitterback.jpg)
+
+      &.digg div.item_inner
+        :background #1b5790 url(../images/diggback.gif) bottom right no-repeat
+
+      &.lastfm div.item_inner
+        :background #dd463e url(../images/lastfmback.gif) bottom right no-repeat
+
+      &.delicious div.item_inner
+        :background #3274d0 url(../images/deliciousback.png) no-repeat
+        :padding-left 40px
+
+      &.google_reader div.item_inner
+  &#navigation
+    :position absolute
+    :left 0
+    :bottom 0
+
+    li
+      :font-size 15px
+      :font-weight bold
+      :float left
+      :margin-right 1px
+
+      &.current a
+        :color black
+        :background white
+
+      a
+        :color #999
+        :text-decoration none
+        :float left
+        :padding 8px 15px
+        :background white url(../images/blogback.jpg) bottom left no-repeat
+
+        &:hover
+          :color black
+
+  &.about_tech
+    :font-size 10px
+    :font-weight bold
+    :list-style-type none
+    :margin 10px 0 0 0
+
+    li
+      :display inline
+      :background #ccffcc
+      :padding 2px 1px
+      :margin 0 3px 0 0
+
+  &.item_tag_list
+    :font-weight bold
+
+    li
+      :display inline
+
+  &.tag_list li
+    :display inline
+    :margin 0 5px 0 0
+
+  &#video_list
+    :float left
+    :width 100%
+    :padding-bottom 10px
+
+    li
+      :float left
+      :margin 0 5px 5px 0
+
+      a
+        :display block
+        :height 88px
+        :width 88px
+        :border 4px solid #EEE
+
+        &:hover
+          :border 4px solid #333
+
+      &.last
+        :margin-right 0
+
+
+h1
+  :font-size 18px
+
+
+div
+  &#aboutme
+    :color #999
+    :font-size 10px
+    :line-height 1.6em
+    :padding-top 5px
+
+    h3
+      :color #333
+      :margin-left 20px
+      :margin-bottom 5px
+
+    ul
+      :list-style-type disc
+      :margin-left 20px
+
+      li
+        :padding-bottom 5px
+
+    p
+      :margin-left 20px
+
+  &#single_header
+    :font-weight bold
+    :padding 10px 0 15px 0
+
+    p
+      :color #999
+
+    h2
+      :line-height 1.1em
+
+  &#explanation
+    :color #999933
+    :font-size 15px
+    :background #FFFFCC
+    :padding 10px
+    :margin 15px 0
+
+    strong
+      :color #666633
+      :font-weight bold
+
+  &#sidebar_container
+    :display inline
+    :width 300px
+    :float left
+    :margin 15px 0 0 15px
+
+    h3
+      :border 1px solid #CCC
+      :border-style none none solid none
+      :margin 10px 0 5px 0
+
+      a
+        :font-size 10px
+        :position absolute
+        :right 0
+        :background #FFFFCC
+
+      &#search_title, &#blog_title
+        :margin-bottom 0
+
+    div#aboutme_blurb h3
+      :margin-top 0
+      :border none
+
+  &#single_container
+    :font-size 15px
+
+    h3, h4, h5
+      :font-size 20px
+      :border 1px solid #CCC
+      :border-style none none dotted none
+      :padding-bottom 8px
+      :margin-bottom 8px
+      :margin-top 25px
+
+    h2
+      :font-size 25px
+
+    strong
+      :font-weight bold
+
+      em
+        :font-weight bold
+        :font-style italic
+
+    em
+      :font-style italic
+
+    img
+      :display block
+      :margin-bottom 15px
+      :border 1px solid #CCC
+      :padding 5px
+
+    object
+      :margin-bottom 15px
+
+    ul
+      :margin-bottom 15px
+      :margin-left 35px
+      :list-style-type disc
+      :margin-bottom 10px
+
+      &.item_tag_list
+        :margin 0 0 10px 0
+
+      &#activity_list
+        :margin 0 0 15px 0
+        :list-style-type none
+
+      li
+        :margin-bottom 5px
+
+    ol
+      :margin-bottom 15px
+      :margin-left 35px
+      :list-style-type disc
+      :list-style-type decimal
+      :margin-bottom 10px
+
+      li
+        :margin-bottom 5px
+
+  &#footer
+    :font-size 10px
+    :clear both
+    :background #EEE
+    :padding 8px
+    :position relative
+
+  &.center_box
+    :width 980px
+    :margin 0 auto
+    :position relative
+
+  &#header
+    :background #36adff
+
+    &.admin
+      :background #990000
+
+      div.center_box
+        :height 240px
+        :background transparent url(../images/mebackadmin.jpg) 550px bottom no-repeat
+
+    div.center_box
+      :height 240px
+      :background transparent url(../images/meback.jpg) 550px bottom no-repeat
+
+    h1
+      a
+        :display block
+        :position absolute
+        :top 80px
+        :left 40px
+        :color #fff
+        :text-decoration none
+        :font-size 48px
+        :font-weight bold
+
+      span
+        :display block
+        :position absolute
+        :top 120px
+        :left 60px
+        :color #000
+        :font-size 20px
+        :font-weight bold
+
+  &#main_container
+    :margin 15px 0 0 0
+    :width 663px
+    :float left
+
+  &.item_inner
+    :border 1px solid #CCC
+    :height 250px
+    :overflow hidden
+    :position relative
+
+  &.clear
+    :clear both
+
+  &#comments_container
+    :border 1px solid #EEE
+    :border-style solid none none none
+    :padding 10px 0
+    :margin-top 20px
+
+  &.ad_container
+    img
+      :display block
+
+    &.bottom
+      :margin 15px 0
+
+  &#aboutme_blurb
+    :width 180px
+    :border 1px solid #EEE
+    :border-style none solid none none
+    :padding 0 15px 0 0
+    :float left
+    :margin-right 15px
+
+  &#single_content p
+    :margin-bottom 15px
+
+  &.activity_list_inner img
+    :float left
+    :margin-right 10px
+
+  &.inner_container
+    :padding 8px 10px
+
+  &.osf_fold a
+    :height 250px
+    :width 211px
+    :background transparent url(../images/osfback.png) bottom right no-repeat
+    :z-index 1000
+    :position absolute
+
+  &.flash
+    :padding 0.3em
+
+    p
+      :background-repeat no-repeat
+      :padding 0 0 0 2em
+      :margin-top 0.5em
+
+    span.close
+      :float right
+      :font-size 10px
+
+      a
+        :text-decoration none
+
+        &:hover
+          :text-decoration underline
+
+  &#flash_notice
+    :background-color #FFFAC3
+    :border 1px solid #DFCC00
+
+    p
+      :background-image url(../images/exclamation.png)
+
+  &#flash_error
+    :background-color #FFE3E2
+    :border 1px solid #80150E
+
+    p
+      :background-image url(../images/exclamation_octagon.png)
+
+  &#flash_success
+    :background-color #E4FAE0
+    :border 1px solid #116302
+
+    p
+      :background-image url(../images/tick.png)
+
+
+p
+  &.original_link
+    :font-size 10px
+
+    a
+      :color #999
+      :text-decoration none
+
+      &:hover
+        :text-decoration underline
+
+  &.activity_image_text
+    :font-size 10px
+    :line-height 1.5em
+    :position absolute
+    :top 0
+    :padding 3px 5px
+    :background transparent url(../images/blackbar.png)
+
+    span
+      :color #999
+
+    a
+      :font-weight bold
+      :text-decoration none
+
+      &:hover
+        :text-decoration underline
+
+  &.site_info
+    :font-size 10px
+    :padding 3px 3px 3px 22px
+
+    a
+      :color #999
+      :text-decoration none
+
+  &.blog_cite
+    :color #5a5a5a
+    :font-size 10px
+    :margin 15px 0 20px 0
+
+  &.blog_continue
+    :color #999
+    :font-size 10px
+    :font-weight normal
+    :margin 5px 0 10px 0
+
+  &.osf_recipe
+    :color #999
+    :font-size 15px
+    :font-weight bold
+    :position absolute
+    :z-index 1001
+    :top 10px
+    :left 10px
+    :width 190px
+
+    a
+      :color white
+      :text-decoration none
+      :border 1px solid #333
+      :border-style none none solid none
+
+      &:hover
+        :border 1px solid white
+        :border-style none none solid none
+
+    span
+      :font-size 10px
+      :margin-top 3px
+      :display block
+      :width 180px
+
+  &.slideshare_cite
+    :color #999
+    :font-size 10px
+    :font-weight normal
+    :padding-top 3px
+
+  &.vimeo_title
+    :font-weight bold
+    :text-align center
+
+    a
+      :color white
+      :text-decoration none
+      :border 1px solid #a7dafa
+      :border-style none none solid none
+
+      &:hover
+        :border 1px solid white
+        :border-style none none solid none
+
+  &#pagination
+    :font-size 20px
+    :font-weight bold
+    :margin-bottom 15px
+    :padding 3px
+    :border 1px solid #CCC
+    :border-style dotted none
+    :padding 10px 0
+
+  &.date
+    :font-size 10px
+
+  &.twitter_tweet
+    :font-weight bold
+    :line-height 1.6em
+    :background white
+    :padding 8px 10px
+    :overflow hidden
+    :background white url(../images/twitterdither.gif) bottom left repeat-x
+    :border 1px solid #DDD
+    :border-style none none solid none
+
+  &#breadcrumb
+    :margin-bottom 15px
+    :padding 3px
+    :border 1px solid #CCC
+    :border-style dotted none
+
+  &.sidebar_small_banner img
+    :display block
+    :margin-bottom 10px
+
+  &#original_permalink span
+    :background #FFFFCC
+
+  &.twitter_user
+    :margin 10px 0 0 10px
+    :padding-bottom 10px
+    :background transparent url(../images/twittertail.gif) 60px bottom no-repeat
+
+    img
+      :display block
+      :border 1px solid #999
+
+  &.blog_title
+    :margin 15px 0 20px 0
+
+
+li
+  &.item
+    &.digg div.item_inner
+      :color #7698b7
+
+      a
+        :color white
+        :font-weight bold
+        :text-decoration none
+        :border 1px solid #7698b7
+        :border-style none none dotted none
+        :display block
+        :padding-bottom 5px
+        :margin-bottom 5px
+
+        &:hover
+          :text-decoration underline
+
+    &.lastfm div.item_inner
+      :text-align center
+      :font-size 16px
+      :color #7698b7
+
+      p.lastfm_track
+        :margin-top 40px
+
+      a
+        :color white
+        :font-weight bold
+        :text-decoration none
+        :display block
+        :padding-bottom 5px
+        :margin-bottom 5px
+
+        &:hover
+          :text-decoration underline
+
+    img, object
+      :display block
+
+    &.flickr
+      :background white url(../images/flickrlogo.gif) center center no-repeat
+
+      p.site_info
+        :background blue
+
+    &.visualizeus div.item_inner
+      :background #161614 url(../images/visualizeuslogo.gif) bottom center no-repeat
+
+      p.site_info
+        :background blue
+
+    &.vimeo div.item_inner
+      :background #80ceff url(../images/vimeoback.jpg) bottom center no-repeat
+
+      object
+        :border 1px solid white
+        :border-style none none solid none
+
+    &.opensourcefood_com img
+      :position absolute
+      :bottom 0
+      :right 0
+      :z-index 0
+
+    &.delicious div.item_inner
+      :color #bccfeb
+
+      a
+        :color white
+        :font-weight bold
+        :text-decoration none
+        :border 1px solid #bccfeb
+        :border-style none none dotted none
+        :display block
+        :padding-bottom 5px
+        :margin-bottom 5px
+
+        &:hover
+          :text-decoration underline
+
+    &.blipfm
+      div
+        &.item_inner
+          :background #DDEBFF
+
+        &.inner_container
+          :padding 0
+          :overflow hidden
+
+      object
+        :margin-top -5px
+        :margin-left -5px
+
+    &.google_reader div.item_inner a
+      :text-decoration none
+      :color #236B8E
+      :font-size 16px
+      :border 1px solid #7698b7
+      :border-style none none dotted none
+      :display block
+      :padding-bottom 5px
+      :margin-bottom 5px
+
+      &:hover
+        :text-decoration underline
+        :color #236B8E
+        :font-size 16px
+
+    &.unpublished
+      div.item_inner
+        :border 1px solid #f00
+
+      strong
+        :color red
+        :font-weight bold
+
+  &.activity_item
+    :clear both
+
+
+input.text_input
+  :font-size 13px
+  :background #FFFFCC
+  :width 180px
+
+
+h2
+  :font-size 15px
+
+
+form
+  &#search_form
+    :background #F8F8F8
+    :padding 8px
+
+  &#mailing_list
+    :margin-top 15px
+    :background white url(../images/mailinglist.gif) 0 0 no-repeat
+    :border 1px solid #CCC
+
+    p
+      :padding 70px 10px 10px 10px
+
+
+.cloud1
+  :font-size 0.8em
+
+
+.cloud2
+  :font-size 1.3em
+
+
+.cloud3
+  :font-size 1.6em
+
+
+.cloud4
+  :font-size 1.9em
+
+
+.cloud5
+  :font-size 2.2em

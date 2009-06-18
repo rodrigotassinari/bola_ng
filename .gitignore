@@ -9,3 +9,5 @@ config/application.yml
 .project
 nbproject
 coverage
+public/stylesheets/application.css
+
