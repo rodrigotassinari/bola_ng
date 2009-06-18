@@ -2,6 +2,8 @@
   = link_to 'Lifestream', root_path
   == &rsaquo; Itens de <b>#{@service.name}</b>
   = link_to '(ver perfil)', @service.profile_url, :class => 'profile_url', :target => '_blank'
+  - if current_user
+    = link_to 'atualizar', lifestream_path(@service), :method => :put, :class => 'admin'
 
 %ul#activity_list
   - @posts.each_with_index do |post, index|

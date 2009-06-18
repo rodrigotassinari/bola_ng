@@ -3,8 +3,9 @@ TODO
 - mostrar flashs
 - busca
 - preview de blog post
+- navegar nos posts via calendário / data / drill down
 - permitir upload de arquivos associados aos posts no blog (dowloadeáveis -- S3?)
 - permitir usar imagens nos posts via upload
-- buscar novos itens dos serviços assincronamente e atomicamente
+- buscar novos itens dos serviços atomicamente
 - cachear tags sem dar pau no tag_list
 - melhorar conteúdo dos feeds RSS

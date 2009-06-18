@@ -1,4 +1,5 @@
 class LifestreamController < ApplicationController
+  before_filter :require_user, :only => [:update]
 
   # GET /
   # GET /lifestream
@@ -9,23 +10,19 @@ class LifestreamController < ApplicationController
   # Shows the combined lifestream.
   def index
     respond_to do |format|
-      
       format.html do
         @current_tab = 'lifestream'
         @page_title = "Lifestream"
         @feed_url = lifestream_index_url(:format => :rss)
-
         @posts = if current_user
           Post.ordered.with_service.paginate(:page => params[:page])
         else
           Post.published.ordered.with_service.paginate(:page => params[:page])
         end
       end
-
       format.rss do
         @posts = Post.published.ordered.with_service.paginate(:page => params[:page], :per_page => 25)
       end
-
     end
   end
 
@@ -36,11 +33,8 @@ class LifestreamController < ApplicationController
   # Shows the lifestream of the supplied feed only.
   def show
     @service = Service.find_by_slug(params[:id])
-    
     unless @service.class == BlogService
-
       respond_to do |format|
-
         format.html do
           @current_tab = 'lifestream'
           @posts = if current_user
@@ -51,16 +45,29 @@ class LifestreamController < ApplicationController
           @page_title = "Lifestream :: #{@service.name}"
           @feed_url = lifestream_url(@service, :format => :rss)
         end
-
         format.rss do
           @posts = @service.posts.published.ordered.with_service.paginate(:page => params[:page], :per_page => 25)
         end
-
       end
-      
     else
       redirect_to blog_index_path
     end
+  end
+  
+  # PUT /lifestream/:id
+  # Via: lifestream_path(:id)
+  # Avaiable: logged_in
+  #
+  # Updates the lifestream, i.e., fetches new posts (assynchronously).
+  def update
+    @service = Service.find_by_slug(params[:id])
+    if @service
+      spawn do
+        @service.create_posts
+      end
+    end
+    flash[:notice] = "Atualização de #{@service.name} iniciada."
+    redirect_to lifestream_path(@service)
   end
 
 end
