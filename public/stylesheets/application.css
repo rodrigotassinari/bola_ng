@@ -609,3 +609,33 @@ li.item.unpublished strong {
   color: red;
   font-weight: bold;
 }
+
+div.flash {
+  padding: 0.3em; }
+  div.flash p {
+    background-repeat: no-repeat;
+    padding: 0 0 0 2em;
+    margin-top: 0.5em; }
+  div.flash span.close {
+    float: right;
+    font-size: 10px; }
+    div.flash span.close a {
+      text-decoration: none; }
+      div.flash span.close a:hover {
+        text-decoration: underline; }
+div#flash_notice {
+  background-color: #FFFAC3;
+  border: 1px solid #DFCC00; }
+  div#flash_notice p {
+    background-image: url(../images/exclamation.png); }
+div#flash_error {
+  background-color: #FFE3E2;
+  border: 1px solid #80150E; }
+  div#flash_error p {
+    background-image: url(../images/exclamation_octagon.png); }
+div#flash_success {
+  background-color: #E4FAE0;
+  border: 1px solid #116302; }
+  div#flash_success p {
+    background-image: url(../images/tick.png); }
+

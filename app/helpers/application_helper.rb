@@ -1,6 +1,27 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  # Example:
+  #
+  #   >> flash[:notice] = "Yada yada yada"
+  #   >> display_flashes
+  #   => "<div class=\"flash\ id=\"flash_notice\"><p>Yada yada yada</p></div>"
+  #
+  def display_flashes
+    return nil if flash.empty?
+    html = ''
+    flash.each do |key, message|
+      flash_message = content_tag(:p, message)
+      close_link = content_tag(
+        :span,
+        link_to_function('fechar', "$(this).up('#flash_#{key}').remove()"),
+        :class => 'close'
+      )
+      html << content_tag(:div, close_link + flash_message, :class => 'flash', :id => "flash_#{key}")
+    end
+    html
+  end
+
   def tag_cloud(tags, classes)
     return if tags.empty?
     max_count = tags.sort_by(&:count).last.count.to_f
