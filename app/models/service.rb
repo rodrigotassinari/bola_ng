@@ -89,6 +89,7 @@ class Service < ActiveRecord::Base
   # BlogService's)
   def self.create_posts
     services = self.active.fetchable.all
+    services.reject! { |s| s.class == VimeoService } # FIXME temporári, enquanto Vimeo tá fora do ar!
     services.each do |service|
       service.create_posts # TODO rodar assíncronamente e atômicamente
     end
