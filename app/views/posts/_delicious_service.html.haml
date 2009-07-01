@@ -11,9 +11,9 @@
     = link_to 'Visitar', post.url
 
 #single_content
-  %p= auto_link(post.summary)
-  
   %p= link_to image_tag("http://capture.heartrails.com/large?#{post.url}", :alt => "thumbnail"), post.url
   
   %p= link_to post.url, post.url, :class => 'small'
+
+  %p= auto_link(post.summary)
 
