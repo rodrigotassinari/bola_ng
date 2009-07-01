@@ -6,12 +6,14 @@ class PostsController < ApplicationController
   # Via: post_path(:id)
   # Avaiable: all
   #
-  # Permalink for posts, redirects to the post's url.
+  # Permalink for posts, redirects to the blog post if needed.
   def show
     if @post.service.class == BlogService
       redirect_to blog_url(@post.slug)
     else
-      redirect_to @post.url
+      @current_tab = 'lifestream'
+      @page_title = "Lifestream :: #{@post.service.name} :: #{@post.title}"
+      render :action => :show
     end
   end
 
@@ -53,7 +55,11 @@ class PostsController < ApplicationController
   protected
 
     def find_post
-      @post = Post.with_service.find(params[:id])
+      @post = if current_user
+        Post.with_service.find(params[:id])
+      else
+        Post.with_service.published.find(params[:id])
+      end
     end
 
 end

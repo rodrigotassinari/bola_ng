@@ -1,12 +1,16 @@
 - if current_user
   %p.action
-    = link_to 'Editar', edit_blog_path(@post.id)
-    = link_to 'Apagar', blog_path(@post.id), :method => :delete, :confirm => "Você tem certeza disso, zero-cinco?"
+    = link_to 'Editar', edit_blog_path(@post.id), :class => 'admin'
+    = link_to 'Apagar', blog_path(@post.id), :class => 'admin', :method => :delete, :confirm => "Você tem certeza disso, zero-cinco?"
 
 #single_container
   #single_header
+    %h3.post{:style => "background: white url(#{@post.service.icon_url}) 0 center no-repeat"}
+      == Eu #{t @post.service_action} no #{link_to @post.service.name, blog_index_path}:
     %h2= @post.title
-    %p= relative_published_date(@post.published_at)
+    %p
+      = relative_published_date(@post.published_at)
+      = link_to '#', blog_path(@post.slug), :title => 'Permalink', :class => 'quiet small'
 
   #single_content
     = auto_link(@post.body)

@@ -1,0 +1,14 @@
+- if current_user
+  %p.action
+    = link_to 'Editar', edit_post_path(@post), :class => 'admin'
+    = link_to 'Apagar', post_path(@post), :class => 'admin', :method => :delete, :confirm => "Você tem certeza disso, senhor zero-cinco?"
+
+#single_container
+  = render :partial => @post.service.class.to_s.underscore, :locals => {:post => @post}
+
+  - unless @post.tags.empty?
+    %ul.item_tag_list
+      %li Tags:
+      - @post.tags.each do |tag|
+        %li= link_to tag.name, tag_name_path(tag.name)
+

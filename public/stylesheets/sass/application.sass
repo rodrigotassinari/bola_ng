@@ -37,7 +37,16 @@ a
 
   &.profile_url
     :font-size 0.8em
-
+  
+  &.quiet
+    :color #999
+    :text-decoration none
+    &:hover
+      :text-decoration underline
+  
+  &.small
+    :font-size 10px
+    :line-height 11px
 
 ul
   &#blog_list
@@ -290,7 +299,7 @@ div
 
     h2
       :line-height 1.1em
-
+    
   &#explanation
     :color #999933
     :font-size 15px
@@ -828,3 +837,31 @@ form
 
 .cloud5
   :font-size 2.2em
+  
+div#single_header
+  h3.post
+    :margin-top 0
+    :font-size 18px
+    :color #888
+    :padding 0
+    :padding-left 20px
+    :padding-bottom 2px
+    a
+      :text-decoration none
+
+div#single_content
+  div.full_tweet
+    :border 1px dotted gray
+    :padding 5px
+    div.profile
+      :width 50px
+      :float left
+      img
+        :margin 0
+        :border 0
+        :padding 0
+    div.text
+      :width 580px
+      :margin-left 5px
+      :float left
+

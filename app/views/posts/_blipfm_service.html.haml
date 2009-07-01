@@ -1,0 +1,28 @@
+#single_header
+  %h3.post{:style => "background: white url(#{post.service.icon_url}) 0 center no-repeat"}
+    == Eu #{t post.service_action} no #{link_to post.service.name, lifestream_path(post.service)}:
+  %h2= post.title
+  %p
+    - if post.published?
+      = relative_published_date(post.published_at)
+    - else
+      %strong NÃO PUBLICADO
+    |
+    = link_to 'Visitar', post.url
+
+#single_content
+  %p= auto_link(post.summary)
+
+  %br
+
+  .blip_player
+    %object{:type => "application/x-shockwave-flash", :allowScriptAccess => "never", :allowNetworking => "internal", :height => "150", :width => "100%", :align => "middle", :data => "http://blip.fm/_/swf/BlipEmbedPlayer.swf"}
+      %param{:name => "allowScriptAccess", :value => "never"}
+      %param{:name => "allowNetworking", :value => "internal"}
+      %param{:name => "movie", :value => "http://blip.fm/_/swf/BlipEmbedPlayer.swf"}
+      %param{:name => "quality", :value => "high"}
+      %param{:name => "play", :value => "true"}
+      %param{:name => "loop", :value => "false"}
+      %param{:name => "wmode", :value => "transparent"}
+      %param{:name => "flashvars", :value => "blipId=#{post.identifier}"}
+
