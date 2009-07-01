@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   def update
     if @post.update_attributes(params[:post])
       flash[:success] = 'Post atualizado com sucesso'
-      redirect_to lifestream_path(@post.service) # ???
+      redirect_to post_path(@post)
     else
       render :action => :edit
     end
