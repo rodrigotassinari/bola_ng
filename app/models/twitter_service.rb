@@ -56,7 +56,10 @@ class TwitterService < Service
       :markup => Post::HTML_MARKUP,
       :summary => entry.text,
       :url => "#{self.profile_url}/status/#{entry.id}",
-      :published_at => entry.created_at.to_time
+      :published_at => entry.created_at.to_time,
+      :extra_content => {
+        :original_tags => self.search_for_hashtags(entry.text) # array de tags
+      }
     )
   end
 
@@ -103,6 +106,16 @@ class TwitterService < Service
         self.profile_url = "http://twitter.com/#{twitter_login}"
         self.profile_image_url = tweet.profile_image_url unless tweet.nil?
       end
+    end
+    
+    # busca por todas as hashtags em um texto e as retorna como um array de 
+    # strings (sem as tralhas)
+    def search_for_hashtags(text)
+      tags = []
+      text.gsub(/\#([\w_\-\.]+)/) do
+        tags << $1
+      end
+      tags
     end
 
 end
