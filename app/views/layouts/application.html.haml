@@ -12,7 +12,17 @@
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"
     = javascript_include_tag "jrails"
     = javascript_include_tag "application"
-
+    
+    <!--[if IE 6]>
+    <script type="text/javascript"> 
+    var IE6UPDATE_OPTIONS = {
+    icons_path: "http://static.ie6update.com/hosted/ie6update/images/",
+    message: "O seu Internet Explorer não possui as atualizações necessárias para ver este site. Clique aqui para atualizá-lo..."
+    }
+    </script>
+    <script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+    <![endif]-->
+    
     = auto_discovery_link_tag(:rss, @feed_url) if @feed_url
 
     %title== #{Settings.site.name} :: #{@page_title}
