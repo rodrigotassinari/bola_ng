@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   config.gem 'twitter', :version => '0.6.13'
 
   # installed
-  config.gem 'RedCloth', :version => '>= 4.1.9'
+  config.gem 'RedCloth', :version => '4.2.2'
   config.gem 'hpricot', :version => '>= 0.8.1'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
