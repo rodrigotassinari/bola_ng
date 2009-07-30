@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
 
   # installed
   config.gem 'RedCloth', :version => '4.2.2'
-  config.gem 'hpricot', :version => '>= 0.8.1'
+  config.gem 'hpricot', :version => '0.8.1'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
