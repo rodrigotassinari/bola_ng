@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic', :version => '2.1.1'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '2.3.11', :source => 'http://gems.github.com'
   config.gem 'settingslogic', :version => '1.0.4'
-  config.gem 'twitter', :version => '>= 0.6.11'
+  config.gem 'twitter', :version => '0.6.13'
 
   # installed
   config.gem 'RedCloth', :version => '>= 4.1.9'
