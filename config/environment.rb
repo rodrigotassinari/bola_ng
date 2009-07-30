@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   
   # frozen
   config.gem 'haml', :version => '2.2.2'
-  config.gem 'authlogic', :version => '>= 2.0.13'
+  config.gem 'authlogic', :version => '2.1.1'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '>= 2.3.11', :source => 'http://gems.github.com'
   config.gem 'settingslogic', :version => '>= 1.0.3'
   config.gem 'twitter', :version => '>= 0.6.11'
