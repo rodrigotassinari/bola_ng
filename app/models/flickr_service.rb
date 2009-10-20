@@ -41,7 +41,7 @@ class FlickrService < Service
   # attributes filled with the entry's content
   def build_post_from_entry(entry, action)
     date = if (action == Service::SERVICE_ACTION_POST) || (self.posts.count == 0)
-      entry[:pubDate]
+      entry[:pubDate].in_time_zone(Time.current.time_zone)
     else
       Time.current
     end
