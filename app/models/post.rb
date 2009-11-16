@@ -103,20 +103,22 @@ class Post < ActiveRecord::Base
       paginate(options.merge(:count => { :select => options[:select].gsub('*', 'id') }))
     end
   end
+  
+  def slugify
+    temp_slug = title.parameterize.to_s[0..60]
+    i = 1
+    while Post.find_by_slug_and_service_id(temp_slug, self.service_id) do
+      temp_slug << "-#{i}"
+      i += 1
+    end
+    self.slug = temp_slug
+  end
 
   protected
 
     # before_create
     def slugify_if_article
-      if is_article?
-        temp_slug = PermalinkFu.escape(self.title)[0..60]
-        i = 1
-        while Post.find_by_slug_and_service_id(temp_slug, self.service_id) do
-          temp_slug << "-#{i}"
-          i += 1
-        end
-        self.slug = temp_slug
-      end
+      slugify if is_article?
     end
 
     # before_create
