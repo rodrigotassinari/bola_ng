@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  acts_as_textiled :body
+  acts_as_textiled :body => [:filter_html, :no_span_caps]
 
   serialize :extra_content, Hash
 
