@@ -91,7 +91,7 @@ class Service < ActiveRecord::Base
     services = self.active.fetchable.all
     services.each do |service|
       begin
-        service.create_posts # TODO rodar assíncronamente e atômicamente
+        service.create_posts
       rescue => e
         logger.warn("#{service.type} - #{service.name}: #{e.message}")
       end

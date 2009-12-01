@@ -20,7 +20,7 @@ class WordpressService < Service
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries
+    entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{self.name}: Error fetching posts (timeout error): #{tme}"
     []
@@ -71,6 +71,9 @@ class WordpressService < Service
         :original_link => (entry/'feedburner:origLink').inner_html,
         :description_encoded => (entry/'content:encoded').inner_html.gsub(/\A\<\!\[CDATA\[/, '').gsub(/\]\]\>\Z/, '')
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

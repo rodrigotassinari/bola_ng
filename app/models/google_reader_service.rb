@@ -19,7 +19,7 @@ class GoogleReaderService < Service
     (doc/'entry').each do |item|
       entries << parse_entry(item)
     end
-    entries
+    entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -74,6 +74,9 @@ class GoogleReaderService < Service
         :updated => (entry/'updated').inner_html.to_time,
         :summary => Hpricot.parse((entry/'summary').inner_text).inner_text.gsub("\n", ' ').strip.gsub(/\s{2,}/, ' ')
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

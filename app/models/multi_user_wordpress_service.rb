@@ -20,7 +20,7 @@ class MultiUserWordpressService < Service
     (doc/'item').each do |item|
       entries << parse_entry(item) if (item/'dc:creator').inner_text == self.wordpress_author
     end
-    entries
+    entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{self.name}: Error fetching posts (timeout error): #{tme}"
     []
@@ -72,6 +72,9 @@ class MultiUserWordpressService < Service
         :description_encoded => (entry/'content:encoded').inner_html.gsub(/\A\<\!\[CDATA\[/, '').gsub(/\]\]\>\Z/, ''),
         :author => (entry/'dc:creator').inner_text
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

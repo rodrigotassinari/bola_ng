@@ -19,7 +19,7 @@ class LastfmService < Service
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries
+    entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -60,6 +60,9 @@ class LastfmService < Service
         :description => (entry/'description').inner_html,
         :guid => (entry/'guid').inner_html
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

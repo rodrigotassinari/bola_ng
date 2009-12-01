@@ -19,7 +19,7 @@ class VisualizeusService < Service
     (doc/'item').each do |item|
       entries << parse_entry(item)
     end
-    entries
+    entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -69,6 +69,9 @@ class VisualizeusService < Service
         :thumbnail_url => (entry/'media:thumbnail').first[:url],
         :medium_image_url => (entry/'media:thumbnail').first[:url].gsub('_m.jpg', '_h.jpg')
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

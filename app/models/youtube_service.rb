@@ -28,7 +28,7 @@ class YoutubeService < Service
       likes << parse_entry(item)
     end
 
-    return videos, likes
+    return videos.reject { |e| e.nil? }, likes.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -102,6 +102,9 @@ class YoutubeService < Service
         :keywords => (entry/'media:keywords').inner_html.split(',').map(&:strip),
         :link => (entry/"link[@rel='alternate']").first['href']
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

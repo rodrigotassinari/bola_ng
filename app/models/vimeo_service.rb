@@ -28,7 +28,7 @@ class VimeoService < Service
       likes << parse_entry(item)
     end
 
-    return videos, likes
+    return videos.reject { |e| e.nil? }, likes.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     []
@@ -103,6 +103,9 @@ class VimeoService < Service
         :description => (entry/'description').first.inner_text,
         :author_name => (entry/'dc:creator').first.inner_html
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end

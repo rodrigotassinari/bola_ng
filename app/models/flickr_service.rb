@@ -28,7 +28,7 @@ class FlickrService < Service
       faved_entries << parse_entry(item)
     end
 
-    return photo_entries, faved_entries
+    return photo_entries.reject { |e| e.nil? }, faved_entries.reject { |e| e.nil? }
   rescue Timeout::Error => tme
     logger.warn "#{SERVICE_NAME}: Error fetching posts (timeout error): #{tme}"
     return [], []
@@ -124,6 +124,9 @@ class FlickrService < Service
         :image_url_original => (entry/'media:content').first['url'],
         :categories => (entry/'media:category').first.try(:inner_html).try(:split, ' ')
       }
+    rescue => e
+      logger.warn "#{SERVICE_NAME}: Error parsing entry: #{e}"
+      nil
     end
 
 end
