@@ -1,6 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  # Escolhe a foto do cabeçalho
+  def random_header
+    variadas = %w( astronauta bebe_rock bebe_sucesso garoto lama macaco_ressaca macaco_serio )
+    minhas = %w( pitt_bigode )
+    (variadas + (minhas * (variadas.size / 3))).rand
+  end
+
   # Example:
   #
   #   >> flash[:notice] = "Yada yada yada"

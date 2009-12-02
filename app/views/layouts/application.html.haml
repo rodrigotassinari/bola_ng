@@ -30,7 +30,7 @@
   %body
 
     #header
-      .center_box
+      .center_box{:style => "background-image: url(../images/header/#{random_header}.png);"}
         %ul#navigation
           %li{:class => "#{'current' if @current_tab == 'lifestream'}"}
             = link_to 'Lifestream', root_path, :title => "Tudo que faço online"
