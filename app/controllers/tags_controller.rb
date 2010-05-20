@@ -21,27 +21,30 @@ class TagsController < ApplicationController
     raise ActiveRecord::RecordNotFound,
       "Couldn't find Tag with name = #{params[:name] || params[:id]}" if @tag.nil?
 
+    posts_ids = Tagging.all(
+        :conditions => {:tag_id => @tag.id, :taggable_type => 'Post'}, 
+        :select => :taggable_id
+      ).map(&:taggable_id)
+    
     respond_to do |format|
-      
       format.html do
-        @posts = Post.published.ordered.with_service.paged_find_tagged_with(
-          @tag.name,
+        @posts = Post.published.ordered.with_service.paginate(
+          :conditions => ['posts.id IN (?)', posts_ids], 
           :page => params[:page]
         )
         @current_tab = 'lifestream'
         @page_title = "Lifestream :: Tags :: #{@tag.name}"
         @feed_url = tag_name_url(@tag.name, :format => :rss)
       end
-      
       format.rss do
-        @posts = Post.published.ordered.with_service.paged_find_tagged_with(
-          @tag.name,
+        @posts = Post.published.ordered.with_service.paginate(
+          :conditions => ['posts.id IN (?)', posts_ids], 
           :page => params[:page],
           :per_page => 25
         )
       end
-      
     end
   end
 
 end
+

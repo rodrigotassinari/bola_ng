@@ -1,16 +1,16 @@
-%p#breadcrumb
-  = link_to 'Lifestream', root_path
-  == &rsaquo; #{link_to 'Tags', tags_path}
-  == &rsaquo; Itens marcados com <b>#{@tag.name}</b>
+- cache ['posts_by_tag', @tag.name, @posts.total_entries, @posts.current_page].join('|').gsub(' ', '-') do
+  %p#breadcrumb
+    = link_to 'Lifestream', root_path
+    == &rsaquo; #{link_to 'Tags', tags_path}
+    == &rsaquo; Itens marcados com <b>#{@tag.name}</b>
 
-%ul#activity_list
-  - @posts.each_with_index do |post, index|
-    = render :partial => "lifestream/#{post.service.class.to_s.underscore}", :locals => {:post => post, :last => is_last_in_row?(index)}
+  %ul#activity_list
+    - @posts.each_with_index do |post, index|
+      = render :partial => "lifestream/#{post.service.class.to_s.underscore}", :locals => {:post => post, :last => is_last_in_row?(index)}
 
-.clear
+  .clear
 
-%p#pagination
-  Página:
-  - cache ['posts_by_tag_pagination', @tag.name, @posts.total_entries, @posts.current_page].join('|').gsub(' ', '-') do
+  %p#pagination
+    Página:
     = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
 
