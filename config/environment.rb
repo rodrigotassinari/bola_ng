@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '2.3.11', :source => 'http://gems.github.com'
   config.gem 'settingslogic', :version => '1.0.4'
   config.gem 'twitter', :version => '0.6.13'
+  config.gem 'newrelic_rpm', :version => '2.12.0'
 
   # installed
   config.gem 'RedCloth', :version => '4.2.2'
