@@ -4,6 +4,8 @@
 
 #single_container
 
-  #single_content
-    - tag_cloud @tags, %w(cloud1 cloud2 cloud3 cloud4 cloud5) do |tag, css_class|
-      = link_to tag.name, tag_name_path(tag.name), :class => css_class, :title => "#{tag.count} itens"
+  - cache ['full_tag_cloud', Post.last.updated_at.to_s(:db)].join('|').gsub(' ', '-') do
+    #single_content
+      - tag_cloud @tags, %w(cloud1 cloud2 cloud3 cloud4 cloud5) do |tag, css_class|
+        = link_to tag.name, tag_name_path(tag.name), :class => css_class, :title => "#{tag.count} itens"
+

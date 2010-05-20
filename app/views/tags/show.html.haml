@@ -11,4 +11,6 @@
 
 %p#pagination
   Página:
-  = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+  - cache ['posts_by_tag_pagination', @tag.name, @posts.total_entries, @posts.current_page].join('|').gsub(' ', '-') do
+    = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+

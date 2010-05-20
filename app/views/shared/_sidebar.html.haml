@@ -34,9 +34,10 @@
 %h3
   Tags Populares
   = link_to 'Ver Todas »', tags_path
+- popular_tags = Post.published.tag_counts(:limit => 30, :order => 'count DESC').sort_by(&:name)
 %ul.tag_list
   / %li <a href="/items/tag/onsite">onsite</a>
-  - Post.published.tag_counts(:limit => 30, :order => 'count DESC').sort_by(&:name).each do |tag|
+  - popular_tags.each do |tag|
     %li= link_to tag.name, tag_name_path(tag.name), :title => "#{tag.count} itens"
 
 %h3== Sobre #{Settings.site.name}
