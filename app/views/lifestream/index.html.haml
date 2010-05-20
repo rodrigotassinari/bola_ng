@@ -1,9 +1,11 @@
-%ul#activity_list
-  - @posts.each_with_index do |post, index|
-    = render :partial => post.service.class.to_s.underscore, :locals => {:post => post, :last => is_last_in_row?(index)}
+- cache ['lifestream_index', @posts.total_entries, @posts.current_page, @posts.first.id, @posts.first.updated_at.to_s(:db)].join('|').gsub(' ', '-') do
+  %ul#activity_list
+    - @posts.each_with_index do |post, index|
+      = render :partial => post.service.class.to_s.underscore, :locals => {:post => post, :last => is_last_in_row?(index)}
 
-.clear
+  .clear
 
-%p#pagination
-  Página:
-  = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+  %p#pagination
+    Página:
+    = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+

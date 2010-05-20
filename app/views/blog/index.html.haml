@@ -1,12 +1,14 @@
 - if current_user
   %p.action= link_to 'Novo Post', new_blog_path
 
-%ul#activity_list
-  - @posts.each_with_index do |post, index|
-    = render :partial => 'lifestream/blog_service', :locals => {:post => post, :last => is_last_in_row?(index)}
+- cache ['blog_index', @posts.total_entries, @posts.current_page, @posts.first.id, @posts.first.updated_at.to_s(:db)].join('|').gsub(' ', '-') do
+  %ul#activity_list
+    - @posts.each_with_index do |post, index|
+      = render :partial => 'lifestream/blog_service', :locals => {:post => post, :last => is_last_in_row?(index)}
 
-.clear
+  .clear
 
-%p#pagination
-  Página:
-  = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+  %p#pagination
+    Página:
+    = will_paginate @posts, :previous_label => '«', :next_label => '»', :container => false
+
