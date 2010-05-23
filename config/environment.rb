@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.6' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -17,17 +17,18 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   
   # frozen
-  config.gem 'haml', :version => '2.2.2'
-  config.gem 'authlogic', :version => '2.1.1'
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version => '2.3.11', :source => 'http://gems.github.com'
+  config.gem 'haml', :version => '3.0.5'
+  config.gem 'authlogic', :version => '2.1.3'
+  config.gem 'will_paginate', :version => '2.3.12'
   config.gem 'settingslogic', :version => '1.0.4'
-  config.gem 'twitter', :version => '0.6.13'
-  config.gem 'newrelic_rpm', :version => '2.12.0'
+  config.gem 'twitter', :version => '0.9.5'
+  config.gem 'newrelic_rpm', :version => '2.12.1'
 
   # installed
-  config.gem 'RedCloth', :version => '4.2.2'
-  config.gem 'hpricot', :version => '>=0.8.1'
-  config.gem 'whenever', :version => '0.4.0', :lib => false, :source => 'http://gemcutter.org/'
+  config.gem 'yajl-ruby', :version => '~> 0.7.0', :lib => 'yajl' # dependencia gem twitter
+  config.gem 'RedCloth', :version => '4.2.3'
+  config.gem 'hpricot', :version => '0.8.2'
+  config.gem 'whenever', :version => '0.4.2', :lib => false
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
