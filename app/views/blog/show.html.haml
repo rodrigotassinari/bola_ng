@@ -13,7 +13,7 @@
       = link_to '#', blog_path(@post.slug), :title => 'Permalink', :class => 'quiet small'
 
   #single_content
-    = auto_link(@post.body)
+    = auto_link(@post.body.html_safe)
 
   - unless @post.tags.empty?
     %ul.item_tag_list
@@ -24,10 +24,10 @@
 - unless @post_context.empty?
   %p#breadcrumb
     - if @post_context.first
-      = link_to "« #{h @post_context.first.title}", blog_path(@post_context.first.slug)
+      = link_to "&laquo; #{h @post_context.first.title}".html_safe, blog_path(@post_context.first.slug)
     &nbsp;
     - if @post_context.last
-      = link_to "#{h @post_context.last.title} »", blog_path(@post_context.last.slug)
+      = link_to "#{h @post_context.last.title} &raquo;".html_safe, blog_path(@post_context.last.slug)
 
 #comments_container
-  = disqus_comments_tag(Settings.disqus_site_id)
+  = raw disqus_comments_tag(Settings.disqus_site_id)
