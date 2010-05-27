@@ -5,6 +5,7 @@ defaults: &defaults
     tagline: "$ tail -f /dev/mind >> lifestream"
   disqus_in_development: false
   google_analytics_id: "ua-something"
+  getclicky_id: "something"
 
 development:
   <<: *defaults
@@ -17,3 +18,4 @@ test:
 production:
   <<: *defaults
   disqus_site_id: "some-site-id"
+
