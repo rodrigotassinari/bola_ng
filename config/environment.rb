@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.6' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -17,8 +17,8 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   
   # frozen
-  config.gem 'haml', :version => '3.0.5'
-  config.gem 'authlogic', :version => '2.1.3'
+  config.gem 'haml', :version => '3.0.6'
+  config.gem 'authlogic', :version => '2.1.5'
   config.gem 'will_paginate', :version => '2.3.12'
   config.gem 'settingslogic', :version => '1.0.4'
   config.gem 'twitter', :version => '0.9.5'
