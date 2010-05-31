@@ -5,8 +5,8 @@ version: !ruby/object:Gem::Version
   segments: 
   - 0
   - 9
-  - 5
-  version: 0.9.5
+  - 7
+  version: 0.9.7
 platform: ruby
 authors: 
 - John Nunemaker
@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-04-21 00:00:00 -03:00
+date: 2010-05-25 00:00:00 -03:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -130,6 +130,20 @@ dependencies:
         version: 1.2.0
   type: :development
   version_requirements: *id008
+- !ruby/object:Gem::Dependency 
+  name: redgreen
+  prerelease: false
+  requirement: &id009 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ~>
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 1
+        - 2
+        - 2
+        version: 1.2.2
+  type: :development
+  version_requirements: *id009
 description: 
 email: nunemaker@gmail.com
 executables: []

@@ -5,8 +5,8 @@ version: !ruby/object:Gem::Version
   segments: 
   - 2
   - 3
-  - 12
-  version: 2.3.12
+  - 14
+  version: 2.3.14
 platform: ruby
 authors: 
 - "Mislav Marohni\xC4\x87"
@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-01-18 00:00:00 -02:00
+date: 2010-05-25 00:00:00 -03:00
 default_executable: 
 dependencies: []
 

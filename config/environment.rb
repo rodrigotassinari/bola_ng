@@ -19,9 +19,9 @@ Rails::Initializer.run do |config|
   # frozen
   config.gem 'haml', :version => '3.0.6'
   config.gem 'authlogic', :version => '2.1.5'
-  config.gem 'will_paginate', :version => '2.3.12'
+  config.gem 'will_paginate', :version => '2.3.14'
   config.gem 'settingslogic', :version => '1.0.4'
-  config.gem 'twitter', :version => '0.9.5'
+  config.gem 'twitter', :version => '0.9.7'
   config.gem 'newrelic_rpm', :version => '2.12.1'
 
   # installed
