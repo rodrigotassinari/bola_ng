@@ -8,7 +8,7 @@
     %p.activity_image_text
       = link_to post.title_or_nil, post.url
       %span.activity_image_content= truncate(post.summary_or_nil, :length => 300)
-    = link_to '', post.url, :class => 'activity_image', :style => "background: transparent url(#{post.extra_content['image_url_medium']}) no-repeat scroll center center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"
+    = link_to '', post.url, :class => 'activity_image', :style => "background: transparent url(#{post.extra_content[:image_url_medium]}) no-repeat scroll center center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"
   %p.date
     - if post.published?
       = relative_published_date(post.published_at)

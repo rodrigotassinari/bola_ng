@@ -11,7 +11,6 @@
     = link_to 'Visitar', post.url
 
 #single_content
-  %p= link_to image_tag(post.extra_content['image_url_medium'], :alt => 'flickr'), post.url
+  %p= link_to image_tag(post.extra_content[:image_url_medium], :alt => 'flickr'), post.url
 
   %p= auto_link(post.summary)
-
