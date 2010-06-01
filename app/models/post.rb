@@ -152,9 +152,9 @@ class Post < ActiveRecord::Base
     # before_create
     def taggify
       if self.extra_content && 
-          self.extra_content['original_tags'] &&
+          self.extra_content[:original_tags] &&
           self.tag_list.empty?
-        self.tag_list = self.extra_content['original_tags'].
+        self.tag_list = self.extra_content[:original_tags].
           map(&:downcase).
           join(', ').
           downcase
@@ -162,3 +162,4 @@ class Post < ActiveRecord::Base
     end
 
 end
+
