@@ -13,9 +13,10 @@
 #single_content
   %p
     %object{:width => "480", :height => "360"}
-      %param{:name => "movie", :value => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1"}
+      %param{:name => "movie", :value => "http://www.youtube.com/v/#{post.identifier}&hl=pt_BR&fs=1&rel=0"}
       %param{:name => "allowFullScreen", :value => "true"}
-      %embed{:src => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true", :allowscriptaccess => "always", :width => "480", :height => "360"}
+      %param{:name => "allowscriptaccess", :value => "always"}
+      %embed{:src => "http://www.youtube.com/v/#{post.identifier}&hl=pt_BR&fs=1&rel=0", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "360"}
   
   %p= auto_link(post.summary)
 

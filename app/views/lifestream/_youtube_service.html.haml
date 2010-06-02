@@ -6,9 +6,10 @@
   .item_inner
     / domain-specific boxes
     %object{:width => "212", :height => "178"}
-      %param{:name => "movie", :value => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1"}
+      %param{:name => "movie", :value => "http://www.youtube.com/v/#{post.identifier}&hl=pt_BR&fs=1&rel=0"}
       %param{:name => "allowFullScreen", :value => "true"}
-      %embed{:src => "http://www.youtube.com/watch/v/#{post.identifier}&hl=en&fs=1", :type => "application/x-shockwave-flash", :allowfullscreen => "true", :allowscriptaccess => "always", :width => "212", :height => "178"}
+      %param{:name => "allowscriptaccess", :value => "always"}
+      %embed{:src => "http://www.youtube.com/v/#{post.identifier}&hl=pt_BR&fs=1&rel=0", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "212", :height => "178"}
     %p.youtube_title= link_to post.title_or_nil, post.url
     - unless post.summary_or_nil.blank?
       %p= post.summary_or_nil
