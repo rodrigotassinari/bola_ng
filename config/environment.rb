@@ -16,20 +16,6 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   
-  # frozen
-  config.gem 'haml', :version => '3.0.6'
-  config.gem 'authlogic', :version => '2.1.5'
-  config.gem 'will_paginate', :version => '2.3.14'
-  config.gem 'settingslogic', :version => '1.0.4'
-  config.gem 'twitter', :version => '0.9.7'
-  config.gem 'newrelic_rpm', :version => '2.12.1'
-
-  # installed
-  config.gem 'yajl-ruby', :version => '~> 0.7.0', :lib => 'yajl' # dependencia gem twitter
-  config.gem 'RedCloth', :version => '4.2.3'
-  config.gem 'hpricot', :version => '0.8.2'
-  config.gem 'whenever', :version => '0.4.2', :lib => false
-
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -49,3 +35,4 @@ Rails::Initializer.run do |config|
   config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'config', 'locales', '**', '*.{rb,yml}')]
   config.i18n.default_locale = :pt # TODO passar para settings.yml
 end
+
