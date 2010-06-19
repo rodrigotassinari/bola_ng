@@ -20,10 +20,11 @@ gem 'RedCloth', '4.2.3'
 gem 'hpricot', '0.8.2'
 gem 'whenever', '0.4.2'
 
-group :development, :test do
-  gem "wirble"
-  gem "ruby-debug"
-  gem "ruby-debug-ide"
+group :development do
+  gem 'capistrano'
+  gem 'wirble'
+  gem 'ruby-debug'
+  gem 'ruby-debug-ide'
 end
 
 group :test do

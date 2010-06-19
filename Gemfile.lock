@@ -3,37 +3,35 @@ dependencies:
   ruby-debug-ide: 
     group: 
     - :development
-    - :test
     version: ">= 0"
   ruby-debug: 
     group: 
     - :development
-    - :test
-    version: ">= 0"
-  system_timer: 
-    group: 
-    - :default
     version: ">= 0"
   rails: 
     group: 
     - :default
     version: = 2.3.8
-  authlogic: 
+  system_timer: 
     group: 
     - :default
-    version: = 2.1.5
-  mysql: 
-    group: 
-    - :default
-    version: = 2.8.1
-  memcache-client: 
-    group: 
-    - :default
-    version: = 1.8.3
+    version: ">= 0"
   haml: 
     group: 
     - :default
     version: = 3.0.12
+  memcache-client: 
+    group: 
+    - :default
+    version: = 1.8.3
+  mysql: 
+    group: 
+    - :default
+    version: = 2.8.1
+  authlogic: 
+    group: 
+    - :default
+    version: = 2.1.5
   newrelic_rpm: 
     group: 
     - :default
@@ -45,7 +43,6 @@ dependencies:
   wirble: 
     group: 
     - :development
-    - :test
     version: ">= 0"
   rspec-rails: 
     group: 
@@ -55,30 +52,34 @@ dependencies:
     group: 
     - :default
     version: = 2.3.14
-  settingslogic: 
-    group: 
-    - :default
-    version: = 1.0.4
   bundler: 
     group: 
     - :default
     version: ">= 0"
+  settingslogic: 
+    group: 
+    - :default
+    version: = 1.0.4
   remarkable_rails: 
     group: 
     - :test
     version: = 3.1.13
-  hpricot: 
-    group: 
-    - :default
-    version: = 0.8.2
   RedCloth: 
     group: 
     - :default
     version: = 4.2.3
+  hpricot: 
+    group: 
+    - :default
+    version: = 0.8.2
   twitter: 
     group: 
     - :default
     version: = 0.9.7
+  capistrano: 
+    group: 
+    - :development
+    version: ">= 0"
 specs: 
 - rake: 
     version: 0.8.7
@@ -100,6 +101,18 @@ specs:
     version: 2.1.5
 - bundler: 
     version: 0.9.26
+- highline: 
+    version: 1.5.2
+- net-ssh: 
+    version: 2.0.23
+- net-scp: 
+    version: 1.0.2
+- net-sftp: 
+    version: 2.0.4
+- net-ssh-gateway: 
+    version: 1.0.1
+- capistrano: 
+    version: 2.5.18
 - json_pure: 
     version: 1.4.3
 - rubyforge: 
@@ -162,7 +175,7 @@ specs:
     version: 2.3.14
 - wirble: 
     version: 0.1.3
-hash: c011a1194a22101c1d48463bddbfbd86c2b243ca
+hash: c40f441c023e4bd40eb089ba403e0ede680adada
 sources: 
 - Rubygems: 
     uri: http://rubygems.org
