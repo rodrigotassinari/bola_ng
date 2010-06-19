@@ -1,6 +1,9 @@
 log/*.log
+log/*.log.*
 log/*.pid
 tmp/**/*
+tmp/restart.txt
+public/log.html
 doc/api
 doc/app
 coverage
