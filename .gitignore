@@ -1,16 +1,16 @@
-.DS_Store
 log/*.log
 log/*.pid
 tmp/**/*
 doc/api
 doc/app
+coverage
 config/database.yml
 config/application.yml
+public/stylesheets/application.css
+.bundle
+.rvmrc
+.DS_Store
+.idea
 .project
 nbproject
-coverage
-public/stylesheets/application.css
-.rvmrc
-.idea
-.bundle
 
