@@ -1,8 +1,14 @@
 source 'http://rubygems.org'
 
+# para agradar o passenger, que chama duas vezes Bundle.setup(), se não chamar 
+# o bundler no Gemfile ele vai achar que não tem bundler instalado, ver:
+#   http://www.modrails.com/documentation/Users%20guide%20Apache.html#bundler_support
+gem 'bundler' #, '0.9.26'
+
 gem 'rails', '2.3.8'
-gem 'mysql'
-gem 'memcache-client'
+gem 'mysql', '2.8.1'
+gem 'memcache-client', '1.8.3'
+gem 'system_timer' # para agradar o memcache-client
 
 gem 'haml', '3.0.12'
 gem 'authlogic', '2.1.5'
@@ -17,6 +23,7 @@ gem 'whenever', '0.4.2'
 group :development, :test do
   gem "wirble"
   gem "ruby-debug"
+  gem "ruby-debug-ide"
 end
 
 group :test do
