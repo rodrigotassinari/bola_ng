@@ -61,10 +61,19 @@ namespace :bundler do
   end
 end
 
+namespace :whenever do
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && #{bundle_path} exec whenever --update-crontab #{domain}"
+  end
+end
+
 # Callbacks
 
 after "deploy:update_code", "deploy:shared_symlink"
 after "deploy:update_code", "bundler:install"
+
+after "deploy:symlink", "whenever:update_crontab"
 
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
