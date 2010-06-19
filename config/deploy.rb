@@ -19,11 +19,12 @@ set :rails_env, "production"
 set :use_sudo, false
 set :user, "rodrigo"
 
-set :ruby_path, "/opt/ree/bin/ruby"
-set :rake_path, "/opt/ree/bin/rake"
-set :rake,      "/opt/ree/bin/rake"
-set :gem_path,  "/opt/ree/bin/gem"
-set :god_path,  "/opt/ree/bin/god"
+set :ruby_path,  "/opt/ree/bin/ruby"
+set :rake_path,  "/opt/ree/bin/rake"
+set :rake,       "/opt/ree/bin/rake"
+set :gem_path,   "/opt/ree/bin/gem"
+set :god_path,   "/opt/ree/bin/god"
+set :bundle_path, "/opt/ree/bin/bundle"
 
 set :port, 30000 # SSH port
 default_run_options[:pty] = true
@@ -56,8 +57,7 @@ end
 namespace :bundler do
   desc "Run bundle install on app root"
   task :install do
-    run "cd #{current_path} && bundle install --without test development"
-    #run "cd #{release_path} && bundle install --without test development"
+    run "cd #{release_path} && #{bundle_path} install --without test development"
   end
 end
 
