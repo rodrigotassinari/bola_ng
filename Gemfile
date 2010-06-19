@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '2.3.8'
 gem 'mysql'
+gem 'memcache-client'
 
 gem 'haml', '3.0.12'
 gem 'authlogic', '2.1.5'
