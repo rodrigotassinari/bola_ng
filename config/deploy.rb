@@ -57,14 +57,16 @@ end
 namespace :bundler do
   desc "Run bundle install on app root"
   task :install do
-    run "cd #{release_path} && #{bundle_path} install --without test development"
+    #run "cd #{release_path} && #{bundle_path} install --without test development"
+    run "cd #{latest_release} && #{bundle_path} install --without test development"
   end
 end
 
 namespace :whenever do
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
-    run "cd #{release_path} && #{bundle_path} exec whenever --update-crontab #{domain}"
+    #run "cd #{release_path} && #{bundle_path} exec whenever --update-crontab #{domain}"
+    run "cd #{latest_release} && #{bundle_path} exec whenever --update-crontab #{domain}"
   end
 end
 
