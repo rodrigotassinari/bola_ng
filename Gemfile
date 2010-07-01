@@ -18,7 +18,7 @@ gem 'twitter', '0.9.7'
 gem 'newrelic_rpm', '2.12.3'
 gem 'RedCloth', '4.2.3'
 gem 'hpricot', '0.8.2'
-gem 'whenever', '0.5.0'
+gem 'whenever', '0.4.2'
 
 group :development do
   gem 'capistrano'
