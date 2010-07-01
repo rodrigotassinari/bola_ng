@@ -10,7 +10,7 @@ gem 'mysql', '2.8.1'
 gem 'memcache-client', '1.8.3'
 gem 'system_timer' # para agradar o memcache-client
 
-gem 'haml', '3.0.12'
+gem 'haml', '3.0.13'
 gem 'authlogic', '2.1.5'
 gem 'will_paginate', '2.3.14'
 gem 'settingslogic', '1.0.4'
@@ -18,7 +18,7 @@ gem 'twitter', '0.9.7'
 gem 'newrelic_rpm', '2.12.3'
 gem 'RedCloth', '4.2.3'
 gem 'hpricot', '0.8.2'
-gem 'whenever', '0.4.2'
+gem 'whenever', '0.5.0'
 
 group :development do
   gem 'capistrano'
