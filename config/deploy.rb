@@ -66,7 +66,7 @@ namespace :whenever do
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
     #run "cd #{release_path} && #{bundle_path} exec whenever --update-crontab #{domain}"
-    run "cd #{latest_release} && #{bundle_path} exec whenever --update-crontab #{domain}"
+    run "cd #{latest_release} && #{bundle_path} exec whenever --set path=#{latest_release} --update-crontab #{domain}"
   end
 end
 
