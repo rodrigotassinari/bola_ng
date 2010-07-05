@@ -70,13 +70,26 @@ namespace :whenever do
   end
 end
 
+namespace :jammit do
+  desc 'Bundle and minify the JS and CSS files'
+  task :precache_assets, :roles => :app do
+    root_path = File.expand_path(File.dirname(__FILE__) + '/..')
+    assets_path = "#{root_path}/public/bundles"
+    jammit_path = `which jammit`.chomp
+    sass_path = `which sass`.chomp
+    run_locally "cd #{root_path} && #{sass_path} --update public/stylesheets/sass:public/stylesheets --cache-location tmp/sass-cache"
+    run_locally "cd #{root_path} && #{jammit_path} -c config/assets.yml -f"
+    top.upload assets_path, "#{latest_release}/public", :via => :scp, :recursive => true
+  end
+end
+
 # Callbacks
 
 after "deploy:update_code", "deploy:shared_symlink"
 after "deploy:update_code", "bundler:install"
 
+after 'deploy:symlink', 'jammit:precache_assets'
 after "deploy:symlink", "whenever:update_crontab"
 
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
-
