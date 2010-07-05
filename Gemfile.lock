@@ -1,10 +1,6 @@
 --- 
 dependencies: 
-  ruby-debug-ide: 
-    group: 
-    - :development
-    version: ">= 0"
-  ruby-debug: 
+  mongrel: 
     group: 
     - :development
     version: ">= 0"
@@ -52,6 +48,10 @@ dependencies:
     group: 
     - :default
     version: = 2.3.14
+  jammit: 
+    group: 
+    - :default
+    version: = 0.4.4
   bundler: 
     group: 
     - :default
@@ -72,14 +72,14 @@ dependencies:
     group: 
     - :default
     version: = 0.8.2
-  twitter: 
-    group: 
-    - :default
-    version: = 0.9.7
   capistrano: 
     group: 
     - :development
     version: ">= 0"
+  twitter: 
+    group: 
+    - :default
+    version: = 0.9.7
 specs: 
 - rake: 
     version: 0.8.7
@@ -113,6 +113,8 @@ specs:
     version: 1.0.1
 - capistrano: 
     version: 2.5.19
+- cgi_multipart_eof_fix: 
+    version: 2.5.0
 - json_pure: 
     version: 1.4.3
 - rubyforge: 
@@ -121,10 +123,16 @@ specs:
     version: 2.6.1
 - chronic: 
     version: 0.2.3
-- columnize: 
-    version: 0.3.1
+- closure-compiler: 
+    version: 0.3.2
 - crack: 
     version: 0.1.6
+- daemons: 
+    version: 1.1.0
+- fastthread: 
+    version: 1.0.7
+- gem_plugin: 
+    version: 0.2.3
 - haml: 
     version: 3.0.13
 - hashie: 
@@ -133,18 +141,22 @@ specs:
     version: 0.8.2
 - httparty: 
     version: 0.5.2
-- linecache: 
-    version: "0.43"
+- rails: 
+    version: 2.3.8
+- yui-compressor: 
+    version: 0.9.1
+- jammit: 
+    version: 0.4.4
 - memcache-client: 
     version: 1.8.3
+- mongrel: 
+    version: 1.1.5
 - mysql: 
     version: 2.8.1
 - newrelic_rpm: 
     version: 2.12.3
 - oauth: 
     version: 0.4.1
-- rails: 
-    version: 2.3.8
 - rspec: 
     version: 1.3.0
 - remarkable: 
@@ -155,12 +167,6 @@ specs:
     version: 1.3.2
 - remarkable_rails: 
     version: 3.1.13
-- ruby-debug-base: 
-    version: 0.10.3
-- ruby-debug: 
-    version: 0.10.3
-- ruby-debug-ide: 
-    version: 0.4.9
 - settingslogic: 
     version: 1.0.4
 - system_timer: 
@@ -175,7 +181,7 @@ specs:
     version: 2.3.14
 - wirble: 
     version: 0.1.3
-hash: 0c13a1923a1e210815ade6925af1e76a6c0eab13
+hash: 883e9e9e63d9db6d71016a171276d4c51799be3f
 sources: 
 - Rubygems: 
     uri: http://rubygems.org

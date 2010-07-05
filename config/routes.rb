@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  Jammit::Routes.draw(map)
+  
   ## public
 
   map.resources :lifestream, :controller => 'lifestream'
