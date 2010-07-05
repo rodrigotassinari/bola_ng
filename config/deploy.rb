@@ -57,16 +57,16 @@ end
 namespace :bundler do
   desc "Run bundle install on app root"
   task :install do
-    #run "cd #{release_path} && #{bundle_path} install --without test development"
-    run "cd #{latest_release} && #{bundle_path} install --without test development"
+    run "cd #{current_path} && #{bundle_path} install --without test development"
   end
 end
 
 namespace :whenever do
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
-    #run "cd #{release_path} && #{bundle_path} exec whenever --update-crontab #{domain}"
-    run "cd #{latest_release} && #{bundle_path} exec whenever --set path=#{latest_release} --update-crontab #{domain}"
+    # IMPORTANT: shell-less ssh login must get the correct PATH via ~/.ssh/environment
+    # See: http://brunomiranda.com/past/2007/7/20/capistrano_2_local_deployment_path/
+    run "cd #{current_path} && #{bundle_path} exec whenever --set 'path=#{current_path}&output=#{current_path}/log/cron.log' --update-crontab #{domain}"
   end
 end
 
