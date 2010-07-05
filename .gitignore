@@ -16,4 +16,6 @@ public/stylesheets/application.css
 .idea
 .project
 nbproject
-
+public/bundles/*.css
+public/bundles/*.js
+public/bundles/*.gz
