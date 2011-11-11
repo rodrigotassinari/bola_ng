@@ -49,16 +49,17 @@ class TwitterService < Service
   # returns a Post object associated with this Service, with all relevant
   # attributes filled with the entry's content
   def build_post_from_entry(entry)
+    text = entry.text.gsub(/\\u([0-9a-zA-Z]{4})/) { |s| [$1.to_i(16)].pack("U") }
     self.posts.build(
       :service_action => Service::SERVICE_ACTION_POST,
       :identifier => entry.id.to_s,
-      :title => entry.text,
+      :title => text,
       :markup => Post::HTML_MARKUP,
-      :summary => entry.text,
+      :summary => text,
       :url => "#{self.profile_url}/status/#{entry.id}",
       :published_at => entry.created_at.to_time,
       :extra_content => {
-        :original_tags => self.search_for_hashtags(entry.text) # array de tags
+        :original_tags => self.search_for_hashtags(text) # array de tags
       }
     )
   end
