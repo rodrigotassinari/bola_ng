@@ -43,8 +43,16 @@ class BlogController < ApplicationController
       @service.posts.published.ordered.with_service.find_by_slug(params[:id]) || @service.posts.published.ordered.with_service.find(params[:id])
     end
 
-    @post_context = @post.context
-    @page_title = "Blog :: #{@post.title}"
+    respond_to do |format|
+      format.html do
+        @post_context = @post.context
+        @page_title = "Blog :: #{@post.title}"
+        render :action => :show
+      end
+      format.json do
+        render :json => @post.to_json(:include => :service)
+      end
+    end
   end
 
   # GET /blog/new
