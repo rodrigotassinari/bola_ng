@@ -11,9 +11,16 @@ class PostsController < ApplicationController
     if @post.service.class == BlogService
       redirect_to blog_url(@post.slug)
     else
-      @current_tab = 'lifestream'
-      @page_title = "Lifestream :: #{@post.service.name} :: #{@post.title}"
-      render :action => :show
+      respond_to do |format|
+        format.html do
+          @current_tab = 'lifestream'
+          @page_title = "Lifestream :: #{@post.service.name} :: #{@post.title}"
+          render :action => :show
+        end
+        format.json do
+          render :json => @post.to_json(:include => :service)
+        end
+      end
     end
   end
 
